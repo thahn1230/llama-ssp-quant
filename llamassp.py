@@ -8,7 +8,7 @@ from lssp.ssp import ssp
 import sys
 import time
 import torch
-from transformers import LlamaTokenizer
+from transformers import AutoTokenizer
 from termcolor import colored
 torch.manual_seed(42)
 
@@ -79,7 +79,7 @@ texts = [
     'The cold, damp air clung to my skin as I ventured deeper into the cave.',
     'The distant rumble of thunder warned of an approaching storm.',
     'The elevator doors opened, revealing a scene I could never have imagined.']
-tokenizer = LlamaTokenizer.from_pretrained(llama7b_name)
+tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
 
 free_in_GB = int(torch.cuda.mem_get_info()[0]/1024**3)
 max_mem = f'{int(torch.cuda.mem_get_info()[0]/1024**3)-2}GB'

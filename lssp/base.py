@@ -2,14 +2,14 @@
 
 import sys
 import torch
-from transformers import LlamaForCausalLM, LlamaTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 llama7b_name = 'baffo32/decapoda-research-llama-7b-hf'
-tokenizer = LlamaTokenizer.from_pretrained(llama7b_name)
+tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
 
 
 def create_model(model_name, max_memory, load_in_8bit=True):
-    return LlamaForCausalLM.from_pretrained(
+    return AutoModelForCausalLM.from_pretrained(
         model_name,
         device_map='balanced',
         load_in_8bit=load_in_8bit,
