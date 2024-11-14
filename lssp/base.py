@@ -2,10 +2,11 @@
 
 import sys
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, LlamaTokenizer, AutoTokenizer, GPT2Tokenizer
 
-llama7b_name = 'baffo32/decapoda-research-llama-7b-hf'
-tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
+# llama7b_name = 'baffo32/decapoda-research-llama-7b-hf'
+opt_model_name = 'facebook/opt-1.3b'
+tokenizer = AutoTokenizer.from_pretrained(opt_model_name)
 
 
 def create_model(model_name, max_memory, load_in_8bit=True):
