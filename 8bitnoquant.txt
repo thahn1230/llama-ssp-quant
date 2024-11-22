@@ -1,0 +1,209 @@
+Testing 13B with draft 7B
+--------------------
+Generating tokens for: </s>The waves crashed against the shore, a never-ending cycle of destruction and creation.
+========================================
+Step 1:
+Rejected Draft Token: 
+
+Replaced with Target Token:  The
+----------------------------------------
+Step 2:
+Accepted Token:  waves
+----------------------------------------
+Step 3:
+Rejected Draft Token:  were
+Replaced with Target Token:  crashed
+----------------------------------------
+Step 4:
+Accepted Token:  against
+----------------------------------------
+Step 5:
+Accepted Token:  the
+----------------------------------------
+Step 6:
+Accepted Token:  shore
+----------------------------------------
+Step 7:
+Accepted Token: ,
+----------------------------------------
+Step 8:
+Accepted Token:  a
+----------------------------------------
+Step 9:
+Accepted Token:  never
+----------------------------------------
+Step 10:
+Accepted Token: -
+----------------------------------------
+Step 11:
+Accepted Token: ending
+----------------------------------------
+Step 12:
+Accepted Token:  cycle
+----------------------------------------
+Step 13:
+Accepted Token:  of
+----------------------------------------
+Step 14:
+Accepted Token:  destruction
+----------------------------------------
+Step 15:
+Accepted Token:  and
+----------------------------------------
+Step 16:
+Accepted Token:  creation
+----------------------------------------
+Step 17:
+Accepted Token: .
+----------------------------------------
+Step 18:
+Accepted Token: 
+
+----------------------------------------
+Step 19:
+Accepted Token: 
+
+----------------------------------------
+Step 20:
+Accepted Token: The
+----------------------------------------
+Step 21:
+Accepted Token:  waves
+----------------------------------------
+Step 22:
+Accepted Token:  crashed
+----------------------------------------
+Step 23:
+Accepted Token:  against
+----------------------------------------
+Step 24:
+Accepted Token:  the
+----------------------------------------
+Step 25:
+Accepted Token:  shore
+----------------------------------------
+Step 26:
+Accepted Token: ,
+----------------------------------------
+Step 27:
+Accepted Token:  a
+----------------------------------------
+Step 28:
+Accepted Token:  never
+----------------------------------------
+Step 29:
+Accepted Token: -
+----------------------------------------
+Step 30:
+Accepted Token: ending
+----------------------------------------
+Step 31:
+Accepted Token:  cycle
+----------------------------------------
+Step 32:
+Accepted Token:  of
+----------------------------------------
+Step 33:
+Accepted Token:  destruction
+----------------------------------------
+Step 34:
+Accepted Token:  and
+----------------------------------------
+Step 35:
+Accepted Token:  creation
+----------------------------------------
+Step 36:
+Accepted Token: .
+----------------------------------------
+Step 37:
+Accepted Token: 
+
+----------------------------------------
+Step 38:
+Accepted Token: 
+
+----------------------------------------
+Step 39:
+Accepted Token: The
+----------------------------------------
+Step 40:
+Accepted Token:  waves
+----------------------------------------
+Step 41:
+Accepted Token:  crashed
+----------------------------------------
+Step 42:
+Accepted Token:  against
+----------------------------------------
+Step 43:
+Accepted Token:  the
+----------------------------------------
+Step 44:
+Accepted Token:  shore
+----------------------------------------
+Step 45:
+Accepted Token: ,
+----------------------------------------
+Step 46:
+Accepted Token:  a
+----------------------------------------
+Step 47:
+Accepted Token:  never
+----------------------------------------
+Step 48:
+Accepted Token: -
+----------------------------------------
+Step 49:
+Accepted Token: ending
+----------------------------------------
+Step 50:
+Accepted Token:  cycle
+----------------------------------------
+Step 51:
+Accepted Token:  of
+----------------------------------------
+Step 52:
+Accepted Token:  destruction
+----------------------------------------
+Step 53:
+Accepted Token:  and
+----------------------------------------
+Step 54:
+Accepted Token:  creation
+----------------------------------------
+Step 55:
+Accepted Token: .
+----------------------------------------
+Step 56:
+Accepted Token: 
+
+----------------------------------------
+Step 57:
+Accepted Token: 
+
+----------------------------------------
+Step 58:
+Accepted Token: The
+----------------------------------------
+Step 59:
+Accepted Token:  waves
+----------------------------------------
+Step 60:
+Accepted Token:  crashed
+----------------------------------------
+Step 61:
+Accepted Token:  against
+----------------------------------------
+Step 62:
+Accepted Token:  the
+----------------------------------------
+Step 63:
+Accepted Token:  shore
+----------------------------------------
+Step 64:
+Accepted Token: ,
+----------------------------------------
+Completion:  The
+Acceptance Rate: 96.88%
+Total Time: 5.91s
+========================================

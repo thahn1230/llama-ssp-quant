@@ -1,0 +1,217 @@
+Testing 13B with draft 7B
+--------------------
+Generating tokens for: </s>The waves crashed against the shore, a never-ending cycle of destruction and creation.
+========================================
+Step 1:
+Rejected Draft Token: 
+
+Replaced with Target Token:  The
+----------------------------------------
+Step 2:
+Rejected Draft Token:  waves
+Replaced with Target Token:  water
+----------------------------------------
+Step 3:
+Accepted Token:  was
+----------------------------------------
+Step 4:
+Rejected Draft Token:  a
+Replaced with Target Token:  cold
+----------------------------------------
+Step 5:
+Rejected Draft Token:  and
+Replaced with Target Token: ,
+----------------------------------------
+Step 6:
+Rejected Draft Token:  and
+Replaced with Target Token:  the
+----------------------------------------
+Step 7:
+Accepted Token:  air
+----------------------------------------
+Step 8:
+Accepted Token:  was
+----------------------------------------
+Step 9:
+Rejected Draft Token:  thick
+Replaced with Target Token:  crisp
+----------------------------------------
+Step 10:
+Accepted Token: ,
+----------------------------------------
+Step 11:
+Accepted Token:  and
+----------------------------------------
+Step 12:
+Accepted Token:  the
+----------------------------------------
+Step 13:
+Accepted Token:  sun
+----------------------------------------
+Step 14:
+Accepted Token:  was
+----------------------------------------
+Step 15:
+Rejected Draft Token:  shining
+Replaced with Target Token:  warm
+----------------------------------------
+Step 16:
+Accepted Token: .
+----------------------------------------
+Step 17:
+Accepted Token:  The
+----------------------------------------
+Step 18:
+Rejected Draft Token:  air
+Replaced with Target Token:  waves
+----------------------------------------
+Step 19:
+Accepted Token:  were
+----------------------------------------
+Step 20:
+Rejected Draft Token:  crashing
+Replaced with Target Token:  the
+----------------------------------------
+Step 21:
+Accepted Token:  only
+----------------------------------------
+Step 22:
+Accepted Token:  thing
+----------------------------------------
+Step 23:
+Accepted Token:  that
+----------------------------------------
+Step 24:
+Accepted Token:  could
+----------------------------------------
+Step 25:
+Rejected Draft Token:  keep
+Replaced with Target Token:  be
+----------------------------------------
+Step 26:
+Accepted Token:  heard
+----------------------------------------
+Step 27:
+Accepted Token: ,
+----------------------------------------
+Step 28:
+Rejected Draft Token:  and
+Replaced with Target Token:  the
+----------------------------------------
+Step 29:
+Accepted Token:  only
+----------------------------------------
+Step 30:
+Accepted Token:  thing
+----------------------------------------
+Step 31:
+Accepted Token:  that
+----------------------------------------
+Step 32:
+Accepted Token:  could
+----------------------------------------
+Step 33:
+Accepted Token:  be
+----------------------------------------
+Step 34:
+Accepted Token:  seen
+----------------------------------------
+Step 35:
+Accepted Token: .
+----------------------------------------
+Step 36:
+Rejected Draft Token: 
+
+Replaced with Target Token:  The
+----------------------------------------
+Step 37:
+Rejected Draft Token:  waves
+Replaced with Target Token:  only
+----------------------------------------
+Step 38:
+Accepted Token:  thing
+----------------------------------------
+Step 39:
+Accepted Token:  that
+----------------------------------------
+Step 40:
+Accepted Token:  could
+----------------------------------------
+Step 41:
+Accepted Token:  be
+----------------------------------------
+Step 42:
+Accepted Token:  felt
+----------------------------------------
+Step 43:
+Accepted Token: .
+----------------------------------------
+Step 44:
+Accepted Token: 
+
+----------------------------------------
+Step 45:
+Accepted Token: 
+
+----------------------------------------
+Step 46:
+Accepted Token: The
+----------------------------------------
+Step 47:
+Accepted Token:  waves
+----------------------------------------
+Step 48:
+Accepted Token:  crashed
+----------------------------------------
+Step 49:
+Accepted Token:  against
+----------------------------------------
+Step 50:
+Accepted Token:  the
+----------------------------------------
+Step 51:
+Accepted Token:  shore
+----------------------------------------
+Step 52:
+Accepted Token: ,
+----------------------------------------
+Step 53:
+Accepted Token:  a
+----------------------------------------
+Step 54:
+Accepted Token:  never
+----------------------------------------
+Step 55:
+Accepted Token: -
+----------------------------------------
+Step 56:
+Accepted Token: ending
+----------------------------------------
+Step 57:
+Accepted Token:  cycle
+----------------------------------------
+Step 58:
+Accepted Token:  of
+----------------------------------------
+Step 59:
+Accepted Token:  destruction
+----------------------------------------
+Step 60:
+Accepted Token:  and
+----------------------------------------
+Step 61:
+Accepted Token:  creation
+----------------------------------------
+Step 62:
+Accepted Token: .
+----------------------------------------
+Step 63:
+Accepted Token:  The
+----------------------------------------
+Step 64:
+Accepted Token:  water
+----------------------------------------
+Completion:  The
+Acceptance Rate: 79.69%
+Total Time: 3.34s
+========================================
