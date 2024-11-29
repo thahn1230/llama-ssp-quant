@@ -26,10 +26,10 @@ import tqdm
 from datasets import load_dataset
 
 alpha = 0.85
-ssm_model_path = 'facebook/opt-1.3b'
-ssm_act_scales_path = 'act_scales/opt-1.3b.pt'
-ltm_model_path = 'facebook/opt-6.7b'
-ltm_act_scales_path = 'act_scales/opt-6.7b.pt'
+ssm_model_path = 'Qwen/Qwen2.5-0.5B'
+ssm_act_scales_path = 'act_scales/Qwen2.5-0.5b.pt'
+ltm_model_path = 'Qwen/Qwen2.5-3B'
+ltm_act_scales_path = 'act_scales/Qwen2.5-3b.pt'
 n_samples = None
 
 class Evaluator:
@@ -81,7 +81,7 @@ ssm_act_scales = torch.load(ssm_act_scales_path)
 smooth_lm(ssmmodel, ssm_act_scales, alpha)
 
 # quantize
-ssmmodel = quantize_model_8(
+ssmmodel = quantize_model_6(
     ssmmodel,
     weight_quant="per_channel",
     act_quant="per_token",
@@ -97,7 +97,7 @@ ltm_act_scales = torch.load(ltm_act_scales_path)
 smooth_lm(ltmmodel, ltm_act_scales, alpha)
 
 # quantize
-ltmmodel = quantize_model_8(
+ltmmodel = quantize_model_6(
     ltmmodel,
     weight_quant="per_channel",
     act_quant="per_token",
@@ -113,8 +113,8 @@ ltmmodel = quantize_model_8(
 
 ################################################
 MAX_NEW_TOKENS = 64
-llama7b_name = 'facebook/opt-1.3b'
-llama13b_name = 'facebook/opt-6.7b'
+llama7b_name = 'Qwen/Qwen2.5-0.5B'
+llama13b_name = 'Qwen/Qwen2.5-3B'
 llama30b_name = 'baffo32/decapoda-research-llama-30b-hf'
 llama65b_name = 'meta-llama/Llama-2-70b-hf'
 batch_size = 1
@@ -181,16 +181,16 @@ batch_size = 1
 #     'The elevator doors opened, revealing a scene I could never have imagined.']
 
 # 또 다른 데이터셋으로 test해보기
-# dataset = load_dataset("lambada", split="test")  # LAMBADA 데이터셋
-# texts = dataset["text"][:100]  # 첫 100개의 텍스트를 사용
+dataset = load_dataset("lambada", split="test")  # LAMBADA 데이터셋
+texts = dataset["text"][:100]  # 첫 100개의 텍스트를 사용
 
 # 또 다른 데이터셋으로 test해보기
 # dataset = load_dataset("wikitext", "wikitext-103-raw-v1", split="test")
 # texts = dataset["text"][:100]
 
 # 또 다른 데이터셋으로 test해보기
-dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-texts = dataset["text"][:100]
+# dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
+# texts = dataset["text"][:100]
 
 tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
 

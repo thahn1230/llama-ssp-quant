@@ -310,6 +310,44 @@ def quantize_falcon(
     return model
 
 
+def quantize_qwen2(
+    model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=True
+):
+    from transformers.models.qwen2.modeling_qwen2 import (
+        Qwen2SdpaAttention,
+        Qwen2MLP,
+    )
+
+    for name, m in model.model.named_modules():
+        if isinstance(m, Qwen2MLP):
+            # Qwen2MLP의 gate_proj, up_proj, down_proj에 대해 양자화 적용
+            m.gate_proj = W8A8Linear.from_float(
+                m.gate_proj, weight_quant=weight_quant, act_quant=act_quant
+            )
+            m.up_proj = W8A8Linear.from_float(
+                m.up_proj, weight_quant=weight_quant, act_quant=act_quant
+            )
+            m.down_proj = W8A8Linear.from_float(
+                m.down_proj, weight_quant=weight_quant, act_quant=act_quant
+            )
+        elif isinstance(m, Qwen2SdpaAttention):
+            # Qwen2SdpaAttention 양자화
+            m.q_proj = W8A8Linear.from_float(
+                m.q_proj, weight_quant=weight_quant, act_quant=act_quant, quantize_output=quantize_bmm_input
+            )
+            m.k_proj = W8A8Linear.from_float(
+                m.k_proj, weight_quant=weight_quant, act_quant=act_quant, quantize_output=quantize_bmm_input
+            )
+            m.v_proj = W8A8Linear.from_float(
+                m.v_proj, weight_quant=weight_quant, act_quant=act_quant, quantize_output=quantize_bmm_input
+            )
+            m.o_proj = W8A8Linear.from_float(
+                m.o_proj, weight_quant=weight_quant, act_quant=act_quant
+            )
+    return model
+
+
+
 def quantize_model(
     model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=False
 ):
@@ -318,6 +356,7 @@ def quantize_model(
     from transformers.models.mistral.modeling_mistral import MistralPreTrainedModel
     from transformers.models.mixtral.modeling_mixtral import MixtralPreTrainedModel
     from transformers.models.falcon.modeling_falcon import FalconPreTrainedModel
+    from transformers.models.qwen2.modeling_qwen2 import Qwen2PreTrainedModel
 
     if isinstance(model, OPTPreTrainedModel):
         return quantize_opt(
@@ -342,6 +381,13 @@ def quantize_model(
         )
     elif isinstance(model, FalconPreTrainedModel):
         return quantize_falcon(
+            model,
+            weight_quant=weight_quant,
+            act_quant=act_quant,
+            quantize_bmm_input=quantize_bmm_input,
+        )
+    elif isinstance(model, Qwen2PreTrainedModel):
+        return quantize_qwen2(
             model,
             weight_quant=weight_quant,
             act_quant=act_quant,
