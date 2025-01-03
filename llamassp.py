@@ -76,17 +76,17 @@ ssmmodel = AutoModelForCausalLM.from_pretrained(
     ssm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
 )
 
-# smooth
-ssm_act_scales = torch.load(ssm_act_scales_path)
-smooth_lm(ssmmodel, ssm_act_scales, alpha)
+# # smooth
+# ssm_act_scales = torch.load(ssm_act_scales_path)
+# smooth_lm(ssmmodel, ssm_act_scales, alpha)
 
-# quantize
-ssmmodel = quantize_model_4(
-    ssmmodel,
-    weight_quant="per_channel",
-    act_quant="per_token",
-    quantize_bmm_input=True,
-)
+# # quantize
+# ssmmodel = quantize_model_8(
+#     ssmmodel,
+#     weight_quant="per_channel",
+#     act_quant="per_token",
+#     quantize_bmm_input=True,
+# )
 
 ltmmodel = AutoModelForCausalLM.from_pretrained(
     ltm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
@@ -97,7 +97,7 @@ ltm_act_scales = torch.load(ltm_act_scales_path)
 smooth_lm(ltmmodel, ltm_act_scales, alpha)
 
 # quantize
-ltmmodel = quantize_model_6(
+ltmmodel = quantize_model_8(
     ltmmodel,
     weight_quant="per_channel",
     act_quant="per_token",
@@ -262,9 +262,9 @@ models_params = {
 
 
 def time_ssp(target_name, draft_name, draft, ltm, K=4):
-    # draft_model = create_model(**models_params[draft_name])
+    draft_model = create_model(**models_params[draft_name])
     # target_model = create_model(**models_params[target_name])
-    draft_model = draft
+    # draft_model = draft
     target_model = ltm
     nb_tokens = 0
     # Warmup
