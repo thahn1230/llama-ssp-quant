@@ -229,7 +229,6 @@ def quantize_llama_like(
             )
     return model
 
-
 def quantize_mixtral(
     model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=False
 ):

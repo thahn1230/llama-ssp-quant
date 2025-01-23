@@ -26,10 +26,10 @@ import tqdm
 from datasets import load_dataset
 
 alpha = 0.85
-ssm_model_path = 'Qwen/Qwen2.5-0.5B'
-ssm_act_scales_path = 'act_scales/Qwen2.5-0.5b.pt'
-ltm_model_path = 'Qwen/Qwen2.5-3B'
-ltm_act_scales_path = 'act_scales/Qwen2.5-3b.pt'
+ssm_model_path = 'facebook/opt-1.3b'
+ssm_act_scales_path = 'act_scales/opt-1.3b.pt'
+ltm_model_path = 'facebook/opt-6.7b'
+ltm_act_scales_path = 'act_scales/opt-6.7b.pt'
 n_samples = None
 
 class Evaluator:
@@ -80,7 +80,6 @@ ssmmodel = AutoModelForCausalLM.from_pretrained(
 # ssm_act_scales = torch.load(ssm_act_scales_path)
 # smooth_lm(ssmmodel, ssm_act_scales, alpha)
 
-<<<<<<< HEAD
 # # quantize
 # ssmmodel = quantize_model_8(
 #     ssmmodel,
@@ -88,31 +87,22 @@ ssmmodel = AutoModelForCausalLM.from_pretrained(
 #     act_quant="per_token",
 #     quantize_bmm_input=True,
 # )
-=======
-# quantize
-ssmmodel = quantize_model_6(
-    ssmmodel,
-    weight_quant="per_channel",
-    act_quant="per_token",
-    quantize_bmm_input=True,
-)
->>>>>>> e12acf97fa5ebb8cf49c1a3313276b29840d7a01
 
 ltmmodel = AutoModelForCausalLM.from_pretrained(
     ltm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
 )
 
-# smooth
-ltm_act_scales = torch.load(ltm_act_scales_path)
-smooth_lm(ltmmodel, ltm_act_scales, alpha)
+# # smooth
+# ltm_act_scales = torch.load(ltm_act_scales_path)
+# smooth_lm(ltmmodel, ltm_act_scales, alpha)
 
-# quantize
-ltmmodel = quantize_model_8(
-    ltmmodel,
-    weight_quant="per_channel",
-    act_quant="per_token",
-    quantize_bmm_input=True,
-)
+# # quantize
+# ltmmodel = quantize_model_8(
+#     ltmmodel,
+#     weight_quant="per_channel",
+#     act_quant="per_token",
+#     quantize_bmm_input=True,
+# )
 
 # ssm_ppl = ssm_tokenizer.evaluate(ssmmodel)
 # print(f"LTM Perplexity: {ssm_ppl}")
@@ -123,85 +113,15 @@ ltmmodel = quantize_model_8(
 
 ################################################
 MAX_NEW_TOKENS = 64
-llama7b_name = 'Qwen/Qwen2.5-0.5B'
-llama13b_name = 'Qwen/Qwen2.5-3B'
+llama7b_name = 'facebook/opt-1.3b'
+llama13b_name = 'facebook/opt-6.7b'
 llama30b_name = 'baffo32/decapoda-research-llama-30b-hf'
 llama65b_name = 'meta-llama/Llama-2-70b-hf'
 batch_size = 1
 
-# texts = [
-#     'In which country is Hamburg?\n',
-#     'How are you doing today?\n',
-#     'It was a dark and stormy night.',
-#     'The sun rose slowly over the horizon, casting a warm glow on the world below.',
-#     'I never believed in ghosts until the day I met one.',
-#     'The sound of the train whistle echoed through the valley as I stood at the station, waiting.',
-#     'She walked into the room and everything changed.',
-#     'The smell of freshly baked bread filled the air as I entered the bakery.',
-#     'The first time I saw her, I knew she was trouble.'
-#     'The world was ending, and I was the only one who knew.',
-#     'It was the best of times, it was the worst of times.',
-#     'The forest was alive with the sound of animals as I walked deeper into the woods.',
-#     'As I looked out over the city, I knew that anything was possible.',
-#     'The sound of gunfire echoed through the streets as I ran for cover.',
-#     'The waves crashed against the shore, a never-ending cycle of destruction and creation.',
-#     'I woke up to find myself in a strange place, with no memory of how I got there.',
-#     'The clock struck midnight, and I knew that my life would never be the same.',
-#     'What country is Berlin located in?',
-#     'How are you feeling this morning?',
-#     'The wind howled through the trees on a cold, wintry night.',
-#     'The stars began to fade as the first light of dawn appeared on the horizon.',
-#     'I used to laugh at the idea of aliens, until I saw one myself.',
-#     'The distant sound of church bells echoed through the quiet village.',
-#     'As soon as he entered the room, the atmosphere shifted.',
-#     'The aroma of roasted coffee beans filled the small café as I opened the door.',
-#     'From the moment I met him, I knew he was hiding something.',
-#     'The sky turned a strange shade of red, and I knew the end was near.',
-#     'It was a moment of triumph, and yet, a moment of despair.',
-#     'The air was thick with humidity, and the forest was teeming with life.',
-#     'Looking out over the ocean, I realized how vast the world truly was.',
-#     'The sound of sirens filled the air as chaos erupted all around me.',
-#     'The river flowed endlessly, carving its path through the mountains.',
-#     'I awoke in a cold, sterile room, unsure of how I had arrived there.',
-#     'As the clock struck twelve, I felt the weight of destiny pressing down on me.',
-#     'In the silence of the night, a distant howl sent chills down my spine.',
-#     'The rain tapped softly against the window as I sat alone in the dark.',
-#     'The old house creaked as if it were alive, each step making the floor groan beneath me.',
-#     'The moment our eyes met, I knew everything was about to change.',
-#     'A thick fog rolled in, covering the city in a blanket of mystery.',
-#     'I could feel the tension in the air as we waited for the inevitable.',
-#     'The sun was setting, casting long shadows across the barren landscape.',
-#     'As I reached the top of the mountain, the view took my breath away.',
-#     'The smell of smoke lingered in the air long after the fire had been put out.',
-#     'She smiled, but her eyes told a different story.',
-#     'I had never felt so alone, even though the room was full of people.',
-#     'The city lights flickered in the distance, a reminder of how far I had come.',
-#     'The cold wind bit at my face as I trudged through the snow.',
-#     'The sound of footsteps behind me made me quicken my pace.',
-#     'The clock was ticking, and time was running out.',
-#     'I knew I had to make a choice, but neither option felt right.',
-#     'The old man’s voice was shaky, but his words were filled with wisdom.',
-#     'The desert stretched out endlessly before me, with no sign of life in sight.',
-#     'I could hear the waves crashing in the distance, a soothing rhythm in the chaos.',
-#     'As the storm raged outside, I felt a strange calm settle over me.',
-#     'The letter arrived unexpectedly, throwing my world into disarray.',
-#     'The fire crackled softly, filling the cabin with warmth and light.',
-#     'The cold, damp air clung to my skin as I ventured deeper into the cave.',
-#     'The distant rumble of thunder warned of an approaching storm.',
-#     'The elevator doors opened, revealing a scene I could never have imagined.']
-
-# 또 다른 데이터셋으로 test해보기
-dataset = load_dataset("lambada", split="test")  # LAMBADA 데이터셋
-texts = dataset["text"][:100]  # 첫 100개의 텍스트를 사용
-
-# 또 다른 데이터셋으로 test해보기
-# dataset = load_dataset("wikitext", "wikitext-103-raw-v1", split="test")
-# texts = dataset["text"][:100]
-
-# 또 다른 데이터셋으로 test해보기
-# dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-# texts = dataset["text"][:100]
-
+texts = [
+    'The waves crashed against the shore, a never-ending cycle of destruction and creation.',
+]
 tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
 
 free_in_GB = int(torch.cuda.mem_get_info()[0]/1024**3)
@@ -286,46 +206,113 @@ models_params = {
 
 def time_ssp(target_name, draft_name, draft, ltm, K=4):
     draft_model = create_model(**models_params[draft_name])
-    # target_model = create_model(**models_params[target_name])
+    target_model = create_model(**models_params[target_name])
     # draft_model = draft
-    target_model = ltm
+    # target_model = ltm
     nb_tokens = 0
-    # Warmup
-    input_ids = tokenizer(texts[0], return_tensors="pt").input_ids
-    input_ids = torch.stack(
-        [input_ids[0]] * batch_size).to(draft_model.device)
-    generated_ids, accept_tokens, generated_tokens = ssp(target_model,
-                        draft_model,
-                        MAX_NEW_TOKENS,
-                        input_ids, K=K)
-
-    start_time = time.time()
     all_accept_tokens = 0
     all_generated_tokens = 0
-    for text in texts[1:]:
 
-        print("Completing text:", text)
+    # 전체 실행 시간 측정을 위한 초기화
+    start_time = time.time()
+
+    input_ids = tokenizer(texts[0], return_tensors="pt").input_ids
+    input_ids = torch.stack([input_ids[0]] * batch_size).to(draft_model.device)
+    
+    # 첫 번째 텍스트 처리
+    print("Generating tokens for:", tokenizer.decode(input_ids[0]))
+    print("=" * 40)
+    generated_ids, accept_tokens, generated_tokens = ssp(
+        target_model,
+        draft_model,
+        MAX_NEW_TOKENS,
+        input_ids,
+        K=K,
+        display=True
+    )
+    print("Completion:", tokenizer.decode(generated_ids[0], skip_special_tokens=True))
+    print("Acceptance Rate: {:.2f}%".format((accept_tokens / generated_tokens) * 100))
+    print("Total Time: {:.2f}s".format(time.time() - start_time))
+    print("=" * 40)
+    
+    start_time = time.time()  # 전체 실행 시간 재설정
+    for text in texts[1:]:
+        print("Generating tokens for:", text)
+        print("=" * 40)
+        
+        # 텍스트별 생성 시간 측정을 위한 시간 초기화
         intermediate_time = time.time()
+
         input_ids = tokenizer(text, return_tensors="pt").input_ids
-        input_ids = torch.stack(
-            [input_ids[0]] * batch_size).to(draft_model.device)
-        generated_ids, accept_tokens, generated_tokens = ssp(target_model,
-                            draft_model,
-                            MAX_NEW_TOKENS,
-                            input_ids, K=K)
+        input_ids = torch.stack([input_ids[0]] * batch_size).to(draft_model.device)
+
+        # Speculative Sampling 수행
+        generated_ids, accept_tokens, generated_tokens = ssp(
+            target_model,
+            draft_model,
+            MAX_NEW_TOKENS,
+            input_ids,
+            K=K,
+            display=True
+        )
+        
         all_accept_tokens += accept_tokens
         all_generated_tokens += generated_tokens
         nb_tokens += generated_ids.shape[1] - input_ids.shape[1]
-        print("Completion: ", tokenizer.decode(
-            generated_ids[0], skip_special_tokens=True))
-        print("Time: {:.2f}s".format(time.time() - intermediate_time))
-        print("========\n")
-        print("Acceptance Rate: {:.2f}%".format((accept_tokens/generated_tokens)*100))
-        print("========\n")
         
-    ms_per_token = (time.time() - start_time)*1000 / nb_tokens
-    accept_rate = (all_accept_tokens/all_generated_tokens)
+        print("Completion:", tokenizer.decode(generated_ids[0], skip_special_tokens=True))
+        print("Acceptance Rate: {:.2f}%".format((accept_tokens / generated_tokens) * 100))
+        print("Time for this text: {:.2f}s".format(time.time() - intermediate_time))
+        print("=" * 40)
+        
+    ms_per_token = (time.time() - start_time) * 1000 / nb_tokens
+    accept_rate = (all_accept_tokens / all_generated_tokens)
     return generated_ids, ms_per_token, accept_rate
+
+
+
+# def time_ssp(target_name, draft_name, draft, ltm, K=4):
+#     draft_model = create_model(**models_params[draft_name])
+#     target_model = create_model(**models_params[target_name])
+#     # draft_model = draft
+#     # target_model = ltm
+#     nb_tokens = 0
+#     # Warmup
+#     input_ids = tokenizer(texts[0], return_tensors="pt").input_ids
+#     input_ids = torch.stack(
+#         [input_ids[0]] * batch_size).to(draft_model.device)
+#     generated_ids, accept_tokens, generated_tokens = ssp(target_model,
+#                         draft_model,
+#                         MAX_NEW_TOKENS,
+#                         input_ids, K=K, display=True)
+
+#     start_time = time.time()
+#     all_accept_tokens = 0
+#     all_generated_tokens = 0
+#     for text in texts[1:]:
+
+#         print("Completing text:", text)
+#         intermediate_time = time.time()
+#         input_ids = tokenizer(text, return_tensors="pt").input_ids
+#         input_ids = torch.stack(
+#             [input_ids[0]] * batch_size).to(draft_model.device)
+#         generated_ids, accept_tokens, generated_tokens = ssp(target_model,
+#                             draft_model,
+#                             MAX_NEW_TOKENS,
+#                             input_ids, K=K)
+#         all_accept_tokens += accept_tokens
+#         all_generated_tokens += generated_tokens
+#         nb_tokens += generated_ids.shape[1] - input_ids.shape[1]
+#         print("Completion: ", tokenizer.decode(
+#             generated_ids[0], skip_special_tokens=True))
+#         print("Time: {:.2f}s".format(time.time() - intermediate_time))
+#         print("========\n")
+#         print("Acceptance Rate: {:.2f}%".format((accept_tokens/generated_tokens)*100))
+#         print("========\n")
+        
+#     ms_per_token = (time.time() - start_time)*1000 / nb_tokens
+#     accept_rate = (all_accept_tokens/all_generated_tokens)
+#     return generated_ids, ms_per_token, accept_rate
 
 
 def print_speeds(speeds):
