@@ -30,7 +30,7 @@ def stream_token_if_required(input_ids, stream=False):
         sys.stdout.flush()
 
 
-TEMPERATURE = 0.5
+TEMPERATURE = 0.0000000000000000001
 
 
 def get_temperature_distribution(logits, temperature=TEMPERATURE):

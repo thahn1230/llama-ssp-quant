@@ -1,0 +1,2391 @@
+Testing 13B with draft 7B
+--------------------
+Generating tokens for: </s>in my palm is a clear stone , and inside it is a small ivory statuette . a guardian angel . `` figured if you 're going to be out at night getting hit by cars , you might as well have some backup . '' i look at him , feeling stunned . like this is some sort of sign . but as i stare at harlin , his mouth curved in a confident grin , i do n't care about signs
+========================================
+ a i'm not i'm
+ i'miin i'm i'm
+
+ i'm not i'm
+ i'm i'm i'm i'm i'm i i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'mCompletion: in my palm is a clear stone , and inside it is a small ivory statuette . a guardian angel . `` figured if you 're going to be out at night getting hit by cars , you might as well have some backup . '' i look at him , feeling stunned . like this is some sort of sign . but as i stare at harlin , his mouth curved in a confident grin , i do n't care about signs a i'm not i'm
+ i'miin i'm i'm
+
+ i'm not i'm
+ i'm i'm i'm i'm i'm i i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm
+Acceptance Rate: 24.24%
+Total Time: 6.30s
+========================================
+Generating tokens for: give me a minute to change and i 'll meet you at the docks . '' she 'd forced those words through her teeth . `` no need to change . we wo n't be that long . '' shane gripped her arm and started leading her to the dock . `` i can make it there on my own , shane
+========================================
+. .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .Completion: give me a minute to change and i 'll meet you at the docks . '' she 'd forced those words through her teeth . `` no need to change . we wo n't be that long . '' shane gripped her arm and started leading her to the dock . `` i can make it there on my own , shane. .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+Acceptance Rate: 46.74%
+Time for this text: 3.49s
+========================================
+Generating tokens for: `` only one source i know of that would be likely to cough up enough money to finance a phony sleep research facility and pay people big bucks to solve crimes in their dreams , '' farrell concluded dryly . `` what can i say ? '' ellis unfolded his arms and widened his hands . `` your tax dollars at work . '' before farrell could respond , leila 's voice rose from inside the house . `` no insurance ? '' she wailed . `` what do you mean you do n't have any insurance
+========================================
+``
+
+
+``````
+
+
+
+````
+\``
+\``\``\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Completion: `` only one source i know of that would be likely to cough up enough money to finance a phony sleep research facility and pay people big bucks to solve crimes in their dreams , '' farrell concluded dryly . `` what can i say ? '' ellis unfolded his arms and widened his hands . `` your tax dollars at work . '' before farrell could respond , leila 's voice rose from inside the house . `` no insurance ? '' she wailed . `` what do you mean you do n't have any insurance``
+
+
+``````
+
+
+
+````
+\``
+\``\``\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+Acceptance Rate: 32.76%
+Time for this text: 4.48s
+========================================
+Generating tokens for: helen 's heart broke a little in the face of miss mabel 's selfless courage . she thought that because she was old , her life was of less value than the others ' . for all helen knew , miss mabel had a lot more years to live than she did . `` not going to happen , '' replied helen
+========================================
+.m,m.\n't be\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompletion: helen 's heart broke a little in the face of miss mabel 's selfless courage . she thought that because she was old , her life was of less value than the others ' . for all helen knew , miss mabel had a lot more years to live than she did . `` not going to happen , '' replied helen.m,m.\n't be\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+Acceptance Rate: 51.14%
+Time for this text: 3.32s
+========================================
+Generating tokens for: preston had been the last person to wear those chains , and i knew what i 'd see and feel if they were slipped onto my skin-the reaper 's unending hatred of me . i 'd felt enough of that emotion already in the amphitheater . i did n't want to feel anymore . `` do n't put those on me , '' i whispered . `` please . '' sergei looked at me , surprised by my low , raspy please , but he put down the chains
+========================================
+.
+
+ the
+ i'm
+
+
+ the
+  i.
+ the\`\i\`\`\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Completion: preston had been the last person to wear those chains , and i knew what i 'd see and feel if they were slipped onto my skin-the reaper 's unending hatred of me . i 'd felt enough of that emotion already in the amphitheater . i did n't want to feel anymore . `` do n't put those on me , '' i whispered . `` please . '' sergei looked at me , surprised by my low , raspy please , but he put down the chains.
+
+ the
+ i'm
+
+
+ the
+  i.
+ the\`\i\`\`\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Acceptance Rate: 19.44%
+Time for this text: 5.47s
+========================================
+Generating tokens for: she knew that basha was a decent young man , that he was pretty sweet and friendly with her . jawen knew they had a bit of a history , but she thought that this time she would get along better with him , that she could overlook those problems . they kissed , and she knew that she liked basha , but then hastin interfered . she was so angry that she immediately said , once they were out of earshot of basha , `` you do n't mean anything to me anymore , hastin
+========================================
+00a\00a.
+
+\00:
+\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\\\Completion: she knew that basha was a decent young man , that he was pretty sweet and friendly with her . jawen knew they had a bit of a history , but she thought that this time she would get along better with him , that she could overlook those problems . they kissed , and she knew that she liked basha , but then hastin interfered . she was so angry that she immediately said , once they were out of earshot of basha , `` you do n't mean anything to me anymore , hastin00a\00a.
+
+\00:
+\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\\\
+Acceptance Rate: 39.00%
+Time for this text: 3.72s
+========================================
+Generating tokens for: he heard rhinna speak `` the queen wants you in her carriage . '' tom spoke `` no , i 'm not going in some asylum . '' ran was seen standing next to him spoke `` it 's just for a private talk with you that 's all . '' tom groaned and went inside the carriage to sit down next to the queen
+========================================
+.
+00:```m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m```m```````````````Completion: he heard rhinna speak `` the queen wants you in her carriage . '' tom spoke `` no , i 'm not going in some asylum . '' ran was seen standing next to him spoke `` it 's just for a private talk with you that 's all . '' tom groaned and went inside the carriage to sit down next to the queen.
+00:```m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m`m```m```````````````
+Acceptance Rate: 44.79%
+Time for this text: 3.02s
+========================================
+Generating tokens for: there was no way he would come here on his own . he ordered a cup of coffee , and then we just sat in silence . `` so , '' aidan finally said , `` how 's it going ? '' i laughed . `` not much has changed since the last time i saw you . '' `` ya know , you eat here a lot , '' said aidan
+========================================
+. . .
+ .
+ .
+ .
+ . `` `` `` .
+ . `` .
+ .
+ . `` . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .Completion: there was no way he would come here on his own . he ordered a cup of coffee , and then we just sat in silence . `` so , '' aidan finally said , `` how 's it going ? '' i laughed . `` not much has changed since the last time i saw you . '' `` ya know , you eat here a lot , '' said aidan. . .
+ .
+ .
+ .
+ . `` `` `` .
+ . `` .
+ .
+ . `` . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Acceptance Rate: 37.04%
+Time for this text: 2.92s
+========================================
+Generating tokens for: `` why ? '' `` i would have thought you 'd find him rather dry , '' she said . `` i do n't know about that , '' said gabriel . `` he was a great craftsman , '' said heather . `` that he was , '' said flannery . `` and polish , to boot , '' said gabriel
+========================================
+ ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+
+ the ?
+? ? ? ? ? ?
+ the ?
+ the ? ? ?
+ the ?```? ? ? ? ?
+ the ?
+ the ?
+ the ?
+ the ?``````````````````````Completion: `` why ? '' `` i would have thought you 'd find him rather dry , '' she said . `` i do n't know about that , '' said gabriel . `` he was a great craftsman , '' said heather . `` that he was , '' said flannery . `` and polish , to boot , '' said gabriel ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+
+ the ?
+? ? ? ? ? ?
+ the ?
+ the ? ? ?
+ the ?```? ? ? ? ?
+ the ?
+ the ?
+ the ?
+ the ?``````````````````````
+Acceptance Rate: 25.76%
+Time for this text: 3.62s
+========================================
+Generating tokens for: both its sun-speckled shade and the cool grass beneath were a welcome respite after the stifling kitchen , and i was glad to relax against the tree 's rough , brittle bark and begin my breakfast of buttery , toasted bread and fresh fruit . even the water was tasty , it was so clean and cold . it almost made up for the lack of coffee
+========================================
+ clean clean fresh
+
+
+ clean fresh fresh both
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a.
+ the
+
+
+
+
+\u\u\u aCompletion: both its sun-speckled shade and the cool grass beneath were a welcome respite after the stifling kitchen , and i was glad to relax against the tree 's rough , brittle bark and begin my breakfast of buttery , toasted bread and fresh fruit . even the water was tasty , it was so clean and cold . it almost made up for the lack of coffee clean clean fresh
+
+
+ clean fresh fresh both
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a.
+ the
+
+
+
+
+\u\u\u a
+Acceptance Rate: 10.56%
+Time for this text: 4.93s
+========================================
+Generating tokens for: escorting drunk humans out of the bar is different from going up against a tiger-wildcat who eats raw steak for breakfast and is dying for a fight . '' `` i bet he could win with just his breath , '' ronan said . sean chuckled . `` take it seriously , ronan . these guys are seasoned . if marquez has a champion , it means he 's won a good share of the fights
+========================================
+.
+
+
+
+
+
+
+
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\
+
+
+
+
+
+
+
+
+
+
+
+\
+
+
+
+
+
+
+
+Completion: escorting drunk humans out of the bar is different from going up against a tiger-wildcat who eats raw steak for breakfast and is dying for a fight . '' `` i bet he could win with just his breath , '' ronan said . sean chuckled . `` take it seriously , ronan . these guys are seasoned . if marquez has a champion , it means he 's won a good share of the fights.
+
+
+
+
+
+
+
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\
+
+
+
+
+
+
+
+
+
+
+
+\
+
+
+
+
+
+
+
+
+Acceptance Rate: 20.71%
+Time for this text: 3.93s
+========================================
+Generating tokens for: instead , i stare straight ahead like i 'm deeply interested in what 's going on at the front of the room . eventually , we make it through to the part where everyone stands up and says their little piece . some have a longer , more in depth story to tell , which terrifies me . i do n't want anyone to ask me for my story
+========================================
+. .
+ .
+ . i. .
+ . i'm . i'm not . i'm not . i. . i. . i. . i'm not i'm not . i'm not i'm not i'm not going to i'm not going to be . i'm not i'm not i'm not iCompletion: instead , i stare straight ahead like i 'm deeply interested in what 's going on at the front of the room . eventually , we make it through to the part where everyone stands up and says their little piece . some have a longer , more in depth story to tell , which terrifies me . i do n't want anyone to ask me for my story. .
+ .
+ . i. .
+ . i'm . i'm not . i'm not . i. . i. . i. . i'm not i'm not . i'm not i'm not i'm not going to i'm not going to be . i'm not i'm not i'm not i
+Acceptance Rate: 22.14%
+Time for this text: 3.83s
+========================================
+Generating tokens for: recall our encounter with the warbirds at the federation border . confirm my memory with yours . '' she turned seren to face her . they placed their foreheads together as when they meditated together . they held hands beneath the surface of the water . they closed their eyes . `` there were five warbirds at the border
+========================================
+. the
+0000:00:00:00:
+
+
+
+
+
+
+000000a00000000000000a0000a00000000000000000000000000000000000000000000000000000000000000Completion: recall our encounter with the warbirds at the federation border . confirm my memory with yours . '' she turned seren to face her . they placed their foreheads together as when they meditated together . they held hands beneath the surface of the water . they closed their eyes . `` there were five warbirds at the border. the
+0000:00:00:00:
+
+
+
+
+
+
+000000a00000000000000a0000a00000000000000000000000000000000000000000000000000000000000000
+Acceptance Rate: 13.07%
+Time for this text: 4.74s
+========================================
+Generating tokens for: i was so happy to see him that i almost sobbed his name . eli stiffened and let out a hiss . `` mohiri ! '' fear crept into his voice , and my dazed mind wondered what on earth scared a vampire . nikolas chuckled , and i felt a tremor run through my captor . `` i see there is no need for introductions
+========================================
+ ii'mi'm
+i'mi'mi'mi iiii iiiii iiii iii iiiiii iii.i iiiiiiiiii iiiii ii ii ii ii iiCompletion: i was so happy to see him that i almost sobbed his name . eli stiffened and let out a hiss . `` mohiri ! '' fear crept into his voice , and my dazed mind wondered what on earth scared a vampire . nikolas chuckled , and i felt a tremor run through my captor . `` i see there is no need for introductions ii'mi'm
+i'mi'mi'mi iiii iiiii iiii iii iiiiii iii.i iiiiiiiiii iiiii ii ii ii ii ii
+Acceptance Rate: 16.67%
+Time for this text: 4.29s
+========================================
+Generating tokens for: `` come on , baby girl , '' mary jo said , scooping up the toy , then bending to retrieve her daughter . `` let me change your diaper and put you down for a couple of hours . '' `` she sleeps that long ? '' `` almost every afternoon . she still takes a morning nap , too , but she 'll outgrow those pretty soon . '' lori knew she had a lot to learn about babies
+========================================
+ , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,Completion: `` come on , baby girl , '' mary jo said , scooping up the toy , then bending to retrieve her daughter . `` let me change your diaper and put you down for a couple of hours . '' `` she sleeps that long ? '' `` almost every afternoon . she still takes a morning nap , too , but she 'll outgrow those pretty soon . '' lori knew she had a lot to learn about babies , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,
+Acceptance Rate: 81.67%
+Time for this text: 1.67s
+========================================
+Generating tokens for: i would really like to have some time with my mom . '' lucien groaned inwardly . how could he say no to that ? julia was grieving for her mate and at a loss on how to deal with her daughter . now jaeden actually wanted to speak to her mom ... he would be an ogre if he said no . he gave a quick nod and ignored the grateful smile she threw him before her and her mother ambled out of the room together
+========================================
+i.
+
+
+
+
+ thei ii ii ii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i iCompletion: i would really like to have some time with my mom . '' lucien groaned inwardly . how could he say no to that ? julia was grieving for her mate and at a loss on how to deal with her daughter . now jaeden actually wanted to speak to her mom ... he would be an ogre if he said no . he gave a quick nod and ignored the grateful smile she threw him before her and her mother ambled out of the room togetheri.
+
+
+
+
+ thei ii ii ii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i
+Acceptance Rate: 48.91%
+Time for this text: 2.57s
+========================================
+Generating tokens for: if demerzel has the ability to change minds , he has to do so without bringing about side effects he does not wish-and since he is the emperor 's first minister , the side effects he must worry about are numerous , indeed . '' `` and the application to the present case ? '' `` think about it ! you ca n't tell anyone-except me , of course-that demerzel is a robot , because he has adjusted you so that you ca n't . but how much adjustment did that take ? do you want to tell people that he is a robot
+========================================
+.
+
+
+
+
+0.m,m not
+m,m\
+
+mh00:m00:m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00Completion: if demerzel has the ability to change minds , he has to do so without bringing about side effects he does not wish-and since he is the emperor 's first minister , the side effects he must worry about are numerous , indeed . '' `` and the application to the present case ? '' `` think about it ! you ca n't tell anyone-except me , of course-that demerzel is a robot , because he has adjusted you so that you ca n't . but how much adjustment did that take ? do you want to tell people that he is a robot.
+
+
+
+
+0.m,m not
+m,m\
+
+mh00:m00:m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00m00
+Acceptance Rate: 29.03%
+Time for this text: 3.58s
+========================================
+Generating tokens for: i leaned out the window and pointed at floyd 's hearing aid . floyd dug the hearing aid out of his ear and made an adjustment . `` sorry , '' he said , screwing it back in . `` blasted thing was turned off . '' `` what happened to chester ? '' `` shot in the head 's what happened to chester
+========================================
+
+
+
+
+
+
+i''
+i''
+i''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+i''
+
+
+i''
+
+i''i''i''
+ i''
+''i''
+ i''
+ iCompletion: i leaned out the window and pointed at floyd 's hearing aid . floyd dug the hearing aid out of his ear and made an adjustment . `` sorry , '' he said , screwing it back in . `` blasted thing was turned off . '' `` what happened to chester ? '' `` shot in the head 's what happened to chester
+
+
+
+
+
+i''
+i''
+i''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+i''
+
+
+i''
+
+i''i''i''
+ i''
+''i''
+ i''
+ i
+Acceptance Rate: 20.14%
+Time for this text: 3.92s
+========================================
+Generating tokens for: ` well i do n't know why , nellie showed it to me many times . it has heaps of her poems and short stories in it ; mostly girlie stuff though , which is why she obviously did n't bother showing you . strange that she left it to you though , i ca n't imagine you would enjoy it very much . ` are you sure it is the same book
+========================================
+````````````````````````````````````````` the````````````````` the the``````Completion: ` well i do n't know why , nellie showed it to me many times . it has heaps of her poems and short stories in it ; mostly girlie stuff though , which is why she obviously did n't bother showing you . strange that she left it to you though , i ca n't imagine you would enjoy it very much . ` are you sure it is the same book````````````````````````````````````````` the````````````````` the the``````
+Acceptance Rate: 63.16%
+Time for this text: 2.11s
+========================================
+Generating tokens for: `` we 'll wait for you , daddy , '' izzy said , snuggling up to annie . nick pressed the book into izzy 's hands and hurried out of the room . he came back a few minutes later , looking solemn . annie felt a prickling of fear . she sat up straighter , leaning forward . `` nick ? '' he eased back into the bed , on the other side of izzy
+========================================
+
+ the
+
+ the\
+ the``
+ the\``\00\`\
+ the\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`Completion: `` we 'll wait for you , daddy , '' izzy said , snuggling up to annie . nick pressed the book into izzy 's hands and hurried out of the room . he came back a few minutes later , looking solemn . annie felt a prickling of fear . she sat up straighter , leaning forward . `` nick ? '' he eased back into the bed , on the other side of izzy
+ the
+
+ the\
+ the``
+ the\``\00\`\
+ the\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`
+Acceptance Rate: 36.54%
+Time for this text: 2.86s
+========================================
+Generating tokens for: `` michael wanted nothing to do with the business for a very long time , '' the older woman answered . `` he had his heart set on being a race-car driver . '' maggie 's mouth fell open . `` what ? '' `` si . he was very good , though my heart stopped every time he went out on the track . no matter how many times his papa and i tried to discourage him , he found a way back on the track
+========================================
+ track
+
+
+ the\`\`\\\\ \\\
+\\\
+
+ the\\\\\\\\\``\\\\ of\`\`\\``\ \`\`\ ``\`\     \Completion: `` michael wanted nothing to do with the business for a very long time , '' the older woman answered . `` he had his heart set on being a race-car driver . '' maggie 's mouth fell open . `` what ? '' `` si . he was very good , though my heart stopped every time he went out on the track . no matter how many times his papa and i tried to discourage him , he found a way back on the track track
+
+
+ the\`\`\\\\ \\\
+\\\
+
+ the\\\\\\\\\``\\\\ of\`\`\\``\ \`\`\ ``\`\     \
+Acceptance Rate: 12.79%
+Time for this text: 4.82s
+========================================
+Generating tokens for: a cowboy behind her said to break up a cheese slice and mush it down in the mixture . sarah took a slice of cheese to do just that . sarah and tess sat at one of the large tables with other guests . everyone talked and laughed , while eating lunch . it seemed a happy group . dale watched from the back to make sure all was well and to get another look at sarah
+========================================
+aaaa00aa00aa00aa00aa00aa00aa00aa0000aa00aa00aa00aa00aa00aa00aa00aa00aa00a00a00aa00aa00aaCompletion: a cowboy behind her said to break up a cheese slice and mush it down in the mixture . sarah took a slice of cheese to do just that . sarah and tess sat at one of the large tables with other guests . everyone talked and laughed , while eating lunch . it seemed a happy group . dale watched from the back to make sure all was well and to get another look at sarahaaaa00aa00aa00aa00aa00aa00aa00aa0000aa00aa00aa00aa00aa00aa00aa00aa00aa00a00a00aa00aa00aa
+Acceptance Rate: 36.11%
+Time for this text: 2.99s
+========================================
+Generating tokens for: brayden 's face was a mix of incredulity and disappointment when i told him i had to leave . `` but you just ... i mean ... '' it was a rare moment of speechlessness for him . `` i 'm sorry , '' i said earnestly . `` especially after being late and ruining the museum . but it 's a family emergency . '' `` your family has an awful lot of emergencies
+========================================
+ i.a
+a lot ofa lot ofa lot ofa lota lota lota lot aa lota lota lot aa lota lot aa lota lot aa lot aa lot aa lot aa lot aa lot aa aa aaa aa lot aaaCompletion: brayden 's face was a mix of incredulity and disappointment when i told him i had to leave . `` but you just ... i mean ... '' it was a rare moment of speechlessness for him . `` i 'm sorry , '' i said earnestly . `` especially after being late and ruining the museum . but it 's a family emergency . '' `` your family has an awful lot of emergencies i.a
+a lot ofa lot ofa lot ofa lota lota lota lot aa lota lota lot aa lota lot aa lota lot aa lot aa lot aa lot aa lot aa lot aa aa aaa aa lot aaa
+Acceptance Rate: 36.11%
+Time for this text: 3.00s
+========================================
+Generating tokens for: `` thank you , '' liz says , her sweaty face going into my neck . `` i 'm so tired . '' `` as soon as this is over , you can sleep . i promise . '' `` okay . '' she says softly . the doctor walks in and sits down at the end of the bed . `` are you ready for this , liz
+========================================
+ , , , , , '' , , '' , , , '' `` `` ``````
+   the ```````````````````````````````` `` `` `` `` ````````````````````````````````````````````````````Completion: `` thank you , '' liz says , her sweaty face going into my neck . `` i 'm so tired . '' `` as soon as this is over , you can sleep . i promise . '' `` okay . '' she says softly . the doctor walks in and sits down at the end of the bed . `` are you ready for this , liz , , , , , '' , , '' , , , '' `` `` ``````
+   the ```````````````````````````````` `` `` `` `` ````````````````````````````````````````````````````
+Acceptance Rate: 33.62%
+Time for this text: 3.16s
+========================================
+Generating tokens for: olaf slapped the boy real hard . bob was momentarily stunned . olaf then started yelling at him about calling him without permission unless it was emergency . the boy mumbled something crying at the same time . bob got closer through the woods and stepped on a branch that cracked . both olaf and the boy heard it and walked towards bob
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mfaf
+
+
+
+
+
+
+
+m
+mm.mf
+
+mm
+
+
+
+mm
+
+
+
+Completion: olaf slapped the boy real hard . bob was momentarily stunned . olaf then started yelling at him about calling him without permission unless it was emergency . the boy mumbled something crying at the same time . bob got closer through the woods and stepped on a branch that cracked . both olaf and the boy heard it and walked towards bob
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mfaf
+
+
+
+
+
+
+
+m
+mm.mf
+
+mm
+
+
+
+mm
+
+
+
+
+Acceptance Rate: 12.79%
+Time for this text: 4.65s
+========================================
+Generating tokens for: instead , its twin towers , now horizontal so as to appear like walkways , loomed over the deck of the hercules , and the black ship stopped impossibly quickly , its movement suddenly halted . no one moved for a moment and the two ships sat there , doing nothing . then lucius saw a movement near the top of the mighty warship as the hooked walkways descended downwards , until they reached down from the deck of the black vessel to the deck of the hercules
+========================================
+.
+
+
+ the
+
+ the
+
+
+ the
+
+ the
+
+ the
+ the
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Completion: instead , its twin towers , now horizontal so as to appear like walkways , loomed over the deck of the hercules , and the black ship stopped impossibly quickly , its movement suddenly halted . no one moved for a moment and the two ships sat there , doing nothing . then lucius saw a movement near the top of the mighty warship as the hooked walkways descended downwards , until they reached down from the deck of the black vessel to the deck of the hercules.
+
+
+ the
+
+ the
+
+
+ the
+
+ the
+
+ the
+ the
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Acceptance Rate: 33.93%
+Time for this text: 3.17s
+========================================
+Generating tokens for: she kisses me again . `` oh-kay ! '' jen whistles . `` can we go now ? i do n't wan na break up the lovey-dovey show goin ' on , but i have shopping to do . '' i laugh and release lexy , wrapping a friendly arm around jen 's shoulders . `` oh , how dull my life would be without you , jen
+========================================
+''
+
+.yay yy  yy yy y y y y y yyyyy. y y y y yy y y y y yy yy y y y y y y y y y y y y y y y y y y y y y y y y y y yCompletion: she kisses me again . `` oh-kay ! '' jen whistles . `` can we go now ? i do n't wan na break up the lovey-dovey show goin ' on , but i have shopping to do . '' i laugh and release lexy , wrapping a friendly arm around jen 's shoulders . `` oh , how dull my life would be without you , jen''
+
+.yay yy  yy yy y y y y y yyyyy. y y y y yy y y y y yy yy y y y y y y y y y y y y y y y y y y y y y y y y y y y
+Acceptance Rate: 25.00%
+Time for this text: 3.65s
+========================================
+Generating tokens for: his smile widened . `` i 'll keep it a secret . '' `` thank you . '' `` can you play ? '' `` grace taught me how to play chopsticks . '' `` it 's a good place to start . '' he tapped his card on the table . `` i 'll think i 'll take another look at the piano
+========================================
+. the''llll '' '''' '' '''' '''' '''' '''' '' ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''Completion: his smile widened . `` i 'll keep it a secret . '' `` thank you . '' `` can you play ? '' `` grace taught me how to play chopsticks . '' `` it 's a good place to start . '' he tapped his card on the table . `` i 'll think i 'll take another look at the piano. the''llll '' '''' '' '''' '''' '''' '''' '' ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Acceptance Rate: 16.03%
+Time for this text: 4.23s
+========================================
+Generating tokens for: now , they were opening cans of pork & beans and eating them cold . as to why they did n't heat them up first , it took some prying but lucas finally admitted that there had been a bit of an accident when they had used the stove and it had caught on fire . the ship was fine but they were n't sure about the stove
+========================================
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .Completion: now , they were opening cans of pork & beans and eating them cold . as to why they did n't heat them up first , it took some prying but lucas finally admitted that there had been a bit of an accident when they had used the stove and it had caught on fire . the ship was fine but they were n't sure about the stove .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Acceptance Rate: 58.75%
+Time for this text: 2.18s
+========================================
+Generating tokens for: i was n't interested in helping , because i knew it was hopeless . carla was six feet into a snowdrift almost as tall as my head , and we did n't even have a shovel . i just stood in the road next to the duke , wiping the wisp of wet hair sticking out under my hat . `` sorry , '' i said to the duke
+========================================
+.        i. .i'm ii ii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i iCompletion: i was n't interested in helping , because i knew it was hopeless . carla was six feet into a snowdrift almost as tall as my head , and we did n't even have a shovel . i just stood in the road next to the duke , wiping the wisp of wet hair sticking out under my hat . `` sorry , '' i said to the duke.        i. .i'm ii ii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i
+Acceptance Rate: 38.46%
+Time for this text: 2.83s
+========================================
+Generating tokens for: she does n't like to talk about it . '' sara looked at joshua . `` give her time , '' he said gently . `` it 's only been a few months . '' as they reached sara 's street , he stopped , pulled her into his arms , and held her for a moment . `` i really , really like you , sara
+========================================
+ a .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .Completion: she does n't like to talk about it . '' sara looked at joshua . `` give her time , '' he said gently . `` it 's only been a few months . '' as they reached sara 's street , he stopped , pulled her into his arms , and held her for a moment . `` i really , really like you , sara a .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Acceptance Rate: 47.83%
+Time for this text: 2.50s
+========================================
+Generating tokens for: `` but i can be anything you want . '' kim and izzy rolled their eyes . what a character . from his scruffy jeans and threadbare t-shirt , he obviously liked to dress down . was it to draw attention to his looks or deflect them ? i tugged hard and forced him to release my hand . ignoring him , i gave my attention to kim
+========================================
+ 
+
+ the
+
+
+ the
+
+ the\`\`\`\`\`\`\`\`\`\`\`\`\\`\\`\\\`\\`\`\`\`\`\`\`\`\`\`\Completion: `` but i can be anything you want . '' kim and izzy rolled their eyes . what a character . from his scruffy jeans and threadbare t-shirt , he obviously liked to dress down . was it to draw attention to his looks or deflect them ? i tugged hard and forced him to release my hand . ignoring him , i gave my attention to kim 
+
+ the
+
+
+ the
+
+ the\`\`\`\`\`\`\`\`\`\`\`\`\\`\\`\\\`\\`\`\`\`\`\`\`\`\`\`\
+Acceptance Rate: 47.83%
+Time for this text: 2.51s
+========================================
+Generating tokens for: the boy said , looking proud of every word . `` go on , james , '' the boy behind him said . some of the other boys had already headed into the showers and james had been too busy warning toby . james gave toby a long dark look then turned and walked on . a moment later toby followed the boy in front of him into the showers
+========================================
+ a . ```I . ```I . ``````
+````````````````````````````````````````````````````Completion: the boy said , looking proud of every word . `` go on , james , '' the boy behind him said . some of the other boys had already headed into the showers and james had been too busy warning toby . james gave toby a long dark look then turned and walked on . a moment later toby followed the boy in front of him into the showers a . ```I . ```I . ``````
+````````````````````````````````````````````````````
+Acceptance Rate: 47.83%
+Time for this text: 2.50s
+========================================
+Generating tokens for: twice jeremy managed to avoid cars spinning out of control , and the number of vehicles that littered the roads was unreal . she was probably just as tired and worn out from being tense . a little after six , she left a note in the room and trudged her way through the snow to the truck stop 's restaurant and ordered dinner-to-go for both of them . as she opened the motel room 's door , she called , `` hey , jeremy
+========================================
+ I am I\\\\\ \\\
+
+\\
+\\\ \\\\
+\ \\\ \\ \\ \\\ \\ \\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\ \ \ \ \ \Completion: twice jeremy managed to avoid cars spinning out of control , and the number of vehicles that littered the roads was unreal . she was probably just as tired and worn out from being tense . a little after six , she left a note in the room and trudged her way through the snow to the truck stop 's restaurant and ordered dinner-to-go for both of them . as she opened the motel room 's door , she called , `` hey , jeremy I am I\\\\\ \\\
+
+\\
+\\\ \\\\
+\ \\\ \\ \\ \\\ \\ \\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\ \ \ \ \ \
+Acceptance Rate: 22.22%
+Time for this text: 4.08s
+========================================
+Generating tokens for: so i do not have to tell you the pressures of doing business . '' `` pardon me ? '' `` i said , you own your own store -- '' the pop of a microphone saved us all from oblivion . i had n't given much thought to where chester springs had been this whole time . unsolicited question answered by his voice . rich and buttery , pouring generously through a pair of speakers
+========================================
+.
+
+
+
+
+
+
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .Completion: so i do not have to tell you the pressures of doing business . '' `` pardon me ? '' `` i said , you own your own store -- '' the pop of a microphone saved us all from oblivion . i had n't given much thought to where chester springs had been this whole time . unsolicited question answered by his voice . rich and buttery , pouring generously through a pair of speakers.
+
+
+
+
+
+
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Acceptance Rate: 34.26%
+Time for this text: 2.97s
+========================================
+Generating tokens for: dylan of the shed , you are named guardian of the portal , do you accept this quest to protect the portal ? '' `` i guess . '' `` do you ? '' btolomy boomed . `` i do , '' he said and could feel his dad 's eyes on him . `` connor of the shed , you too have been named . do you accept this quest to protect the portal
+========================================
+ ``Im ``i''ddylan ``i,
+
+
+
+
+
+
+ thed ``d``d``d``d``d``d``d``d``d``d``d``d``d d ddddd d d dd and dd dd and theCompletion: dylan of the shed , you are named guardian of the portal , do you accept this quest to protect the portal ? '' `` i guess . '' `` do you ? '' btolomy boomed . `` i do , '' he said and could feel his dad 's eyes on him . `` connor of the shed , you too have been named . do you accept this quest to protect the portal ``Im ``i''ddylan ``i,
+
+
+
+
+
+
+ thed ``d``d``d``d``d``d``d``d``d``d``d``d``d d ddddd d d dd and dd dd and the
+Acceptance Rate: 18.24%
+Time for this text: 4.08s
+========================================
+Generating tokens for: `` clear as a bell , '' she said with more than a little sarcasm . `` so where are mr. zellerbach and the rv ? '' `` in syracuse , new york , of course . '' she frowned . `` enlighten me . '' '' ` hart 's erroneous comedy . ' '' `` that tells you he 's in syracuse
+========================================
+ ````
+
+ the\``
+ the\`\
+ the\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`Completion: `` clear as a bell , '' she said with more than a little sarcasm . `` so where are mr. zellerbach and the rv ? '' `` in syracuse , new york , of course . '' she frowned . `` enlighten me . '' '' ` hart 's erroneous comedy . ' '' `` that tells you he 's in syracuse ````
+
+ the\``
+ the\`\
+ the\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`
+Acceptance Rate: 48.91%
+Time for this text: 2.50s
+========================================
+Generating tokens for: we only want to talk to you . '' ishmael briefly wondered who lied , the soldier or the president , or perhaps neither , but he reached up , pulled down the lever and crawled through the vanes . the razor sharp fan blades slowed until he could count them ; five . there would be enough space to crawl between when they were stopped
+========================================
+00:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Completion: we only want to talk to you . '' ishmael briefly wondered who lied , the soldier or the president , or perhaps neither , but he reached up , pulled down the lever and crawled through the vanes . the razor sharp fan blades slowed until he could count them ; five . there would be enough space to crawl between when they were stopped00:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Acceptance Rate: 40.00%
+Time for this text: 2.69s
+========================================
+Generating tokens for: i used to give asher and trevor a hard time about the way they acted when they both met their one ... now i knew . i would die for lilly ; she was amazing , beautiful , and kind , and made me want to be a better person . my phone rang from my pocket , bringing me out of my thoughts . i pulled it out , expecting it to be lilly
+========================================
+i i havei i i i i i i i i i i i i i i i i i i i i i i iii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i iCompletion: i used to give asher and trevor a hard time about the way they acted when they both met their one ... now i knew . i would die for lilly ; she was amazing , beautiful , and kind , and made me want to be a better person . my phone rang from my pocket , bringing me out of my thoughts . i pulled it out , expecting it to be lillyi i havei i i i i i i i i i i i i i i i i i i i i i i iii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i
+Acceptance Rate: 59.21%
+Time for this text: 2.08s
+========================================
+Generating tokens for: ellen asked him . `` yes , indeed , '' mark said . `` several . '' `` have you ever made a list ? '' `` i ca n't say i have , ellen . do you recommend it ? '' `` oh , yes , '' ellen returned seriously . `` it 's helpful if you have a real list
+========================================
+
+
+
+\u\u\u\u\u\u\u\\u\u\u\u\u\\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\uCompletion: ellen asked him . `` yes , indeed , '' mark said . `` several . '' `` have you ever made a list ? '' `` i ca n't say i have , ellen . do you recommend it ? '' `` oh , yes , '' ellen returned seriously . `` it 's helpful if you have a real list
+
+
+\u\u\u\u\u\u\u\\u\u\u\u\u\\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u\u
+Acceptance Rate: 61.84%
+Time for this text: 2.04s
+========================================
+Generating tokens for: the second biker had dismounted and was hanging his helmet on the handlebars of his motorcycle when he caught sight of joran . without breaking eye contact , he walked up to joran 's table . `` cigarette for me ? '' long asked . joran hesitated before pulling the pack of cigarettes from his shirt pocket and shaking one loose for long . long lit the cigarette and took a slow drag on it without ever taking his eyes off of joran
+========================================
+
+00: j
+
+00 00 00 000000000000 00 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000000000000000000000000000000000000000000000000000Completion: the second biker had dismounted and was hanging his helmet on the handlebars of his motorcycle when he caught sight of joran . without breaking eye contact , he walked up to joran 's table . `` cigarette for me ? '' long asked . joran hesitated before pulling the pack of cigarettes from his shirt pocket and shaking one loose for long . long lit the cigarette and took a slow drag on it without ever taking his eyes off of joran
+00: j
+
+00 00 00 000000000000 00 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000000000000000000000000000000000000000000000000000
+Acceptance Rate: 17.11%
+Time for this text: 4.30s
+========================================
+Generating tokens for: the bat 's gums were pulled back over his teeth in a snarl . `` i do not take orders from you , overlander . let us be clear on this from the start . i do not take orders from you ! '' `` whoa ! '' said gregor , startled by ares 's intensity . `` what 's your problem ? '' `` my problem is that at this moment , you are reminding me a great deal of henry , '' said ares
+========================================
+\n\\u\\u\\u\\u\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\u\\u\u\\u\u\\u\\Completion: the bat 's gums were pulled back over his teeth in a snarl . `` i do not take orders from you , overlander . let us be clear on this from the start . i do not take orders from you ! '' `` whoa ! '' said gregor , startled by ares 's intensity . `` what 's your problem ? '' `` my problem is that at this moment , you are reminding me a great deal of henry , '' said ares\n\\u\\u\\u\\u\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\\u\u\\u\u\\u\u\\u\\
+Acceptance Rate: 43.75%
+Time for this text: 2.71s
+========================================
+Generating tokens for: they just would have argued with me about it like they always do . and then , when i did n't eat my lunch ? well , you would have thought that i 'd tried to jump out the window . i 'm upset , and i have every right to be upset . when i get upset , i do n't eat
+========================================
+ i i i i i i i i i i i am a . . i i i am i am i am i i i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am iCompletion: they just would have argued with me about it like they always do . and then , when i did n't eat my lunch ? well , you would have thought that i 'd tried to jump out the window . i 'm upset , and i have every right to be upset . when i get upset , i do n't eat i i i i i i i i i i i am a . . i i i am i am i am i i i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i am i
+Acceptance Rate: 46.74%
+Time for this text: 2.48s
+========================================
+Generating tokens for: she and zach were covered in dust and sweat when helen found them . `` wow , lexi ! you rock . '' lexi groaned at the bad pun . helen surveyed the work , which was nearly complete . `` how did you do this ? '' lexi shrugged . `` do n't know . '' `` it 's her gift , '' said zach
+========================================
+ ``I
+
+
+
+
+
+
+```s\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\Completion: she and zach were covered in dust and sweat when helen found them . `` wow , lexi ! you rock . '' lexi groaned at the bad pun . helen surveyed the work , which was nearly complete . `` how did you do this ? '' lexi shrugged . `` do n't know . '' `` it 's her gift , '' said zach ``I
+
+
+
+
+
+
+```s\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\
+Acceptance Rate: 41.00%
+Time for this text: 2.72s
+========================================
+Generating tokens for: `` that 's what i said , and i meant it , '' bob answers . `` think of something else . '' greg says . he turns around in the front seat to look at skinner squirm . `` maybe a gentle rain or taking a cold shower ... '' more laughter erupts from his friends . there 's nothing more amusing to a bunch of boys than watching one of them squirm
+========================================
+``
+
+ the
+ the same. thes
+ the.\```s a\\\\\\\\\\\``
+ the\\```\``\```\```s\```s\```\```\`\`s\`\`Completion: `` that 's what i said , and i meant it , '' bob answers . `` think of something else . '' greg says . he turns around in the front seat to look at skinner squirm . `` maybe a gentle rain or taking a cold shower ... '' more laughter erupts from his friends . there 's nothing more amusing to a bunch of boys than watching one of them squirm``
+
+ the
+ the same. thes
+ the.\```s a\\\\\\\\\\\``
+ the\\```\``\```\```s\```s\```\```\`\`s\`\`
+Acceptance Rate: 12.21%
+Time for this text: 4.76s
+========================================
+Generating tokens for: `` we could go back , `` i suggested weakly . `` tel them their magical road thingie did n't work for us . '' but jenna shook her head . `` it ca n't be that bad , `` she muttered . `` we could try to go together , `` i said . `` i think we 'd both fit , and that way , if we end up transported to another dimension or morphed into a wal , at least we 'd have company
+========================================
+. thee.
+
+ the d ddd ,. thed . the best. the the the i am the.
+
+ the best\d d'd'd'd'd'd d' d' d' d' d' d' d' d' d' d' d' dCompletion: `` we could go back , `` i suggested weakly . `` tel them their magical road thingie did n't work for us . '' but jenna shook her head . `` it ca n't be that bad , `` she muttered . `` we could try to go together , `` i said . `` i think we 'd both fit , and that way , if we end up transported to another dimension or morphed into a wal , at least we 'd have company. thee.
+
+ the d ddd ,. thed . the best. the the the i am the.
+
+ the best\d d'd'd'd'd'd d' d' d' d' d' d' d' d' d' d' d' d
+Acceptance Rate: 16.46%
+Time for this text: 4.58s
+========================================
+Generating tokens for: his gentle voice did me in . tears seeped from my eyes . i had to make them stop . big , bad werewolf hunters did not cry . petite , blond girlie-girls did . they also got their families murdered before their eyes while powerless to do anything about it . i was no longer that girl ; i was the hunter
+========================================
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\u00\u\\\u\\\\\u\\u\\u\\u\u\u\u\u\u\\u\u\\Completion: his gentle voice did me in . tears seeped from my eyes . i had to make them stop . big , bad werewolf hunters did not cry . petite , blond girlie-girls did . they also got their families murdered before their eyes while powerless to do anything about it . i was no longer that girl ; i was the hunter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\u00\u\\\u\\\\\u\\u\\u\\u\u\u\u\u\u\\u\u\\
+Acceptance Rate: 19.44%
+Time for this text: 3.91s
+========================================
+Generating tokens for: `` if you wanted me to have a happy birthday , you 'd come over to my party . '' `` your party , '' i repeated flatly . `` yeah , remember ? andrea invited you ? '' i remembered . i 'd been thinking about it every day this week . `` i did n't think i was still invited
+========================================
+. thes                \
+ the best\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ i\ \Completion: `` if you wanted me to have a happy birthday , you 'd come over to my party . '' `` your party , '' i repeated flatly . `` yeah , remember ? andrea invited you ? '' i remembered . i 'd been thinking about it every day this week . `` i did n't think i was still invited. thes                \
+ the best\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ i\ \
+Acceptance Rate: 34.26%
+Time for this text: 2.92s
+========================================
+Generating tokens for: i 'd have felt sorry for her if my own nerves had n't been stretched to the breaking point . we said nothing for a while . mum looked out the window again . `` so i 'm a ruby , '' i said . `` those are red , are n't they ? '' mum nodded . `` and what gemstone is charlotte ? '' `` she is n't one , '' said mum
+========================================
+ ``m. .i. .i. .i. .i.m.i.m notm.m notm.m im i mmm i mmm i mm i m m i m m m. .m i m mii. i m mi m miCompletion: i 'd have felt sorry for her if my own nerves had n't been stretched to the breaking point . we said nothing for a while . mum looked out the window again . `` so i 'm a ruby , '' i said . `` those are red , are n't they ? '' mum nodded . `` and what gemstone is charlotte ? '' `` she is n't one , '' said mum ``m. .i. .i. .i. .i.m.i.m notm.m notm.m im i mmm i mmm i mm i m m i m m m. .m i m mii. i m mi m mi
+Acceptance Rate: 13.10%
+Time for this text: 4.67s
+========================================
+Generating tokens for: more and more creepy zombie - looking ghosts would reach out of the waters to try and grab onto the boat . the boat came to a stop at a dock leading up to a giant circular black platform with giant black pillars sticking up around the sides . `` well , this is your stop , the soulkeeper 's passageway , '' said the boat guide . shortly , muri and joe were standing in the center of the giant platform
+========================================
+e.            a.
+
+
+ e.  
+
+
+ e.  e.
+ e.ee.e.e.e.e.e.e eeeeeeeeeeeeCompletion: more and more creepy zombie - looking ghosts would reach out of the waters to try and grab onto the boat . the boat came to a stop at a dock leading up to a giant circular black platform with giant black pillars sticking up around the sides . `` well , this is your stop , the soulkeeper 's passageway , '' said the boat guide . shortly , muri and joe were standing in the center of the giant platforme.            a.
+
+
+ e.  
+
+
+ e.  e.
+ e.ee.e.e.e.e.e.e eeeeeeeeeeee
+Acceptance Rate: 17.11%
+Time for this text: 4.27s
+========================================
+Generating tokens for: the whole mechanism looked rather like a combined television and video player might look , if it had been invented and built three hundred years ago by sir isaac newton . which was , more or less , exactly what it was . `` watch , '' said door . she placed the wooden ball onto a platform . lights shone through the machine and into the ball
+========================================
+
+                                                        
+ . . .Completion: the whole mechanism looked rather like a combined television and video player might look , if it had been invented and built three hundred years ago by sir isaac newton . which was , more or less , exactly what it was . `` watch , '' said door . she placed the wooden ball onto a platform . lights shone through the machine and into the ball
+                                                        
+ . . .
+Acceptance Rate: 63.89%
+Time for this text: 1.99s
+========================================
+Generating tokens for: mike drove for fear that jake was so nervous he would get another ticket before he got to the driver 's licensing facility . he walked with jake into the building and stood beside him as he presented his form to the official . `` how long do i have to finish the test ? '' jake asked nervously . the official looked at his form and input his driver 's license number into the computer and asked , `` what test
+========================================
+
+m00
+
+m00m00mike anda00m00m00mmmmmmmmmmmmmmmm the\m\a\m\\m\\m\\\\\\\\\\\\\\\\Completion: mike drove for fear that jake was so nervous he would get another ticket before he got to the driver 's licensing facility . he walked with jake into the building and stood beside him as he presented his form to the official . `` how long do i have to finish the test ? '' jake asked nervously . the official looked at his form and input his driver 's license number into the computer and asked , `` what test
+m00
+
+m00m00mike anda00m00m00mmmmmmmmmmmmmmmm the\m\a\m\\m\\m\\\\\\\\\\\\\\\\
+Acceptance Rate: 9.04%
+Time for this text: 5.29s
+========================================
+Generating tokens for: i 'm just used to working , so me not working is messing with my head . i love being home with both the kids , but ... '' she trails off , shaking her head . `` but what ? '' i ask when her face pales slightly . `` um ... i. . . it 's nothing . '' she shakes her head again and i know it 's not nothing
+========================================
+ toi'ms thei.i havei i?i i haveii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i iCompletion: i 'm just used to working , so me not working is messing with my head . i love being home with both the kids , but ... '' she trails off , shaking her head . `` but what ? '' i ask when her face pales slightly . `` um ... i. . . it 's nothing . '' she shakes her head again and i know it 's not nothing toi'ms thei.i havei i?i i haveii i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i
+Acceptance Rate: 35.19%
+Time for this text: 2.95s
+========================================
+Generating tokens for: in the diagram , he pinched to the left of him , where the ground would be , and pulled up a trail of yellow that formed itself into a seat . argus watched as a small hatch opened up from the floor . an outline of the chair was imprinted in light , the seat and the back drawn into space by blue lasers . a tiny black cloud made of nanomachines streamed out of the hatch
+========================================
+inin ina.
+
+
+
+
+
+
+
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+00:aa00aa00aa00aa00a00aaCompletion: in the diagram , he pinched to the left of him , where the ground would be , and pulled up a trail of yellow that formed itself into a seat . argus watched as a small hatch opened up from the floor . an outline of the chair was imprinted in light , the seat and the back drawn into space by blue lasers . a tiny black cloud made of nanomachines streamed out of the hatchinin ina.
+
+
+
+
+
+
+
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+00:aa00aa00aa00aa00a00aa
+Acceptance Rate: 29.84%
+Time for this text: 3.45s
+========================================
+Generating tokens for: ` you 're all crazy if you think i 'll pose as a krull refugee to do your bidding , ' said luke . after all i heard tonight i 'll be looking to save my own sweet self before i 'll be looking to help you ladies capture any walled cities . ' ` you 're not thinking clearly , luke , honey , ' said casilevatates . ` let me remind you why you 're going to masquerade as a krull refugee
+========================================
+`lll`lll`ll`ll`ll`ll`ll`llllll`llllll`llll and`````````````````````````````````````Completion: ` you 're all crazy if you think i 'll pose as a krull refugee to do your bidding , ' said luke . after all i heard tonight i 'll be looking to save my own sweet self before i 'll be looking to help you ladies capture any walled cities . ' ` you 're not thinking clearly , luke , honey , ' said casilevatates . ` let me remind you why you 're going to masquerade as a krull refugee`lll`lll`ll`ll`ll`ll`ll`llllll`llllll`llll and`````````````````````````````````````
+Acceptance Rate: 43.75%
+Time for this text: 2.74s
+========================================
+Generating tokens for: now seemed like as terrible a time as any to trade out my worries that gregory had somehow found out about the garzas -- or the vain hope that zach could bring himself to lie to a gardener about it if asked -- for some brand new anxiety . gregory might have been good only for repeating thorn , but the high gardener was smart . `` thorn wants to speak to you himself . he asked for my best , '' said gregory
+========================================
+ ``````
+````````````````````````````````````````````````````````````Completion: now seemed like as terrible a time as any to trade out my worries that gregory had somehow found out about the garzas -- or the vain hope that zach could bring himself to lie to a gardener about it if asked -- for some brand new anxiety . gregory might have been good only for repeating thorn , but the high gardener was smart . `` thorn wants to speak to you himself . he asked for my best , '' said gregory ``````
+````````````````````````````````````````````````````````````
+Acceptance Rate: 60.53%
+Time for this text: 2.14s
+========================================
+Generating tokens for: bryn smirked as she said loudly , `` have a nice day . '' kayla 's step did not even falter . she just continued walking toward the door . bryn nudged nicole and whispered , `` say something . '' nicole looked confused , but eventually said , `` have a nice day . '' kayla turned her head a little as she said , `` you too
+========================================
+
+
+ theaa```
+
+ the`sm``
+
+ the
+ the```s```````````````````````````````````````````Completion: bryn smirked as she said loudly , `` have a nice day . '' kayla 's step did not even falter . she just continued walking toward the door . bryn nudged nicole and whispered , `` say something . '' nicole looked confused , but eventually said , `` have a nice day . '' kayla turned her head a little as she said , `` you too
+
+ theaa```
+
+ the`sm``
+
+ the
+ the```s```````````````````````````````````````````
+Acceptance Rate: 31.90%
+Time for this text: 3.18s
+========================================
+Generating tokens for: i just need to grab my things and we can go . '' she took another step back and bumped into a body . `` chloe , sorry , '' she said as she glanced over her shoulder . `` no biggie . '' she pinched addie in the back , a clear signal she wanted an introduction . `` trent , this is my cousin , chloe
+========================================
+i.
+i'm ii iii ii ii iiii iii ii iii iii iii ii ii ii ii ii iiiii ii iii ii ii i i i i i i i iCompletion: i just need to grab my things and we can go . '' she took another step back and bumped into a body . `` chloe , sorry , '' she said as she glanced over her shoulder . `` no biggie . '' she pinched addie in the back , a clear signal she wanted an introduction . `` trent , this is my cousin , chloei.
+i'm ii iii ii ii iiii iii ii iii iii iii ii ii ii ii ii iiiii ii iii ii ii i i i i i i i i
+Acceptance Rate: 33.04%
+Time for this text: 3.06s
+========================================
+Generating tokens for: it was the only section of the library where there was n't a single book to check out . `` good luck with that , '' daniel said , opening up his sketchbook again , as if to say , preemptively , goodbye . luce was tongue-tied and embarrassed and what she would have liked to do was escape . but then , there were the shadows , still lurking nearby , and for some reason luce felt better about them when she was next to daniel
+========================================
+00
+
+ the
+ be a?
+ the
+
+00 00 00 00 00 00 00 0000 0000 00 0000 0000 000000 00 0000 0000 0000 0000 0000 00 00 0000 0000 0000 0000 0000 0000 0000 000000Completion: it was the only section of the library where there was n't a single book to check out . `` good luck with that , '' daniel said , opening up his sketchbook again , as if to say , preemptively , goodbye . luce was tongue-tied and embarrassed and what she would have liked to do was escape . but then , there were the shadows , still lurking nearby , and for some reason luce felt better about them when she was next to daniel00
+
+ the
+ be a?
+ the
+
+00 00 00 00 00 00 00 0000 0000 00 0000 0000 000000 00 0000 0000 0000 0000 0000 00 00 0000 0000 0000 0000 0000 0000 0000 000000
+Acceptance Rate: 28.23%
+Time for this text: 3.51s
+========================================
+Generating tokens for: `` happy to help my little friend here , even if she is keeping surprising company , '' said leo , giving tessa a wry look . `` glad you 've got a school you like , though . '' `` how do you want to be credited if i do cite you ? '' asked daphne , taking out her ego . `` tessa said you work here and for the government . '' `` government stuff 's freelance and unrelated , '' said leo
+========================================
+0
+
+
+ the ````
+
+ the\``
+\````\````````````````
+ the\``````````````````````````````````````````````````````````````````````````````Completion: `` happy to help my little friend here , even if she is keeping surprising company , '' said leo , giving tessa a wry look . `` glad you 've got a school you like , though . '' `` how do you want to be credited if i do cite you ? '' asked daphne , taking out her ego . `` tessa said you work here and for the government . '' `` government stuff 's freelance and unrelated , '' said leo0
+
+
+ the ````
+
+ the\``
+\````\````````````````
+ the\``````````````````````````````````````````````````````````````````````````````
+Acceptance Rate: 37.96%
+Time for this text: 3.05s
+========================================
+Generating tokens for: beth smoothed her wiry half-black , half-gray hair from her makeup-free face . in new mexico , the natural look was common . standing next to cindy fanucci , she felt like a disaster . she hid her ragged nails under the sleeves of her sweatshirt . `` hi , i 'm cindy . it 's so nice to meet you , beth
+========================================
+i'ma\n\
+\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\\x\x\x\x\x\\\\\Completion: beth smoothed her wiry half-black , half-gray hair from her makeup-free face . in new mexico , the natural look was common . standing next to cindy fanucci , she felt like a disaster . she hid her ragged nails under the sleeves of her sweatshirt . `` hi , i 'm cindy . it 's so nice to meet you , bethi'ma\n\
+\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\\x\x\x\x\x\\\\\
+Acceptance Rate: 41.67%
+Time for this text: 2.67s
+========================================
+Generating tokens for: `` i 'm not done here . '' `` but - '' `` and i 'm not your f ** king meal , '' he added , a touch of heat whipping through his words . so he had heard that part . cassie had thought his enhanced hearing would pick it up . the redhead glared at dante , then at cassie
+========================================
+  them.m.  them.
+ them. them. them.mmm```m mmm```m`m`m`m`m`m`m`a the`a the`m`a`m`m`m`Completion: `` i 'm not done here . '' `` but - '' `` and i 'm not your f ** king meal , '' he added , a touch of heat whipping through his words . so he had heard that part . cassie had thought his enhanced hearing would pick it up . the redhead glared at dante , then at cassie  them.m.  them.
+ them. them. them.mmm```m mmm```m`m`m`m`m`m`m`a the`a the`m`a`m`m`m`
+Acceptance Rate: 18.24%
+Time for this text: 4.05s
+========================================
+Generating tokens for: he had the ridiculous desire to chase after her , but even as the thought skated tantalizingly through his mind , reality intruded . `` you know , i 'm beginning to think there 's something going on between you two . '' cheyenne stood behind hardy , arms crossed over her chest , chin set at an argumentative angle . hardy sighed , turning to walk away from her . `` there is nothing going on between us , cheyenne
+========================================
+y```y``y``y``y``y``y``y``y``yyyyy yyyyyyy``yy``yy``
+
+
+
+
+
+
+
+
+
+
+
+ y``yyy the````yy`` y`` yCompletion: he had the ridiculous desire to chase after her , but even as the thought skated tantalizingly through his mind , reality intruded . `` you know , i 'm beginning to think there 's something going on between you two . '' cheyenne stood behind hardy , arms crossed over her chest , chin set at an argumentative angle . hardy sighed , turning to walk away from her . `` there is nothing going on between us , cheyenney```y``y``y``y``y``y``y``y``yyyyy yyyyyyy``yy``yy``
+
+
+
+
+
+
+
+
+
+
+
+ y``yyy the````yy`` y`` y
+Acceptance Rate: 11.36%
+Time for this text: 4.99s
+========================================
+Generating tokens for: he was about to let out a burst of laughter when the wagon came to a screeching halt . all the humor left him at once . other than the low idle of the engine , everything became dead quiet . strange mechanical noises crept from the back of the wagon like the sound of gears waking within a clock tower . then he heard similar noises from the front of the wagon
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+motor gears a
+
+
+
+motor0000m00: the00: the00:00:00:m00:m00: the00:m0000000000 00 00 00 00 00 0000 00 0000 00 0000Completion: he was about to let out a burst of laughter when the wagon came to a screeching halt . all the humor left him at once . other than the low idle of the engine , everything became dead quiet . strange mechanical noises crept from the back of the wagon like the sound of gears waking within a clock tower . then he heard similar noises from the front of the wagon
+
+
+
+
+
+
+
+
+
+
+
+motor gears a
+
+
+
+motor0000m00: the00: the00:00:00:m00:m00: the00:m0000000000 00 00 00 00 00 0000 00 0000 00 0000
+Acceptance Rate: 18.42%
+Time for this text: 4.14s
+========================================
+Generating tokens for: `` my serum creatinine is high , although everything else within my kidney profile is apparently normal , according to the hospital . so is my potassium , but that could be an artifact , so they say . it apparently comes from eating too many bananas . '' `` do you eat bananas ? '' `` i can think of a whole lot of things to do with bananas
+========================================
+.``````
+````````````````````````````````````````````````````00\`\`\`\x\x\x\x\x\x\x\x\x\x\x\\Completion: `` my serum creatinine is high , although everything else within my kidney profile is apparently normal , according to the hospital . so is my potassium , but that could be an artifact , so they say . it apparently comes from eating too many bananas . '' `` do you eat bananas ? '' `` i can think of a whole lot of things to do with bananas.``````
+````````````````````````````````````````````````````00\`\`\`\x\x\x\x\x\x\x\x\x\x\x\\
+Acceptance Rate: 41.67%
+Time for this text: 2.61s
+========================================
+Generating tokens for: cooper groaned , and his body sagged back . `` you were n't supposed to be first , '' deuce snarled as he lifted the gun and took aim at cooper 's prone form . `` but if that 's the way you want it , old buddy ... '' `` no ! '' gabrielle threw her body forward and wrapped her arms around cooper
+========================================
+00
+
+
+
+
+
+
+00.00:00:
+00:
+00:
+00: the0000:
+00:
+00:
+
+
+
+
+
+
+000000:
+00 00:0000 000000 0000 0000 0000 0000 0000Completion: cooper groaned , and his body sagged back . `` you were n't supposed to be first , '' deuce snarled as he lifted the gun and took aim at cooper 's prone form . `` but if that 's the way you want it , old buddy ... '' `` no ! '' gabrielle threw her body forward and wrapped her arms around cooper00
+
+
+
+
+
+
+00.00:00:
+00:
+00:
+00: the0000:
+00:
+00:
+
+
+
+
+
+
+000000:
+00 00:0000 000000 0000 0000 0000 0000 0000
+Acceptance Rate: 11.67%
+Time for this text: 4.95s
+========================================
+Generating tokens for: talking about it normally bothered me , but with him , i felt i could say anything . `` everyone said i should n't have survived , '' i explained . `` because of where i sat and the way the car hit the tree . lissa was really the only one in a secure spot . she and i walked away with only a few scratches
+========================================
+.
+
+
+
+
+
+ i.
+ i have to be i have a i i i have to be i have to i have to say i have to i i have to have to have to go to go to the i have to go to the i have to go to the i i i i i iCompletion: talking about it normally bothered me , but with him , i felt i could say anything . `` everyone said i should n't have survived , '' i explained . `` because of where i sat and the way the car hit the tree . lissa was really the only one in a secure spot . she and i walked away with only a few scratches.
+
+
+
+
+
+ i.
+ i have to be i have a i i i have to be i have to i have to say i have to i i have to have to have to go to go to the i have to go to the i have to go to the i i i i i i
+Acceptance Rate: 19.44%
+Time for this text: 3.90s
+========================================
+Generating tokens for: `` you know we do n't really need a song . '' `` true , '' jenna said , `` but i want one . i think we deserve one after all this , do n't you ? and anyway , it 's supposed to make the wood burn longer . '' `` but why do i have to sing
+========================================
+ i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i.
+i i i i i i i i i i i` i i i i i i i i i i i i i i i iCompletion: `` you know we do n't really need a song . '' `` true , '' jenna said , `` but i want one . i think we deserve one after all this , do n't you ? and anyway , it 's supposed to make the wood burn longer . '' `` but why do i have to sing i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i.
+i i i i i i i i i i i` i i i i i i i i i i i i i i i i
+Acceptance Rate: 63.16%
+Time for this text: 2.06s
+========================================
+Generating tokens for: he shook his head , took a step back and held his hands up as he tried to smile without losing a cigarette . `` yes you can , '' julia said in a reassuring voice . `` i 've already focused on my friend . you just have to click the shutter , on top , here . '' he nodded sheepishly , through his cigarette away and took the camera
+========================================
+. the ```\''\``\``\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''Completion: he shook his head , took a step back and held his hands up as he tried to smile without losing a cigarette . `` yes you can , '' julia said in a reassuring voice . `` i 've already focused on my friend . you just have to click the shutter , on top , here . '' he nodded sheepishly , through his cigarette away and took the camera. the ```\''\``\``\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''\''
+Acceptance Rate: 51.19%
+Time for this text: 2.29s
+========================================
+Generating tokens for: prince of alasia begins on the night of the invasion and describes what happens to twelve-year-old prince jaymin after he is forced to flee for his life . in the enemy 's service features a young girl and tells the story of those who were not able to escape from the alasian palace when the enemy invaded . prince of malorn begins several months earlier and focuses on the malornian perspective of the events leading up to the invasion
+========================================
+ of the
+
+
+ the
+
+ the
+
+ the
+ the
+ the the
+
+ the the the the the the
+ the
+ the
+ the
+ the
+ the
+00:00.00.0000:00:00:00:00:
+00:
+00:
+Completion: prince of alasia begins on the night of the invasion and describes what happens to twelve-year-old prince jaymin after he is forced to flee for his life . in the enemy 's service features a young girl and tells the story of those who were not able to escape from the alasian palace when the enemy invaded . prince of malorn begins several months earlier and focuses on the malornian perspective of the events leading up to the invasion of the
+
+
+ the
+
+ the
+
+ the
+ the
+ the the
+
+ the the the the the the
+ the
+ the
+ the
+ the
+ the
+00:00.00.0000:00:00:00:00:
+00:
+00:
+
+Acceptance Rate: 13.10%
+Time for this text: 4.76s
+========================================
+Generating tokens for: even as he settled back into the cushions of the swing , though , he heard a soft voice : `` mateo . '' nadia looked so beautiful . she wore a soft white dress that outlined every inch of her , and her black hair gleamed in the moonlight . but nothing was as incredible as her eyes as she drank him in . mateo felt like he could hardly speak . yet he managed to whisper , `` nadia
+========================================
+
+
+ the
+ I.
+00:\0\\\00
+\00\00\\00\00\00\00\\\\00\00\00\00\a the\\\\\\\\\\
+\\\
+
+
+
+Completion: even as he settled back into the cushions of the swing , though , he heard a soft voice : `` mateo . '' nadia looked so beautiful . she wore a soft white dress that outlined every inch of her , and her black hair gleamed in the moonlight . but nothing was as incredible as her eyes as she drank him in . mateo felt like he could hardly speak . yet he managed to whisper , `` nadia
+
+ the
+ I.
+00:\0\\\00
+\00\00\\00\00\00\00\\\\00\00\00\00\a the\\\\\\\\\\
+\\\
+
+
+
+
+Acceptance Rate: 17.11%
+Time for this text: 4.24s
+========================================
+Generating tokens for: lamla touched his shoulder again . ` come away , kandrigi . you will blind yourself . ' kandrigi remained glued to the tube . lamla called ma-tin , who took his time about looking around -- he was gazing down on the ka , his assistants on either side of him . he spoke to one , and he reluctantly left his post and came across and helped lamla pull kandrigi away from the tube
+========================================
+.
+
+
+
+
+
+a
+
+
+
+
+
+a
+
+a
+
+
+
+
+
+
+
+
+
+
+
+
+a
+
+
+
+
+
+
+
+a.
+
+
+a.
+
+
+
+a.
+
+a.
+
+a.Completion: lamla touched his shoulder again . ` come away , kandrigi . you will blind yourself . ' kandrigi remained glued to the tube . lamla called ma-tin , who took his time about looking around -- he was gazing down on the ka , his assistants on either side of him . he spoke to one , and he reluctantly left his post and came across and helped lamla pull kandrigi away from the tube.
+
+
+
+
+
+a
+
+
+
+
+
+a
+
+a
+
+
+
+
+
+
+
+
+
+
+
+
+a
+
+
+
+
+
+
+
+a.
+
+
+a.
+
+
+
+a.
+
+a.
+
+a.
+Acceptance Rate: 17.11%
+Time for this text: 4.24s
+========================================
+Generating tokens for: `` of the two of them , who has the strongest appeal ? '' he asked . `` leanne , '' i said . `` not that i do n't like winter , '' i added quickly , remembering they were cousins . `` what 's the name of the third woman again ? '' `` macy roth . '' i had no connection with her at all , no way of casually running into her as i had with leanne
+========================================
+ `` ````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````Completion: `` of the two of them , who has the strongest appeal ? '' he asked . `` leanne , '' i said . `` not that i do n't like winter , '' i added quickly , remembering they were cousins . `` what 's the name of the third woman again ? '' `` macy roth . '' i had no connection with her at all , no way of casually running into her as i had with leanne `` ````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+Acceptance Rate: 70.59%
+Time for this text: 1.89s
+========================================
+Generating tokens for: my wife refused to allow me to come to hong kong when the plague was at its height and -- '' `` your wife , johanne ? you are married at last ? '' johanne grinned . `` well , when a man gets to my age , he starts to need a few home comforts . after my dear mother passed away ten years ago now , i became lonely
+========================================
+.a?         a?           ? ??    ?    ?    ?? ?    ?
+  ?
+  ?
+  ?
+ ?
+ ?Completion: my wife refused to allow me to come to hong kong when the plague was at its height and -- '' `` your wife , johanne ? you are married at last ? '' johanne grinned . `` well , when a man gets to my age , he starts to need a few home comforts . after my dear mother passed away ten years ago now , i became lonely.a?         a?           ? ??    ?    ?    ?? ?    ?
+  ?
+  ?
+  ?
+ ?
+ ?
+Acceptance Rate: 39.00%
+Time for this text: 2.77s
+========================================
+Generating tokens for: and i could ignore the feeling of being owned ... it was a loose ball and chain and i was heady with the power , the attention , the money . until i met camille . '' he took a deep breath , still not daring to look at regan . `` i knew that alcroft , who was known as mr. tradd in those days , was interested in camille
+========================================
+
+            i. i
+
+ i.i. i i
+ i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i iCompletion: and i could ignore the feeling of being owned ... it was a loose ball and chain and i was heady with the power , the attention , the money . until i met camille . '' he took a deep breath , still not daring to look at regan . `` i knew that alcroft , who was known as mr. tradd in those days , was interested in camille
+            i. i
+
+ i.i. i i
+ i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i
+Acceptance Rate: 42.00%
+Time for this text: 2.75s
+========================================
+Generating tokens for: there was no cover if someone was guarding the beach . all remained quiet except for the sound of the breakers and smell of decaying seaweed . no words were spoken as one of the seals opened the sled and peter began stripping out of his dive gear and into civilian clothes . just as quickly , the seals stowed his gear back in the sled
+========================================
+s\
+ the\
+ the\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Completion: there was no cover if someone was guarding the beach . all remained quiet except for the sound of the breakers and smell of decaying seaweed . no words were spoken as one of the seals opened the sled and peter began stripping out of his dive gear and into civilian clothes . just as quickly , the seals stowed his gear back in the sleds\
+ the\
+ the\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Acceptance Rate: 41.67%
+Time for this text: 2.58s
+========================================
+Generating tokens for: all at once she understood why this whole day she 'd felt even more consumed by daniel than usual , and also even more conflicted about cam . she 'd dreamed about them both last night . she 'd been wandering through a dusty fog , someone holding her hand . she 'd turned , thinking it would be daniel
+========================================
+ a.        a.     
+
+ .  a.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           Completion: all at once she understood why this whole day she 'd felt even more consumed by daniel than usual , and also even more conflicted about cam . she 'd dreamed about them both last night . she 'd been wandering through a dusty fog , someone holding her hand . she 'd turned , thinking it would be daniel a.        a.     
+
+ .  a.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           
+Acceptance Rate: 30.83%
+Time for this text: 3.25s
+========================================
+Generating tokens for: he yelled , throwing the barrel onto the bench top as frobisher continued to shake her head furiously , her eyes wide with horror . peterson released the gag and , as frobisher coughed and spluttered , he undid her wrists and legs . `` wally ! '' screamed frobisher . `` wipe your hand on that towel ! now ! before it soaks into your wounds . '' peterson frowned at her and picked up the towel
+========================================
+ ?
+ !
+ !
+ ! !
+ ! ``` ! ! ! ``` !
+ ! ! ```
+
+
+
+ ! and ! ! ```\`\`\`\`\`\`\`\`\`\ ```\`\`\`\ `\`\ `Completion: he yelled , throwing the barrel onto the bench top as frobisher continued to shake her head furiously , her eyes wide with horror . peterson released the gag and , as frobisher coughed and spluttered , he undid her wrists and legs . `` wally ! '' screamed frobisher . `` wipe your hand on that towel ! now ! before it soaks into your wounds . '' peterson frowned at her and picked up the towel ?
+ !
+ !
+ ! !
+ ! ``` ! ! ! ``` !
+ ! ! ```
+
+
+
+ ! and ! ! ```\`\`\`\`\`\`\`\`\`\ ```\`\`\`\ `\`\ `
+Acceptance Rate: 19.59%
+Time for this text: 4.14s
+========================================
+Generating tokens for: `` aye . '' `` and what are you looking at ? '' `` molly . she 's a bee but she 's dead . '' `` well , that is very sad . may i look as well ? '' `` aye . '' shelly extended the glass to her . to miss currivard 's great credit , she too sank to her knees , took the glass and examined the bee
+========================================
+ a
+
+
+ the\\x\x\x\\\\\\\\\\\\\\\\\\\``\ ````\``\``\````\\\\``\\\\\``\\\\\\\\\\``\``\\Completion: `` aye . '' `` and what are you looking at ? '' `` molly . she 's a bee but she 's dead . '' `` well , that is very sad . may i look as well ? '' `` aye . '' shelly extended the glass to her . to miss currivard 's great credit , she too sank to her knees , took the glass and examined the bee a
+
+
+ the\\x\x\x\\\\\\\\\\\\\\\\\\\``\ ````\``\``\````\\\\``\\\\\``\\\\\\\\\\``\``\\
+Acceptance Rate: 13.64%
+Time for this text: 4.94s
+========================================
+Generating tokens for: he does not ask for money or even any help , and his uncle does not offer . brian was n't expecting him to . he knows this is something he has to go through alone to prove something to himself . and to his uncle . his uncle nods . there 's a glimmer of respect in his eyes . respect brian does n't often see . `` good luck in clearing your name , brian
+========================================
+.ffffffffffffffffffffffff. the
+. the\b\n\u\`\\n\\`\b\\x\`\b\\ \\x\\\\\\\\\\\\\\\\\\\\\\\\Completion: he does not ask for money or even any help , and his uncle does not offer . brian was n't expecting him to . he knows this is something he has to go through alone to prove something to himself . and to his uncle . his uncle nods . there 's a glimmer of respect in his eyes . respect brian does n't often see . `` good luck in clearing your name , brian.ffffffffffffffffffffffff. the
+. the\b\n\u\`\\n\\`\b\\x\`\b\\ \\x\\\\\\\\\\\\\\\\\\\\\\\\
+Acceptance Rate: 17.31%
+Time for this text: 4.35s
+========================================
+Generating tokens for: `` i realize it 's probably not a good idea to have this conversation over the phone . '' `` we 'll talk later , '' she said , but chase was afraid that might be too late . `` i did n't want this misunderstanding to ruin what we have . '' `` and what do we have , chase
+========================================
+```````````````````````````````` the\\\ \
+\\\\\\\\\\\\\\\\\\\\  the\\\\\  the\\ \\\\ `` \Completion: `` i realize it 's probably not a good idea to have this conversation over the phone . '' `` we 'll talk later , '' she said , but chase was afraid that might be too late . `` i did n't want this misunderstanding to ruin what we have . '' `` and what do we have , chase```````````````````````````````` the\\\ \
+\\\\\\\\\\\\\\\\\\\\  the\\\\\  the\\ \\\\ `` \
+Acceptance Rate: 23.48%
+Time for this text: 3.58s
+========================================
+Generating tokens for: after a few seconds , i see my mother come into my view , falling to her knees beside the person just sitting up . it 's my father . i squeeze my eyes shut over my tears when i see him wrap one arm around her shoulders and lean into her . but then an even more painful realization slices through me . jake went back in . to get shane . he 's risking his life for a man like shane
+========================================
+ to
+
+
+,,
+
+
+
+
+\x\\00:
+00:
+\00:
+
+
+
+
+
+
+
+
+\00:
+\00\00\00:
+
+
+00\00\00\00\00\00\00:
+00Completion: after a few seconds , i see my mother come into my view , falling to her knees beside the person just sitting up . it 's my father . i squeeze my eyes shut over my tears when i see him wrap one arm around her shoulders and lean into her . but then an even more painful realization slices through me . jake went back in . to get shane . he 's risking his life for a man like shane to
+
+
+,,
+
+
+
+
+\x\\00:
+00:
+\00:
+
+
+
+
+
+
+
+
+\00:
+\00\00\00:
+
+
+00\00\00\00\00\00\00:
+00
+Acceptance Rate: 15.00%
+Time for this text: 4.44s
+========================================
+Generating tokens for: she asked him . `` they will not let me continue matching the nibbler pups with their parents . they say it is too dangerous . that all of the nibblers must be brought to the palace now , '' said hazard . `` they will be safer here , '' said luxa . `` yes , now that the diggers can be heard tunneling toward the arena , '' said hazard
+========================================
+. thes\n\\\\\\\\\ \\\\\\ \\\ \\\\ \\\\ \\\ \\\\\\ \\\ \\\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Completion: she asked him . `` they will not let me continue matching the nibbler pups with their parents . they say it is too dangerous . that all of the nibblers must be brought to the palace now , '' said hazard . `` they will be safer here , '' said luxa . `` yes , now that the diggers can be heard tunneling toward the arena , '' said hazard. thes\n\\\\\\\\\ \\\\\\ \\\ \\\\ \\\\ \\\ \\\\\\ \\\ \\\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+Acceptance Rate: 28.33%
+Time for this text: 3.29s
+========================================
+Generating tokens for: her brother would probably rip my eyeballs out and shove them down my throat if he knew . something told me he would n't find out . that she would n't tell anyone . not that she could keep a secret . she was so free with words , always saying what was on her mind , whether it was appropriate or not . i especially loved it when it was n't appropriate
+========================================
+\n\\.m\
+
+mh\m.mh mmm mnmm m mm them m mm and mm and m mm andm\mm\m m mm and m\m\m\m m mm and m m andCompletion: her brother would probably rip my eyeballs out and shove them down my throat if he knew . something told me he would n't find out . that she would n't tell anyone . not that she could keep a secret . she was so free with words , always saying what was on her mind , whether it was appropriate or not . i especially loved it when it was n't appropriate\n\\.m\
+
+mh\m.mh mmm mnmm m mm them m mm and mm and m mm andm\mm\m m mm and m\m\m\m m mm and m m and
+Acceptance Rate: 8.33%
+Time for this text: 5.27s
+========================================
+Generating tokens for: it did n't stop me from wishing i could be as impervious to it as my companions , though . vampires and ghouls might not like the cold , but i was the only one whose teeth were chattering . `` all right , luv ? '' bones asked it while not taking his gaze off the trees in front of him . we were dead center in front of the house , and hopefully that was n't prophetic
+========================================
+.
+
+
+
+
+ the\`\
+
+ the\
+
+
+
+ the\\\\\\\ \\ \\\ \\\ \ \\ \ \ \\\ \ \ \\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Completion: it did n't stop me from wishing i could be as impervious to it as my companions , though . vampires and ghouls might not like the cold , but i was the only one whose teeth were chattering . `` all right , luv ? '' bones asked it while not taking his gaze off the trees in front of him . we were dead center in front of the house , and hopefully that was n't prophetic.
+
+
+
+
+ the\`\
+
+ the\
+
+
+
+ the\\\\\\\ \\ \\\ \\\ \ \\ \ \ \\\ \ \ \\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+Acceptance Rate: 15.48%
+Time for this text: 4.66s
+========================================
+Generating tokens for: dad 's trashed your room , but they have n't found any drugs yet . and they did n't find any in your locker , and i 'm guessing they did n't find any in the car , or i would 've heard about it . so right now , it 's all okay . '' `` i 'm telling you , there are n't any drugs
+========================================
+ m.m.m.m.m.m.mwmmmmmmmmmmmmmm.m.mh,mmmmmmmm\m\m\m,m.m\m\m\mmmmmCompletion: dad 's trashed your room , but they have n't found any drugs yet . and they did n't find any in your locker , and i 'm guessing they did n't find any in the car , or i would 've heard about it . so right now , it 's all okay . '' `` i 'm telling you , there are n't any drugs m.m.m.m.m.m.mwmmmmmmmmmmmmmm.m.mh,mmmmmmmm\m\m\m,m.m\m\m\mmmmm
+Acceptance Rate: 11.36%
+Time for this text: 4.85s
+========================================
+Generating tokens for: ella moved in front of him and , after a quick glance up the road , sprinted through the gate and onto the lawn , avoiding the gravel pathway and heading towards the house . they ran under the windows along the side of the building until they came to the back porch . ella chanced a look around the corner at the kitchen door . the door is open , i do n't hear anything though . oisin answered instantly . either do i , we must move , they 're close
+========================================
+a
+
+ the
+
+ the
+
+ the
+
+ the
+
+
+ the
+ the
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.a.aaCompletion: ella moved in front of him and , after a quick glance up the road , sprinted through the gate and onto the lawn , avoiding the gravel pathway and heading towards the house . they ran under the windows along the side of the building until they came to the back porch . ella chanced a look around the corner at the kitchen door . the door is open , i do n't hear anything though . oisin answered instantly . either do i , we must move , they 're closea
+
+ the
+
+ the
+
+ the
+
+ the
+
+
+ the
+ the
+
+
+ the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.a.aa
+Acceptance Rate: 20.71%
+Time for this text: 3.99s
+========================================
+Generating tokens for: `` ah , it 's called reading . ever try it ? '' amber snickered . on thursday afternoon , amber got a call from peggy . `` hey amber . i 'm about ten minutes away . do you guys want to meet me in the parking lot ? '' darren and amber did n't have a car so they had made plans to ride with peggy
+========================================
+s a\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\\`\`\\Completion: `` ah , it 's called reading . ever try it ? '' amber snickered . on thursday afternoon , amber got a call from peggy . `` hey amber . i 'm about ten minutes away . do you guys want to meet me in the parking lot ? '' darren and amber did n't have a car so they had made plans to ride with peggys a\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\\`\`\\
+Acceptance Rate: 68.06%
+Time for this text: 1.97s
+========================================
+Generating tokens for: gran said a short blessing and everyone dug in . i could n't help but notice the apprising looks she was giving cole and i. was gran trying to set me up with cole ? no . she could n't be . she loved sam , and i knew it . i saw it in her aura . yet , there was love in her aura too every time she looked at cole
+========================================
+ i'm.m i'm notm.m i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm iCompletion: gran said a short blessing and everyone dug in . i could n't help but notice the apprising looks she was giving cole and i. was gran trying to set me up with cole ? no . she could n't be . she loved sam , and i knew it . i saw it in her aura . yet , there was love in her aura too every time she looked at cole i'm.m i'm notm.m i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i'm i
+Acceptance Rate: 48.86%
+Time for this text: 2.40s
+========================================
+Generating tokens for: my focus was n't as ironclad as i 'd always believed . let 's just say i 'm going to need another guinness the instant i step foot on u.s. soil again . poor henry . the days where his infectious smile and shrug could fix just about any problem were over ... and what was i doing thinking poor henry ? if that was n't the last time i put those two words together , i would wrap a rubber band around my wrist and snap it each time i even thought about pairing henry 's name with the word poor
+========================================
+ man.
+
+
+
+
+
+ the\x\x\x\x\x\\\\\\x\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Completion: my focus was n't as ironclad as i 'd always believed . let 's just say i 'm going to need another guinness the instant i step foot on u.s. soil again . poor henry . the days where his infectious smile and shrug could fix just about any problem were over ... and what was i doing thinking poor henry ? if that was n't the last time i put those two words together , i would wrap a rubber band around my wrist and snap it each time i even thought about pairing henry 's name with the word poor man.
+
+
+
+
+
+ the\x\x\x\x\x\\\\\\x\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Acceptance Rate: 24.26%
+Time for this text: 3.97s
+========================================
+Generating tokens for: she held it away from him . `` do n't be an idiot , '' she said . rackenfauz cocked the rifle with authority . `` okay colonel , '' he said , `` we 're out of here -- now ! '' reyes fixed the old professor with a steely glower . `` you 'll never get away with this , rackenfauz
+========================================
+.  the ``Im ``Im
+
+
+ ```''`
+```
+`````````````````````````````````````````````Completion: she held it away from him . `` do n't be an idiot , '' she said . rackenfauz cocked the rifle with authority . `` okay colonel , '' he said , `` we 're out of here -- now ! '' reyes fixed the old professor with a steely glower . `` you 'll never get away with this , rackenfauz.  the ``Im ``Im
+
+
+ ```''`
+```
+`````````````````````````````````````````````
+Acceptance Rate: 37.04%
+Time for this text: 2.94s
+========================================
+Generating tokens for: it 's nothing more than a faceless , formless brown blob to me but i take his word of the resemblance to our genetic makeup . the vial 's emerald contents are carefully tipped into the dish . a second later , the combined liquids have become a mass that is both liquid and gaseous and rapidly expanding . i see it creeping slowly , a writhing cloud of teal the size of a person now
+========================================
+
+
+ the
+ the
+
+ thea0aa0aa0aa0aa0aa0aa0aa0aa0aa0aa0aa0a0a0aa0a0aa0aa0aa0a0aaCompletion: it 's nothing more than a faceless , formless brown blob to me but i take his word of the resemblance to our genetic makeup . the vial 's emerald contents are carefully tipped into the dish . a second later , the combined liquids have become a mass that is both liquid and gaseous and rapidly expanding . i see it creeping slowly , a writhing cloud of teal the size of a person now
+
+ the
+ the
+
+ thea0aa0aa0aa0aa0aa0aa0aa0aa0aa0aa0aa0a0a0aa0a0aa0aa0aa0a0aa
+Acceptance Rate: 37.50%
+Time for this text: 2.89s
+========================================
+Generating tokens for: she thanked matt , hung up the phone and decided to cook . that would sooth her nerves . derek was fine . he could take care of himself , she continued to tell herself . he would call her . amber gathered supplies and ingredients and began making lasagna from scratch . after an hour she forgot about the note that sent her tearing home and lost herself in the cooking
+========================================
+
+
+
+
+00 00 00 00 0000 00 0000 0000 0000 0000 000000 0000000000000000000000000000000000000000000000000000000000000000000000000000000000 00Completion: she thanked matt , hung up the phone and decided to cook . that would sooth her nerves . derek was fine . he could take care of himself , she continued to tell herself . he would call her . amber gathered supplies and ingredients and began making lasagna from scratch . after an hour she forgot about the note that sent her tearing home and lost herself in the cooking
+
+
+
+00 00 00 00 0000 00 0000 0000 0000 0000 000000 0000000000000000000000000000000000000000000000000000000000000000000000000000000000 00
+Acceptance Rate: 31.03%
+Time for this text: 3.18s
+========================================
+Generating tokens for: * * * kelly was seated on one of the beds , her back to diane . she closed her eyes against the pain inside her and slowly?slowly?slowly ? * * * she was walking along the left bank with mark , chatting about everything and nothing . kelly felt that she had never been so completely comfortable with anyone before . she said to mark , `` tomorrow evening there 's a gallery opening if you 're interested in - '' `` oh , i 'm sorry , kelly
+========================================
+
+ \*\o\o\o\o\o\o\o\o\o\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Completion: * * * kelly was seated on one of the beds , her back to diane . she closed her eyes against the pain inside her and slowly?slowly?slowly ? * * * she was walking along the left bank with mark , chatting about everything and nothing . kelly felt that she had never been so completely comfortable with anyone before . she said to mark , `` tomorrow evening there 's a gallery opening if you 're interested in - '' `` oh , i 'm sorry , kelly
+ \*\o\o\o\o\o\o\o\o\o\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Acceptance Rate: 34.26%
+Time for this text: 3.08s
+========================================
+Generating tokens for: `` well , i figured that we would eventually be living there full time so , you need to feel comfortable there . you 've handled getting up close and personal with the horses so , i know they wo n't be a problem to you . '' reaching for the menu he continued speaking . `` i 'll teach you to ride as soon as we get the horses settled , you 'll love it , '' he finished happily , satisfaction oozing out of him as he reached for the menu
+========================================
+.
+ . .
+
+ the
+. . .
+ . .
+ thes.
+ . .
+ the .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ i ll . . . . . . . . . . . . . . . . . .Completion: `` well , i figured that we would eventually be living there full time so , you need to feel comfortable there . you 've handled getting up close and personal with the horses so , i know they wo n't be a problem to you . '' reaching for the menu he continued speaking . `` i 'll teach you to ride as soon as we get the horses settled , you 'll love it , '' he finished happily , satisfaction oozing out of him as he reached for the menu.
+ . .
+
+ the
+. . .
+ . .
+ thes.
+ . .
+ the .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ .
+ i ll . . . . . . . . . . . . . . . . . .
+Acceptance Rate: 26.61%
+Time for this text: 3.49s
+========================================
+Generating tokens for: `` carlos rafael wilson . '' the man smiled at him . carlos did n't have a clue what was going on . he looked to his manager . `` tom here 's just moved into the house at the bottom of the hill . '' `` oh right . '' `` about two , maybe three , miles away , '' tom said and smiled at carlos
+========================================
+`\\n\0\_\
+\s\x\x\x\x\x\x\x\x\x\\x\x\x\x\x\\x\\x\x\xx\
+x\x\x\\
+\xCompletion: `` carlos rafael wilson . '' the man smiled at him . carlos did n't have a clue what was going on . he looked to his manager . `` tom here 's just moved into the house at the bottom of the hill . '' `` oh right . '' `` about two , maybe three , miles away , '' tom said and smiled at carlos`\\n\0\_\
+\s\x\x\x\x\x\x\x\x\x\\x\x\x\x\x\\x\\x\x\xx\
+x\x\x\\
+\x
+Acceptance Rate: 25.78%
+Time for this text: 3.51s
+========================================
+Generating tokens for: `` you can tell mum 's not going anywhere-it took her five minutes just to remember where he was ! '' alice nodded , well used to their eccentricities . `` here we are ! '' flora planted them in the middle of a group of tanned , tawny-haired woman . `` everyone , this is my sister , alice
+========================================
+`` ```` ```` ```````` ````````````````````````````````````````````````````````````````````````````````````````````````````````````````Completion: `` you can tell mum 's not going anywhere-it took her five minutes just to remember where he was ! '' alice nodded , well used to their eccentricities . `` here we are ! '' flora planted them in the middle of a group of tanned , tawny-haired woman . `` everyone , this is my sister , alice`` ```` ```` ```````` ````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+Acceptance Rate: 45.65%
+Time for this text: 2.48s
+========================================
+Generating tokens for: if you 're too chicken to sleep on my couch i 'm sure you can sleep on ethan 's . '' `` i 'm way too old to sleep on anyone 's couch , '' claire said . `` i 'll see you guys around . '' she headed for her car , but jamie took her arm and pulled her to a halt . `` claire . have dinner with me - i 'm celebrating tonight and so is ethan
+========================================
+ ``i''m i''m.m. ``i''m.m.m.m.m.m.m.m.m.m.m m mmmmmmmmmmmmmmmmmmmmmmmmmmmmmCompletion: if you 're too chicken to sleep on my couch i 'm sure you can sleep on ethan 's . '' `` i 'm way too old to sleep on anyone 's couch , '' claire said . `` i 'll see you guys around . '' she headed for her car , but jamie took her arm and pulled her to a halt . `` claire . have dinner with me - i 'm celebrating tonight and so is ethan ``i''m i''m.m. ``i''m.m.m.m.m.m.m.m.m.m.m m mmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+Acceptance Rate: 11.36%
+Time for this text: 5.01s
+========================================
+Generating tokens for: `` you deserve to die . '' sydney gasped at the words . `` slade , you do n't even know what you 're saying ! '' she remembered gunner shoving her to the ground . the bullet that had hit the side of the jeep . only ... had n't she heard two shots then ? two shots , but only one bullet had gone into the jeep
+========================================
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````Completion: `` you deserve to die . '' sydney gasped at the words . `` slade , you do n't even know what you 're saying ! '' she remembered gunner shoving her to the ground . the bullet that had hit the side of the jeep . only ... had n't she heard two shots then ? two shots , but only one bullet had gone into the jeep````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+Acceptance Rate: 75.00%
+Time for this text: 1.75s
+========================================
+Generating tokens for: he immediately blocked sean 's attempt to invade his mind , but it took all of his concentration . for a mortal , sean 's psychic power was incredibly strong . `` you 're not getting in , whelan , '' carlos gritted out . `` dad , leave him alone , '' shanna muttered . sean dropped the mind probe but continued to glare at carlos
+========================================
+ he              a.
+
+  a
+
+
+
+  a
+
+haha.   a
+
+
+
+     
+ haha the\hhhhh00a\uCompletion: he immediately blocked sean 's attempt to invade his mind , but it took all of his concentration . for a mortal , sean 's psychic power was incredibly strong . `` you 're not getting in , whelan , '' carlos gritted out . `` dad , leave him alone , '' shanna muttered . sean dropped the mind probe but continued to glare at carlos he              a.
+
+  a
+
+
+
+  a
+
+haha.   a
+
+
+
+     
+ haha the\hhhhh00a\u
+Acceptance Rate: 17.11%
+Time for this text: 4.23s
+========================================
+Results for  13B
+Ms per token: 52.86ms
+========
+
+Total accecptance rate: 28.24%
+========
+
+he immediately blocked sean 's attempt to invade his mind , but it took all of his concentration . for a mortal , sean 's psychic power was incredibly strong . `` you 're not getting in , whelan , '' carlos gritted out . `` dad , leave him alone , '' shanna muttered . sean dropped the mind probe but continued to glare at carlos he              a.
+
+  a
+
+
+
+  a
+
+haha.   a
+
+
+
+     
+ haha the\hhhhh00a\u
+========
+

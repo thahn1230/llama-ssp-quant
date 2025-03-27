@@ -16,112 +16,84 @@ torch.manual_seed(42)
 
 import torch.nn as nn
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from smoothquant.smooth import smooth_lm
-from smoothquant.fake_quant_2_bits import quantize_model as quantize_model_2
-from smoothquant.fake_quant_4_bits import quantize_model as quantize_model_4
-from smoothquant.fake_quant_6_bits import quantize_model as quantize_model_6
-from smoothquant.fake_quant_8_bits import quantize_model as quantize_model_8
-import tqdm
+# from smoothquant.smooth import smooth_lm
+# from smoothquant.fake_quant_2_bits import quantize_model as quantize_model_2
+# from smoothquant.fake_quant_4_bits import quantize_model as quantize_model_4
+# from smoothquant.fake_quant_6_bits import quantize_model as quantize_model_6
+# from smoothquant.fake_quant_8_bits import quantize_model as quantize_model_8
+# import tqdm
 
 from datasets import load_dataset
 
-alpha = 0.85
-ssm_model_path = 'facebook/opt-1.3b'
-ssm_act_scales_path = 'act_scales/opt-1.3b.pt'
-ltm_model_path = 'facebook/opt-6.7b'
-ltm_act_scales_path = 'act_scales/opt-6.7b.pt'
-n_samples = None
+# alpha = 0.5
+# ssm_model_path = 'facebook/opt-125m'
+# ssm_act_scales_path = 'act_scales/opt-1.3b.pt'
+# ltm_model_path = 'facebook/opt-6.7b'
+# ltm_act_scales_path = 'act_scales/opt-6.7b.pt'
+# n_samples = None
 
-class Evaluator:
-    def __init__(self, dataset, tokenizer, device, n_samples=40):
-        self.dataset = dataset
-        self.tokenizer = tokenizer
-        self.device = device
-
-        self.dataset = tokenizer(
-            "\n\n".join(dataset["text"]), return_tensors="pt"
-        ).input_ids.to(device)
-
-        self.n_samples = n_samples
-
-    @torch.no_grad()
-    def evaluate(self, model):
-        model.eval()
-        nlls = []
-        n_samples = self.n_samples if self.n_samples else self.dataset.size(1) // 2048
-        for i in tqdm.tqdm(range(n_samples), desc="Evaluating..."):
-            batch = self.dataset[:, (i * 2048) : ((i + 1) * 2048)].to(model.device)
-            with torch.no_grad():
-                lm_logits = model(batch).logits
-            shift_logits = lm_logits[:, :-1, :].contiguous().float()
-            shift_labels = self.dataset[:, (i * 2048) : ((i + 1) * 2048)][:, 1:]
-            loss_fct = nn.CrossEntropyLoss()
-            loss = loss_fct(
-                shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1)
-            )
-            neg_log_likelihood = loss.float() * 2048
-            nlls.append(neg_log_likelihood)
-
-        return torch.exp(torch.stack(nlls).sum() / (n_samples * 2048))
-
-# ssm_tokenizer = AutoTokenizer.from_pretrained(ssm_model_path)
-# dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-# ssm_evaluator = Evaluator(dataset, ssm_tokenizer, "cuda", n_samples=n_samples)
-
-# ltm_tokenizer = AutoTokenizer.from_pretrained(ltm_model_path)
-# dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-# ltm_evaluator = Evaluator(dataset, ltm_tokenizer, "cuda", n_samples=n_samples)
-
-ssmmodel = AutoModelForCausalLM.from_pretrained(
-    ssm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
-)
+# ssmmodel = AutoModelForCausalLM.from_pretrained(
+#     ssm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
+# )
 
 # # smooth
 # ssm_act_scales = torch.load(ssm_act_scales_path)
 # smooth_lm(ssmmodel, ssm_act_scales, alpha)
 
 # # quantize
-# ssmmodel = quantize_model_8(
+# ssmmodel = quantize_model_6(
 #     ssmmodel,
 #     weight_quant="per_channel",
 #     act_quant="per_token",
 #     quantize_bmm_input=True,
 # )
 
-ltmmodel = AutoModelForCausalLM.from_pretrained(
-    ltm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
-)
+# ltmmodel = AutoModelForCausalLM.from_pretrained(
+#     ltm_model_path, torch_dtype=torch.bfloat16, device_map="auto"
+# )
 
 # # smooth
 # ltm_act_scales = torch.load(ltm_act_scales_path)
 # smooth_lm(ltmmodel, ltm_act_scales, alpha)
 
 # # quantize
-# ltmmodel = quantize_model_8(
+# ltmmodel = quantize_model_6(
 #     ltmmodel,
 #     weight_quant="per_channel",
 #     act_quant="per_token",
 #     quantize_bmm_input=True,
 # )
 
-# ssm_ppl = ssm_tokenizer.evaluate(ssmmodel)
-# print(f"LTM Perplexity: {ssm_ppl}")
+# Load and quantize models based on arguments
+def load_model(model_path, act_scales_path, bit, alpha):
+    model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map="auto")
+    act_scales = torch.load(act_scales_path)
+    smooth_lm(model, act_scales, alpha)
 
-# ltm_ppl = ltm_tokenizer.evaluate(ltmmodel)
-# print(f"LTM Perplexity: {ltm_ppl}")
-
+    if bit == 2:
+        model = quantize_model_2(model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=True)
+    elif bit == 4:
+        model = quantize_model_4(model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=True)
+    elif bit == 6:
+        model = quantize_model_6(model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=True)
+    elif bit == 8:
+        model = quantize_model_8(model, weight_quant="per_channel", act_quant="per_token", quantize_bmm_input=True)
+    elif bit == 0:
+        return model
+    
+    return model
 
 ################################################
 MAX_NEW_TOKENS = 64
-llama7b_name = 'facebook/opt-1.3b'
+llama7b_name = 'facebook/opt-125m'
 llama13b_name = 'facebook/opt-6.7b'
 llama30b_name = 'baffo32/decapoda-research-llama-30b-hf'
 llama65b_name = 'meta-llama/Llama-2-70b-hf'
 batch_size = 1
 
-texts = [
-    'The waves crashed against the shore, a never-ending cycle of destruction and creation.',
-]
+dataset = load_dataset("lambada", split="test")  # LAMBADA 데이터셋
+texts = dataset["text"][:100]  # 첫 100개의 텍스트를 사용
+
 tokenizer = AutoTokenizer.from_pretrained(llama7b_name)
 
 free_in_GB = int(torch.cuda.mem_get_info()[0]/1024**3)
@@ -205,10 +177,8 @@ models_params = {
 
 
 def time_ssp(target_name, draft_name, draft, ltm, K=4):
-    draft_model = create_model(**models_params[draft_name])
-    target_model = create_model(**models_params[target_name])
-    # draft_model = draft
-    # target_model = ltm
+    draft_model = draft
+    target_model = ltm
     nb_tokens = 0
     all_accept_tokens = 0
     all_generated_tokens = 0
@@ -270,51 +240,6 @@ def time_ssp(target_name, draft_name, draft, ltm, K=4):
     return generated_ids, ms_per_token, accept_rate
 
 
-
-# def time_ssp(target_name, draft_name, draft, ltm, K=4):
-#     draft_model = create_model(**models_params[draft_name])
-#     target_model = create_model(**models_params[target_name])
-#     # draft_model = draft
-#     # target_model = ltm
-#     nb_tokens = 0
-#     # Warmup
-#     input_ids = tokenizer(texts[0], return_tensors="pt").input_ids
-#     input_ids = torch.stack(
-#         [input_ids[0]] * batch_size).to(draft_model.device)
-#     generated_ids, accept_tokens, generated_tokens = ssp(target_model,
-#                         draft_model,
-#                         MAX_NEW_TOKENS,
-#                         input_ids, K=K, display=True)
-
-#     start_time = time.time()
-#     all_accept_tokens = 0
-#     all_generated_tokens = 0
-#     for text in texts[1:]:
-
-#         print("Completing text:", text)
-#         intermediate_time = time.time()
-#         input_ids = tokenizer(text, return_tensors="pt").input_ids
-#         input_ids = torch.stack(
-#             [input_ids[0]] * batch_size).to(draft_model.device)
-#         generated_ids, accept_tokens, generated_tokens = ssp(target_model,
-#                             draft_model,
-#                             MAX_NEW_TOKENS,
-#                             input_ids, K=K)
-#         all_accept_tokens += accept_tokens
-#         all_generated_tokens += generated_tokens
-#         nb_tokens += generated_ids.shape[1] - input_ids.shape[1]
-#         print("Completion: ", tokenizer.decode(
-#             generated_ids[0], skip_special_tokens=True))
-#         print("Time: {:.2f}s".format(time.time() - intermediate_time))
-#         print("========\n")
-#         print("Acceptance Rate: {:.2f}%".format((accept_tokens/generated_tokens)*100))
-#         print("========\n")
-        
-#     ms_per_token = (time.time() - start_time)*1000 / nb_tokens
-#     accept_rate = (all_accept_tokens/all_generated_tokens)
-#     return generated_ids, ms_per_token, accept_rate
-
-
 def print_speeds(speeds):
     print("Speeds:")
     for model_name, tokens_s in speeds.items():
@@ -371,7 +296,11 @@ def create_argument_parser():
     """
     parser = argparse.ArgumentParser(
         description='Test speeds of Llama models with regular sampling and speculative sampling: measure their latency, compare their speed, and evaluate their performance on a simple task.')
-    # add argument to set log level
+    # my arg
+    parser.add_argument('--ssm-bit', type=int, default=0, help="Quantization bit for SSM model")
+    parser.add_argument('--ltm-bit', type=int, default=0, help="Quantization bit for LTM model")
+    parser.add_argument('--alpha', type=float, default=0.5, help="Alpha value for smooth quantization")
+    
     parser.add_argument(
         '-v', '--verbose', action='store_true', help='verbose output')
 
@@ -427,7 +356,25 @@ if __name__ == "__main__":
     elif (args.subcommand == 'latency' and args.draft):
         print(f"Testing {args.model} with draft {args.draft}")
         print('-'*20)
-        gen_ids, ms_per_token, accept_rate = time_ssp(args.model, args.draft, draft=ssmmodel, ltm=ltmmodel)
+        # Load models based on quantization args
+        if args.ssm_bit == 0:
+            ssm_model = AutoModelForCausalLM.from_pretrained(
+                "facebook/opt-1.3b",
+                torch_dtype=torch.bfloat16,
+                device_map='auto'
+            )
+        else:
+            ssm_model = load_model(ssm_model_path, ssm_act_scales_path, args.ssm_bit, args.alpha)
+        
+        if args.ltm_bit == 0:
+            ltm_model = AutoModelForCausalLM.from_pretrained(
+                "facebook/opt-6.7b",
+                torch_dtype=torch.bfloat16,
+                device_map='auto'
+            )
+        else:
+            ltm_model = load_model(ltm_model_path, ltm_act_scales_path, args.ltm_bit, args.alpha)
+        gen_ids, ms_per_token, accept_rate = time_ssp(args.model, args.draft, ssm_model, ltm_model)
         print_results(ms_per_token, gen_ids, accept_rate, args.model)
 
     elif (args.subcommand == 'latency'):

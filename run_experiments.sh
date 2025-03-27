@@ -1,0 +1,9 @@
+python llamassp_modified.py --ssm-bit 0 --ltm-bit 0 --alpha 0.5 latency 13B --draft 7B > ./results/noquant-noquant-0.5.txt
+python llamassp_modified.py --ssm-bit 0 --ltm-bit 8 --alpha 0.5 latency 13B --draft 7B > ./results/noquant-8bit-0.5.txt
+python llamassp_modified.py --ssm-bit 0 --ltm-bit 6 --alpha 0.5 latency 13B --draft 7B > ./results/noquant-6bit-0.5.txt
+python llamassp_modified.py --ssm-bit 8 --ltm-bit 0 --alpha 0.5 latency 13B --draft 7B > ./results/8bit-noquant-0.5.txt
+python llamassp_modified.py --ssm-bit 8 --ltm-bit 8 --alpha 0.5 latency 13B --draft 7B > ./results/8bit-8bit-0.5.txt
+python llamassp_modified.py --ssm-bit 8 --ltm-bit 6 --alpha 0.5 latency 13B --draft 7B > ./results/8bit-6bit-0.5.txt
+python llamassp_modified.py --ssm-bit 6 --ltm-bit 0 --alpha 0.5 latency 13B --draft 7B > ./results/6bit-noquant-0.5.txt
+python llamassp_modified.py --ssm-bit 6 --ltm-bit 8 --alpha 0.5 latency 13B --draft 7B > ./results/6bit-8bit-0.5.txt
+python llamassp_modified.py --ssm-bit 6 --ltm-bit 6 --alpha 0.5 latency 13B --draft 7B > ./results/6bit-6bit-0.5.txt

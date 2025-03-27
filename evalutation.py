@@ -8,7 +8,9 @@ from transformers import GPT2Tokenizer, AutoTokenizer, AutoModelForCausalLM
 from smoothquant.smooth import smooth_lm
 from smoothquant.fake_quant_2_bits import quantize_opt as quantize_opt_2
 from smoothquant.fake_quant_4_bits import quantize_opt as quantize_opt_4
+from smoothquant.fake_quant_5_bits import quantize_opt as quantize_opt_5
 from smoothquant.fake_quant_6_bits import quantize_opt as quantize_opt_6
+from smoothquant.fake_quant_7_bits import quantize_opt as quantize_opt_7
 from smoothquant.fake_quant_8_bits import quantize_opt as quantize_opt_8
 
 
@@ -53,22 +55,22 @@ class Evaluator:
         
 from datasets import load_dataset
 
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-3B")
+tokenizer = AutoTokenizer.from_pretrained("facebook/opt-6.7b")
 # dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
 # dataset = dataset.select(range(1000))  # 데이터셋에서 처음 1000개를 선택
 dataset = load_dataset("lambada", split="validation[:1000]")  # LAMBADA 데이터셋
 evaluator = Evaluator(dataset, tokenizer, "cuda")
 
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-3B", torch_dtype=torch.float16, device_map="auto"
+    "facebook/opt-6.7b", torch_dtype=torch.float16, device_map="auto"
 )
 
-opt_model = evaluator.evaluate(model)
-print(f"Qwen2.5 3B model accuracy: {opt_model}")
+# opt_model = evaluator.evaluate(model)
+# print(f"facebook/opt-1.3b model accuracy: {opt_model}")
 
-act_scales = torch.load("act_scales/Qwen2.5-3b.pt")
-smooth_lm(model, act_scales, 0.85)
-model_smoothquant = quantize_opt_8(model)
+act_scales = torch.load("act_scales/opt-6.7b-data_random44.pt")
+smooth_lm(model, act_scales, 0.5)
+model_smoothquant = quantize_opt_4(model)
 # print(model_smoothquant_w8a8)
 
 acc_smoothquant = evaluator.evaluate(model_smoothquant)
