@@ -73,7 +73,7 @@ batch_size = 1
 #     'The sound of footsteps behind me made me quicken my pace.',
 #     'The clock was ticking, and time was running out.',
 #     'I knew I had to make a choice, but neither option felt right.',
-#     'The old man's voice was shaky, but his words were filled with wisdom.',
+#     'The old man’s voice was shaky, but his words were filled with wisdom.',
 #     'The desert stretched out endlessly before me, with no sign of life in sight.',
 #     'I could hear the waves crashing in the distance, a soothing rhythm in the chaos.',
 #     'As the storm raged outside, I felt a strange calm settle over me.',
@@ -338,7 +338,7 @@ if __name__ == "__main__":
             fallback_threshold=args.fallback_threshold,
             rollback_threshold=args.rollback_threshold)
         policies_info = ""
-        if args.fallback_threshold is not None or args.rollback_threshold is not None:
+        if args.fallback_threshold or args.rollback_threshold:
             policies_info = f" (fallback threshold: {args.fallback_threshold}, rollback threshold: {args.rollback_threshold})"
         print(
             f"Comparing {args.model} model regular sampling and {args.model} SSp with {args.draft} draft model{policies_info}\n====\n")
@@ -357,7 +357,7 @@ if __name__ == "__main__":
     elif (args.subcommand == 'latency' and args.draft):
         print(f"Testing {args.model} with draft {args.draft}")
         print('-'*20)
-        if args.fallback_threshold is not None or args.rollback_threshold is not None:
+        if args.fallback_threshold or args.rollback_threshold:
             print(f"Using fallback threshold: {args.fallback_threshold}, rollback threshold: {args.rollback_threshold}")
         gen_ids, ms_per_token, accept_rate = time_ssp(
             args.model, args.draft,
@@ -378,13 +378,17 @@ if __name__ == "__main__":
         print(f"Eval of {args.model} on multiplication task (seed {args.seed})"
               + (f" with draft {args.draft}" if args.draft else ""))
         print('-'*20)
+        if args.fallback_threshold or args.rollback_threshold:
+            print(f"Using fallback threshold: {args.fallback_threshold}, rollback threshold: {args.rollback_threshold}")
         model = create_model(**models_params[args.model])
         if args.draft:
             draft_model = create_model(**models_params[args.draft])
         else:
             draft_model = None
         results = evals.measure_model_score(
-            model, tokenizer, args.nb_prompts, args.seed, draft_model)
+            model, tokenizer, args.nb_prompts, args.seed, draft_model,
+            fallback_threshold=args.fallback_threshold,
+            rollback_threshold=args.rollback_threshold)
         evals.print_results(results, args.model, args.draft)
 
     else:

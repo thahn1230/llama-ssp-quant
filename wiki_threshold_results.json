@@ -1,0 +1,16 @@
+[
+  {
+    "iteration": 1,
+    "fallback_threshold": 0.3,
+    "rollback_threshold": 10.0,
+    "ms_per_token": 117.6910126653491,
+    "acceptance_rate": 0.8997524659252125
+  },
+  {
+    "iteration": 2,
+    "fallback_threshold": 0.35,
+    "rollback_threshold": 11.0,
+    "ms_per_token": 120.72159030538009,
+    "acceptance_rate": 0.933199824464109
+  }
+]

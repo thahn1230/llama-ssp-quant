@@ -1,0 +1,30 @@
+[
+  {
+    "iteration": 1,
+    "fallback_threshold": 0.3,
+    "rollback_threshold": 10.0,
+    "ms_per_token": 111.03170886164011,
+    "acceptance_rate": 0.7786609727901397
+  },
+  {
+    "iteration": 2,
+    "fallback_threshold": 0.35,
+    "rollback_threshold": 11.0,
+    "ms_per_token": 113.45978283177183,
+    "acceptance_rate": 0.7962624504914041
+  },
+  {
+    "iteration": 3,
+    "fallback_threshold": 0.39999999999999997,
+    "rollback_threshold": 12.0,
+    "ms_per_token": 117.62510138934844,
+    "acceptance_rate": 0.8641585081585081
+  },
+  {
+    "iteration": 4,
+    "fallback_threshold": 0.44999999999999996,
+    "rollback_threshold": 13.0,
+    "ms_per_token": 121.75133575151763,
+    "acceptance_rate": 0.9195256704080235
+  }
+]

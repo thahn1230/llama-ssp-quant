@@ -2,7 +2,7 @@
 
 import sys
 import torch
-from transformers import AutoModelForCausalLM, LlamaTokenizer, AutoTokenizer, GPT2Tokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # llama7b_name = 'baffo32/decapoda-research-llama-7b-hf'
 opt_model_name = 'facebook/opt-1.3b'
@@ -39,6 +39,15 @@ def get_temperature_distribution(logits, temperature=TEMPERATURE):
 
 def sample_fn(logits, temperature=TEMPERATURE):
     probs = get_temperature_distribution(logits, temperature)
+    # NaN과 inf 값을 처리
+    probs = torch.nan_to_num(probs, nan=0.0, posinf=1.0, neginf=0.0)
+    # 음수 값을 0으로 처리
+    probs = torch.clamp(probs, min=0.0)
+    # 확률 분포가 0이 되지 않도록 보정
+    if probs.sum() == 0:
+        probs = torch.ones_like(probs) / probs.size(-1)
+    else:
+        probs = probs / probs.sum()
     return torch.multinomial(probs, num_samples=1).squeeze(-1)
 
 
