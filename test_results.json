@@ -1,0 +1,80 @@
+{
+  "training": [
+    {
+      "episode": 1,
+      "target": "7B",
+      "draft": "3B",
+      "fallback_threshold": 0.2639008015394211,
+      "rollback_threshold": 8.276034951210022,
+      "ms_per_token": 13.190219324963852,
+      "acceptance_rate": 0.6763934901195252,
+      "reward": 1.6666202592618191,
+      "dataset": "lambada"
+    },
+    {
+      "episode": 2,
+      "target": "7B",
+      "draft": "3B",
+      "fallback_threshold": 0.1974664658308029,
+      "rollback_threshold": 8.47851550579071,
+      "ms_per_token": 10.645509035601567,
+      "acceptance_rate": 0.5600661640079432,
+      "reward": 1.6958827935891634,
+      "dataset": "lambada"
+    },
+    {
+      "episode": 3,
+      "target": "7B",
+      "draft": "3B",
+      "fallback_threshold": 0.17020943760871887,
+      "rollback_threshold": 8.561825394630432,
+      "ms_per_token": 10.134722726936099,
+      "acceptance_rate": 0.5501440365305191,
+      "reward": 1.7105789265687061,
+      "dataset": "lambada"
+    },
+    {
+      "episode": 4,
+      "target": "7B",
+      "draft": "3B",
+      "fallback_threshold": 0.15529255121946334,
+      "rollback_threshold": 8.303646445274353,
+      "ms_per_token": 10.074748799427232,
+      "acceptance_rate": 0.5356177672686051,
+      "reward": 1.7056248296079355,
+      "dataset": "lambada"
+    },
+    {
+      "episode": 5,
+      "target": "7B",
+      "draft": "3B",
+      "fallback_threshold": 0.1359565705060959,
+      "rollback_threshold": 7.6303629875183105,
+      "ms_per_token": 10.87163306319344,
+      "acceptance_rate": 0.47076093298687544,
+      "reward": 1.641693574810919,
+      "dataset": "lambada"
+    }
+  ],
+  "best_thresholds": {
+    "7B_3B_lambada": {
+      "fallback": 0.17020943760871887,
+      "rollback": 8.561825394630432,
+      "acceptance_rate": 0.5501440365305191,
+      "ms_per_token": 10.134722726936099,
+      "reward": 1.7105789265687061
+    }
+  },
+  "validation": [
+    {
+      "target": "7B",
+      "draft": "3B",
+      "dataset": "lambada",
+      "fallback_threshold": 0.28215059340000154,
+      "rollback_threshold": 9.049825370311737,
+      "ms_per_token": 13.567008272686024,
+      "acceptance_rate": 0.7235326548092506,
+      "reward": 1.6773905042132577
+    }
+  ]
+}

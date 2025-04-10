@@ -9,13 +9,18 @@ opt_model_name = 'facebook/opt-1.3b'
 tokenizer = AutoTokenizer.from_pretrained(opt_model_name)
 
 
-def create_model(model_name, max_memory, load_in_8bit=True):
-    return AutoModelForCausalLM.from_pretrained(
-        model_name,
-        device_map='balanced',
-        load_in_8bit=load_in_8bit,
-        max_memory=max_memory
-    )
+def create_model(model_name, max_memory, device_map='balanced', offload_folder=None):
+    kwargs = {
+        "pretrained_model_name_or_path": model_name,
+        "device_map": device_map,
+        "max_memory": max_memory
+    }
+    
+    # offload_folder가 지정된 경우에만 추가
+    if offload_folder is not None:
+        kwargs["offload_folder"] = offload_folder
+        
+    return AutoModelForCausalLM.from_pretrained(**kwargs)
 
 
 def stream_token_if_required(input_ids, stream=False):

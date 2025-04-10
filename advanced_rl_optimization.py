@@ -1,3 +1,4 @@
+import os
 import argparse
 import torch
 import time
@@ -9,6 +10,11 @@ from tqdm import tqdm
 from collections import deque
 import matplotlib.pyplot as plt
 from itertools import product
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import torch.multiprocessing as mp
+
+# 환경 변수 설정
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # llamassp 모듈에서 필요한 함수들 임포트
 from llamassp import create_model, tokenizer, models_params, MAX_NEW_TOKENS
@@ -19,29 +25,42 @@ from lssp.base import sample_model
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# 장치 설정
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 # 모델 파라미터 정의
 models_params = {
     "13B": {
         "model_name": "facebook/opt-6.7b",
-        "load_in_8bit": False,
-        "max_memory": {0: "16GB"}
+        "max_memory": {0: "22GB", 1: "22GB", 2: "22GB", 3: "22GB", 4: "22GB", 5: "22GB", 6: "22GB", 7: "22GB"},
+        "device_map": "balanced",
+        "offload_folder": "offload_folder"
     },
     "7B": {
         "model_name": "facebook/opt-1.3b",
-        "load_in_8bit": False,
-        "max_memory": {0: "16GB"}
-    },
-    "7B_8bit": {
-        "model_name": "facebook/opt-1.3b",
-        "load_in_8bit": True,
-        "max_memory": {0: "16GB"}
+        "max_memory": {0: "22GB", 1: "22GB", 2: "22GB", 3: "22GB", 4: "22GB", 5: "22GB", 6: "22GB", 7: "22GB"},
+        "device_map": "balanced"
     },
     "3B": {
         "model_name": "facebook/opt-125m",
-        "load_in_8bit": True,
-        "max_memory": {0: "16GB"}
+        "max_memory": {0: "22GB", 1: "22GB", 2: "22GB", 3: "22GB", 4: "22GB", 5: "22GB", 6: "22GB", 7: "22GB"},
+        "device_map": "balanced"
     }
 }
+
+def create_model_wrapper(**kwargs):
+    """
+    create_model을 래핑하는 함수
+    """
+    model_kwargs = kwargs.copy()
+    logger.info(f"모델 로드 중: {model_kwargs.get('model_name', '알 수 없음')}")
+    
+    # create_model이 지원하지 않는 매개변수 제거
+    for key in ['torch_dtype', 'low_cpu_mem_usage', 'load_in_4bit', 'load_in_8bit', 'quantization_config']:
+        model_kwargs.pop(key, None)
+    
+    # create_model 함수 호출
+    return create_model(**model_kwargs)
 
 class ThresholdState:
     """임계값 상태를 표현하는 클래스"""
@@ -70,14 +89,29 @@ class Experience:
 
 class ExperienceReplay:
     """경험 재현 버퍼"""
-    def __init__(self, max_size=1000):
+    def __init__(self, max_size=10000):
         self.buffer = deque(maxlen=max_size)
+        self.episode_rewards = deque(maxlen=100)  # 최근 에피소드 보상 추적
     
     def add(self, experience):
-        self.buffer.append(experience)
+        importance = abs(experience.reward)
+        if len(self.episode_rewards) > 0:
+            importance_factor = max(0.1, 1.0 + experience.reward / (np.mean(self.episode_rewards) + 1e-8))
+            importance *= importance_factor
+        self.buffer.append((experience, importance))
+        self.episode_rewards.append(experience.reward)
     
     def sample(self, batch_size):
-        return random.sample(self.buffer, min(batch_size, len(self.buffer)))
+        if len(self.buffer) == 0:
+            return []
+        experiences, weights = zip(*self.buffer)
+        weights = np.array(weights)
+        weights = np.maximum(weights, 1e-8)
+        probs = weights / (weights.sum() + 1e-8)
+        if np.all(probs == 0):
+            probs = np.ones_like(probs) / len(probs)
+        indices = np.random.choice(len(self.buffer), min(batch_size, len(self.buffer)), p=probs)
+        return [experiences[i] for i in indices]
     
     def __len__(self):
         return len(self.buffer)
@@ -91,7 +125,6 @@ def load_texts(dataset_name="lambada", max_samples=20):
         texts = dataset["text"][:max_samples]
     elif dataset_name == "wikitext":
         dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-        # 비어있지 않은 텍스트만 필터링하고 충분히 긴 텍스트 선택
         texts = [text for text in dataset["text"] if len(text.strip()) > 100][:max_samples]
     elif dataset_name == "c4":
         dataset = load_dataset("c4", "en", split="validation", streaming=True)
@@ -109,36 +142,24 @@ def load_texts(dataset_name="lambada", max_samples=20):
     return texts
 
 def compute_reward(acceptance_rate, ms_per_token, speed_weight=0.4, acceptance_weight=0.6, 
-                  baseline_ms=100.0, min_acceptance=0.3):
-    """속도와 수락률을 모두 고려한 보상 함수
+                  baseline_ms=100.0, min_acceptance=0.3, episode=0):
+    """개선된 보상 함수"""
+    if np.isnan(acceptance_rate) or np.isnan(ms_per_token):
+        return 0.0  # 기본값 반환
     
-    Args:
-        acceptance_rate: 수락률 (0-1)
-        ms_per_token: 토큰당 밀리초
-        speed_weight: 속도 가중치
-        acceptance_weight: 수락률 가중치
-        baseline_ms: 속도 정규화 기준값
-        min_acceptance: 최소 수락률
-    
-    Returns:
-        float: 계산된 보상값
-    """
-    # 최소 수락률 체크 - 너무 낮으면 페널티
     if acceptance_rate < min_acceptance:
-        penalty = -((min_acceptance - acceptance_rate) * 10.0) ** 2
+        penalty = -((min_acceptance - acceptance_rate) * 3.0) ** 2
         return penalty
     
-    # 속도 점수 계산 (속도 역수, 정규화)
     speed_score = baseline_ms / max(ms_per_token, 1.0)
-    if speed_score > 1.0:  # 기준보다 빠르면 보너스
-        speed_score = 1.0 + np.log1p(speed_score - 1.0)
+    speed_score = np.tanh(speed_score - 1.0) + 1.0
+    acceptance_score = acceptance_rate ** 0.4
     
-    # 수락률 점수 계산 (비선형 증가)
-    acceptance_score = acceptance_rate ** 0.7  # 비선형 증가로 높은 수락률 장려
+    episode_progress = min(1.0, episode / 100)
+    acceptance_weight = 0.8 - (0.2 * episode_progress)
+    speed_weight = 0.2 + (0.2 * episode_progress)
     
-    # 가중 합산
     reward = (speed_weight * speed_score) + (acceptance_weight * acceptance_score)
-    
     return reward
 
 class PPOAgent:
@@ -156,32 +177,27 @@ class PPOAgent:
         self.train_iterations = train_iterations
         self.batch_size = batch_size
         
-        # 정책 네트워크 초기화 (fallback과 rollback을 위한 분리된 출력)
         self.policy_network = torch.nn.Sequential(
             torch.nn.Linear(2, 64),
             torch.nn.ReLU(),
             torch.nn.Linear(64, 64),
             torch.nn.ReLU(),
             torch.nn.Linear(64, 4)  # fallback_mean, fallback_std, rollback_mean, rollback_std
-        )
+        ).to(device)  # 장치로 이동
         
-        # 가치 네트워크 초기화
         self.value_network = torch.nn.Sequential(
             torch.nn.Linear(2, 64),
             torch.nn.ReLU(),
             torch.nn.Linear(64, 64),
             torch.nn.ReLU(),
             torch.nn.Linear(64, 1)
-        )
+        ).to(device)  # 장치로 이동
         
-        # 옵티마이저 설정
         self.policy_optimizer = torch.optim.Adam(self.policy_network.parameters(), lr=lr)
         self.value_optimizer = torch.optim.Adam(self.value_network.parameters(), lr=lr)
         
-        # 경험 버퍼
         self.experience_buffer = ExperienceReplay(max_size=10000)
         
-        # 모델 훈련 이력
         self.training_history = {
             'policy_loss': [],
             'value_loss': [],
@@ -204,19 +220,18 @@ class PPOAgent:
             gae = delta + self.gamma * self.gae_lambda * (1 - dones[t]) * gae
             advantages.insert(0, gae)
         
-        advantages = torch.tensor(advantages, dtype=torch.float32)
-        returns = advantages + torch.tensor(values, dtype=torch.float32)
+        advantages = torch.tensor(advantages, dtype=torch.float32).to(device)  # 장치로 이동
+        returns = advantages + torch.tensor(values, dtype=torch.float32).to(device)  # 장치로 이동
         
         return advantages, returns
     
     def get_action(self, state, explore=True):
         """현재 상태에서 액션 선택"""
-        state_tensor = torch.FloatTensor([state.fallback, state.rollback])
+        state_tensor = torch.FloatTensor([state.fallback, state.rollback]).to(device)  # 장치로 이동
         
         with torch.no_grad():
             action_params = self.policy_network(state_tensor)
             
-            # fallback과 rollback 파라미터 분리
             fallback_mean = torch.tanh(action_params[0])  # -1 ~ 1
             fallback_std = torch.sigmoid(action_params[1]) * 0.5  # 0 ~ 0.5
             rollback_mean = torch.tanh(action_params[2])
@@ -224,7 +239,6 @@ class PPOAgent:
         
         try:
             if explore:
-                # fallback과 rollback을 독립적으로 샘플링
                 delta_fallback = torch.normal(mean=fallback_mean, std=fallback_std).item() * 0.1
                 delta_rollback = torch.normal(mean=rollback_mean, std=rollback_std).item() * 2.0
             else:
@@ -235,13 +249,11 @@ class PPOAgent:
             delta_fallback = 0.05 if explore else 0.0
             delta_rollback = 1.0 if explore else 0.0
         
-        # 새로운 임계값 계산 (범위 제한)
         new_fallback = np.clip(state.fallback + delta_fallback, 
                               self.fallback_range[0], self.fallback_range[1])
         new_rollback = np.clip(state.rollback + delta_rollback, 
                               self.rollback_range[0], self.rollback_range[1])
         
-        # 액션 로그 확률 저장을 위한 파라미터 반환
         action_params = {
             'fallback': (fallback_mean, fallback_std),
             'rollback': (rollback_mean, rollback_std)
@@ -250,47 +262,56 @@ class PPOAgent:
         return ThresholdState(new_fallback, new_rollback), action_params
     
     def update(self):
-        """PPO 업데이트 수행"""
-        if len(self.experience_buffer) < self.batch_size:
+        """개선된 PPO 업데이트"""
+        if len(self.experience_buffer) < self.batch_size // 2:  # 버퍼 크기 요구사항 완화
             return
         
-        # 미니배치 추출
-        batch = self.experience_buffer.sample(self.batch_size)
+        recent_experiences = self.experience_buffer.sample(self.batch_size // 2)
+        old_experiences = self.experience_buffer.sample(self.batch_size // 2)
+        batch = recent_experiences + old_experiences
         
-        # 데이터 준비
-        states = torch.FloatTensor([[exp.state.fallback, exp.state.rollback] for exp in batch])
-        actions = torch.FloatTensor([exp.action for exp in batch])
-        rewards = torch.FloatTensor([exp.reward for exp in batch])
+        states = torch.FloatTensor([[exp.state.fallback, exp.state.rollback] for exp in batch]).to(device)  # 장치로 이동
+        actions = torch.FloatTensor([exp.action for exp in batch]).to(device)  # 장치로 이동
+        rewards = torch.FloatTensor([exp.reward for exp in batch]).to(device)  # 장치로 이동
         next_states = torch.FloatTensor([[exp.next_state.fallback, exp.next_state.rollback] 
-                                        for exp in batch])
-        dones = torch.FloatTensor([0.0] * len(batch))  # 에피소드가 끝나지 않았다고 가정
+                                        for exp in batch]).to(device)  # 장치로 이동
+        dones = torch.FloatTensor([0.0] * len(batch)).to(device)  # 장치로 이동
         
-        # 현재 가치 추정
         with torch.no_grad():
             values = self.value_network(states).squeeze()
             next_value = self.value_network(next_states[-1].unsqueeze(0)).squeeze()
         
-        # GAE 계산
         advantages, returns = self.compute_gae(rewards, values, next_value, dones)
         
-        # 정규화된 advantage
         advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
         
-        # PPO 업데이트 (여러 반복)
+        if torch.isnan(advantages).any():
+            logger.warning("NaN detected in advantages. Skipping update.")
+            return
+        
+        if len(self.training_history['rewards']) > 100:
+            recent_rewards = self.training_history['rewards'][-100:]
+            if np.mean(recent_rewards) < np.mean(self.training_history['rewards'][:-100]):
+                self.lr *= 0.98
+                for param_group in self.policy_optimizer.param_groups:
+                    param_group['lr'] = self.lr
+                for param_group in self.value_optimizer.param_groups:
+                    param_group['lr'] = self.lr
+        
         for _ in range(self.train_iterations):
-            # 정책 네트워크 업데이트
             self.policy_optimizer.zero_grad()
-            
-            # 현재 정책의 액션 파라미터 계산
             action_params = self.policy_network(states)
             
-            # fallback과 rollback 파라미터 분리
             fallback_means = torch.tanh(action_params[:, 0])
             fallback_stds = torch.sigmoid(action_params[:, 1]) * 0.5
             rollback_means = torch.tanh(action_params[:, 2])
             rollback_stds = torch.sigmoid(action_params[:, 3]) * 0.5
             
-            # 현재 정책의 로그 확률
+            if torch.isnan(fallback_means).any() or torch.isnan(fallback_stds).any() or \
+               torch.isnan(rollback_means).any() or torch.isnan(rollback_stds).any():
+                logger.warning("NaN detected in action parameters. Skipping update.")
+                return
+            
             fallback_dist = torch.distributions.Normal(fallback_means, fallback_stds)
             rollback_dist = torch.distributions.Normal(rollback_means, rollback_stds)
             
@@ -299,32 +320,33 @@ class PPOAgent:
             
             new_log_probs = fallback_log_probs + rollback_log_probs
             
-            # 이전 정책의 로그 확률 (저장된 값 사용)
-            old_log_probs = torch.FloatTensor([exp.old_log_prob for exp in batch])
+            old_log_probs = torch.FloatTensor([exp.old_log_prob for exp in batch]).to(device)  # 장치로 이동
             
-            # PPO 클립 목적함수
             ratio = torch.exp(new_log_probs - old_log_probs)
             clip_ratio = torch.clamp(ratio, 1.0 - self.clip_ratio, 1.0 + self.clip_ratio)
             
             policy_loss = -torch.min(ratio * advantages, clip_ratio * advantages).mean()
             
             policy_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.policy_network.parameters(), 0.5)
             self.policy_optimizer.step()
             
-            # 가치 네트워크 업데이트
             self.value_optimizer.zero_grad()
             values = self.value_network(states).squeeze()
             value_loss = torch.nn.MSELoss()(values, returns)
             
             value_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.value_network.parameters(), 0.5)
             self.value_optimizer.step()
             
-            # 훈련 이력 기록
             self.training_history['policy_loss'].append(policy_loss.item())
             self.training_history['value_loss'].append(value_loss.item())
             self.training_history['advantages'].append(advantages.mean().item())
         
         self.training_history['rewards'].extend(rewards.tolist())
+        
+        if len(self.experience_buffer) > self.batch_size * 2:
+            self.experience_buffer.buffer = deque(list(self.experience_buffer.buffer)[-self.batch_size:])
     
     def save_model(self, filepath):
         """모델 저장"""
@@ -365,54 +387,93 @@ class PPOAgent:
             plt.savefig(save_path)
         plt.close()
 
-def evaluate_thresholds(target_model, draft_model, state, texts, K=16, max_new_tokens=128):
-    """특정 임계값 조합 평가"""
+def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
+    """배치 단위로 텍스트 처리"""
+    results = []
+    batch_size = 4  # 배치 크기
     
-    # 각 텍스트에 대한 성능 측정
-    speeds = []
-    acceptance_rates = []
+    for i in range(0, len(texts), batch_size):
+        batch_texts = texts[i:i + batch_size]
+        batch_results = []
+        
+        for text in batch_texts:
+            try:
+                input_ids = tokenizer(
+                    text, 
+                    return_tensors="pt", 
+                    max_length=512,  
+                    truncation=True  
+                ).input_ids.to(target_model.device)  # 모델의 장치로 이동
+                
+                start_time = time.time()
+                
+                generated_ids, accept_tokens, generated_tokens = ssp(
+                    target_model,
+                    draft_model,
+                    max_new_tokens,
+                    input_ids,
+                    K=K,
+                    fallback_threshold=state.fallback,
+                    rollback_threshold=state.rollback
+                )
+                
+                elapsed = time.time() - start_time
+                
+                num_new_tokens = generated_ids.shape[1] - input_ids.shape[1]
+                
+                if num_new_tokens > 0:
+                    ms_per_token = (elapsed * 1000) / num_new_tokens
+                else:
+                    ms_per_token = 1000.0
+                    
+                acceptance_rate = accept_tokens / max(generated_tokens, 1)
+                
+                batch_results.append({
+                    'ms_per_token': ms_per_token,
+                    'acceptance_rate': acceptance_rate
+                })
+            except Exception as e:
+                logger.warning(f"텍스트 처리 중 오류 발생: {str(e)}")
+                batch_results.append({
+                    'ms_per_token': 1000.0,
+                    'acceptance_rate': 0.0
+                })
+        
+        results.extend(batch_results)
     
-    for text in tqdm(texts, desc=f"평가 중 ({state})"):
-        input_ids = tokenizer(text, return_tensors="pt").input_ids.to(target_model.device)
-        
-        # 시간 측정 시작
-        start_time = time.time()
-        
-        # SSP로 토큰 생성
-        generated_ids, accept_tokens, generated_tokens = ssp(
-            target_model,
-            draft_model,
-            max_new_tokens,
-            input_ids,
-            K=K,
-            fallback_threshold=state.fallback,
-            rollback_threshold=state.rollback
-        )
-        
-        # 시간 측정 종료
-        elapsed = time.time() - start_time
-        
-        # 생성된 토큰 수 계산
-        num_new_tokens = generated_ids.shape[1] - input_ids.shape[1]
-        
-        # 메트릭 계산
-        if num_new_tokens > 0:
-            ms_per_token = (elapsed * 1000) / num_new_tokens
-        else:
-            ms_per_token = 1000.0  # 높은 페널티
+    return results
+
+def evaluate_thresholds_parallel(target_model, draft_model, state, texts, K=16, max_new_tokens=128, episode=0):
+    """병렬 처리로 임계값 평가"""
+    num_processes = min(4, len(texts))  # 최대 4개 프로세스 사용
+    chunk_size = len(texts) // num_processes
+    
+    with ThreadPoolExecutor(max_workers=num_processes) as executor:
+        futures = []
+        for i in range(num_processes):
+            start_idx = i * chunk_size
+            end_idx = start_idx + chunk_size if i < num_processes - 1 else len(texts)
+            chunk_texts = texts[start_idx:end_idx]
             
-        acceptance_rate = accept_tokens / max(generated_tokens, 1)
+            future = executor.submit(
+                process_batch,
+                chunk_texts,
+                target_model,
+                draft_model,
+                state,
+                K,
+                max_new_tokens
+            )
+            futures.append(future)
         
-        # 결과 저장
-        speeds.append(ms_per_token)
-        acceptance_rates.append(acceptance_rate)
+        all_results = []
+        for future in as_completed(futures):
+            all_results.extend(future.result())
     
-    # 평균 메트릭 계산
-    avg_ms_per_token = sum(speeds) / len(speeds)
-    avg_acceptance_rate = sum(acceptance_rates) / len(acceptance_rates)
+    avg_ms_per_token = sum(r['ms_per_token'] for r in all_results) / len(all_results)
+    avg_acceptance_rate = sum(r['acceptance_rate'] for r in all_results) / len(all_results)
     
-    # 보상 계산
-    reward = compute_reward(avg_acceptance_rate, avg_ms_per_token)
+    reward = compute_reward(avg_acceptance_rate, avg_ms_per_token, episode=episode)
     
     metrics = {
         'ms_per_token': avg_ms_per_token,
@@ -427,57 +488,96 @@ def evaluate_thresholds(target_model, draft_model, state, texts, K=16, max_new_t
 def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, max_new_tokens=128):
     """특정 모델 쌍에 대한 에이전트 훈련"""
     
-    # 모델 로드
-    logger.info(f"모델 로드 중: {target_name} (타겟), {draft_name} (드래프트)")
-    target_model = create_model(**models_params[target_name])
-    draft_model = create_model(**models_params[draft_name])
+    if torch.cuda.is_available():
+        torch.backends.cudnn.benchmark = True
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+    
+    max_retries = 3
+    retry_delay = 5  # seconds
+    
+    for attempt in range(max_retries):
+        try:
+            logger.info(f"모델 로드 중: {target_name} (타겟), {draft_name} (드래프트) - 시도 {attempt + 1}/{max_retries}")
+            target_model = create_model_wrapper(**models_params[target_name]).to(device)  # 장치로 이동
+            draft_model = create_model_wrapper(**models_params[draft_name]).to(device)  # 장치로 이동
+            break
+        except Exception as e:
+            if attempt < max_retries - 1:
+                logger.warning(f"모델 로드 실패: {str(e)}. {retry_delay}초 후 재시도...")
+                time.sleep(retry_delay)
+            else:
+                logger.error(f"모델 로드 최종 실패: {str(e)}")
+                raise
     
     results = []
     
-    # 초기 상태
-    state = ThresholdState(fallback=0.3, rollback=10.0)
+    state = ThresholdState(fallback=0.4, rollback=15.0)
+    
+    exploration_rate = 1.0
+    exploration_decay = 0.95
     
     for episode in range(episodes):
         logger.info(f"에피소드 {episode+1}/{episodes} 시작 - 모델: {target_name}/{draft_name}")
         
-        # 액션 선택 및 이전 정책의 로그 확률 계산
-        next_state, action_params = agent.get_action(state)
-        
-        # 이전 정책의 로그 확률 계산
-        with torch.no_grad():
-            fallback_dist = torch.distributions.Normal(
-                action_params['fallback'][0],
-                action_params['fallback'][1]
+        if random.random() < exploration_rate:
+            next_state = ThresholdState(
+                fallback=random.uniform(0.3, 0.5),
+                rollback=random.uniform(10.0, 20.0)
             )
-            rollback_dist = torch.distributions.Normal(
-                action_params['rollback'][0],
-                action_params['rollback'][1]
-            )
-            
-            # 액션 값 계산
-            delta_fallback = (next_state.fallback - state.fallback) / 0.1
-            delta_rollback = (next_state.rollback - state.rollback) / 2.0
-            
-            # 로그 확률 계산
-            old_log_prob = (
-                fallback_dist.log_prob(torch.tensor(delta_fallback)) +
-                rollback_dist.log_prob(torch.tensor(delta_rollback))
-            ).item()
+            action_params = None
+        else:
+            next_state, action_params = agent.get_action(state)
         
-        # 액션 평가
-        reward, metrics = evaluate_thresholds(
-            target_model, draft_model, next_state, texts, K, max_new_tokens
-        )
+        exploration_rate *= exploration_decay
         
-        # 경험 저장
+        if action_params is not None:
+            with torch.no_grad():
+                fallback_dist = torch.distributions.Normal(
+                    action_params['fallback'][0],
+                    action_params['fallback'][1]
+                )
+                rollback_dist = torch.distributions.Normal(
+                    action_params['rollback'][0],
+                    action_params['rollback'][1]
+                )
+                
+                delta_fallback = (next_state.fallback - state.fallback) / 0.1
+                delta_rollback = (next_state.rollback - state.rollback) / 2.0
+                
+                old_log_prob = (
+                    fallback_dist.log_prob(torch.tensor(delta_fallback).to(device)) +
+                    rollback_dist.log_prob(torch.tensor(delta_rollback).to(device))
+                ).item()
+        else:
+            old_log_prob = 0.0
+        
+        for eval_attempt in range(max_retries):
+            try:
+                reward, metrics = evaluate_thresholds_parallel(
+                    target_model, draft_model, next_state, texts, K, max_new_tokens, episode
+                )
+                reward = compute_reward(
+                    metrics['acceptance_rate'], 
+                    metrics['ms_per_token'],
+                    episode=episode
+                )
+                break
+            except Exception as e:
+                if eval_attempt < max_retries - 1:
+                    logger.warning(f"평가 실패: {str(e)}. {retry_delay}초 후 재시도...")
+                    time.sleep(retry_delay)
+                else:
+                    logger.error(f"평가 최종 실패: {str(e)}")
+                    raise
+        
         agent.experience_buffer.add(
-            Experience(state, (delta_fallback, delta_rollback), reward, next_state, metrics, old_log_prob)
+            Experience(state, (next_state.fallback - state.fallback, next_state.rollback - state.rollback), 
+                      reward, next_state, metrics, old_log_prob)
         )
         
-        # 에이전트 업데이트
         agent.update()
         
-        # 결과 저장
         result = {
             'episode': episode + 1,
             'target': target_name,
@@ -486,11 +586,11 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
             'rollback_threshold': next_state.rollback,
             'ms_per_token': metrics['ms_per_token'],
             'acceptance_rate': metrics['acceptance_rate'],
-            'reward': reward
+            'reward': reward,
+            'exploration_rate': exploration_rate
         }
         results.append(result)
         
-        # 상태 업데이트
         state = next_state
     
     return results
@@ -498,21 +598,17 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
 def meta_learning(datasets, model_pairs, args):
     """다양한 모델/데이터셋에 대한 메타러닝 수행"""
     
-    # PPO 에이전트 초기화
     agent = PPOAgent()
     
     all_results = []
     best_thresholds = {}
     
-    # 각 데이터셋에 대해
     for dataset_name, texts in datasets.items():
         logger.info(f"데이터셋 {dataset_name}에 대한 훈련 시작")
         
-        # 각 모델 쌍에 대해
         for target_name, draft_name in model_pairs:
             logger.info(f"모델 쌍 {target_name}/{draft_name} 훈련 시작")
             
-            # 모델 쌍에 대한 훈련
             pair_results = train_model_pair(
                 target_name, draft_name, agent, texts, 
                 episodes=args.episodes_per_pair,
@@ -520,7 +616,6 @@ def meta_learning(datasets, model_pairs, args):
                 max_new_tokens=args.max_tokens
             )
             
-            # 최적 임계값 저장
             best_result = max(pair_results, key=lambda x: x['reward'])
             best_thresholds[f"{target_name}_{draft_name}_{dataset_name}"] = {
                 'fallback': best_result['fallback_threshold'],
@@ -530,15 +625,11 @@ def meta_learning(datasets, model_pairs, args):
                 'reward': best_result['reward']
             }
             
-            # 결과 확장
             for result in pair_results:
                 result['dataset'] = dataset_name
                 all_results.append(result)
     
-    # 학습된 에이전트 저장
     agent.save_model(args.model_output)
-    
-    # 훈련 이력 그래프 저장
     agent.plot_training_history(args.model_output.replace('.pt', '_history.png'))
     
     return all_results, best_thresholds, agent
@@ -548,28 +639,44 @@ def cross_validation(agent, datasets, model_pairs, args):
     
     validation_results = []
     
-    # 각 데이터셋/모델 쌍 조합
     for dataset_name, texts in datasets.items():
         for target_name, draft_name in model_pairs:
             logger.info(f"검증: {target_name}/{draft_name} on {dataset_name}")
             
-            # 모델 로드
-            target_model = create_model(**models_params[target_name])
-            draft_params = models_params[draft_name].copy()
-            draft_params['load_in_8bit'] = False
-            draft_model = create_model(**draft_params)
+            max_retries = 3
+            retry_delay = 5  # seconds
             
-            # 초기 상태에서 에이전트의 추천 임계값 얻기
+            for attempt in range(max_retries):
+                try:
+                    target_model = create_model_wrapper(**models_params[target_name]).to(device)  # 장치로 이동
+                    draft_model = create_model_wrapper(**models_params[draft_name]).to(device)  # 장치로 이동
+                    break
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        logger.warning(f"모델 로드 실패: {str(e)}. {retry_delay}초 후 재시도...")
+                        time.sleep(retry_delay)
+                    else:
+                        logger.error(f"모델 로드 최종 실패: {str(e)}")
+                        raise
+            
             init_state = ThresholdState(fallback=0.3, rollback=10.0)
             recommended_state, _ = agent.get_action(init_state, explore=False)
             
-            # 추천 임계값 평가
-            reward, metrics = evaluate_thresholds(
-                target_model, draft_model, recommended_state, texts,
-                K=args.k, max_new_tokens=args.max_tokens
-            )
+            for eval_attempt in range(max_retries):
+                try:
+                    reward, metrics = evaluate_thresholds_parallel(
+                        target_model, draft_model, recommended_state, texts,
+                        K=args.k, max_new_tokens=args.max_tokens
+                    )
+                    break
+                except Exception as e:
+                    if eval_attempt < max_retries - 1:
+                        logger.warning(f"평가 실패: {str(e)}. {retry_delay}초 후 재시도...")
+                        time.sleep(retry_delay)
+                    else:
+                        logger.error(f"평가 최종 실패: {str(e)}")
+                        raise
             
-            # 결과 저장
             result = {
                 'target': target_name,
                 'draft': draft_name,
@@ -608,11 +715,9 @@ def main():
                         help='Enable debug logging')
     args = parser.parse_args()
     
-    # 디버그 로깅 설정
     if args.verbose:
         logger.setLevel(logging.DEBUG)
     
-    # 데이터셋 로드
     datasets = {}
     for dataset_name in args.datasets:
         logger.info(f"{dataset_name} 데이터셋 로드 중...")
@@ -620,17 +725,13 @@ def main():
         logger.info(f"{len(texts)} 텍스트 샘플 로드 완료")
         datasets[dataset_name] = texts
     
-    # 모델 쌍 구성
     model_pairs = list(product(args.targets, args.drafts))
     logger.info(f"총 {len(model_pairs)}개 모델 쌍에 대해 훈련: {model_pairs}")
     
-    # 메타러닝 수행
     all_results, best_thresholds, agent = meta_learning(datasets, model_pairs, args)
     
-    # 크로스 검증
     validation_results = cross_validation(agent, datasets, model_pairs, args)
     
-    # 결과 저장
     final_results = {
         'training': all_results,
         'best_thresholds': best_thresholds,
@@ -640,7 +741,6 @@ def main():
     with open(args.output, 'w') as f:
         json.dump(final_results, f, indent=2)
     
-    # 결과 요약 출력
     print("\n" + "=" * 50)
     print("메타러닝 결과 요약:")
     print("-" * 50)

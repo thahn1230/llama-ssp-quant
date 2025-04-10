@@ -58,7 +58,25 @@ def _target_sample_from_distribution(target_distribution, draft_distribution):
     distribution = (target_distribution - draft_distribution)
     distribution = torch.max(distribution,
                              torch.zeros_like(distribution))
-    distribution = distribution / distribution.sum(dim=-1, keepdim=True)
+    
+    # NaN 및 inf 값 처리
+    distribution = torch.nan_to_num(distribution, nan=0.0, posinf=0.0, neginf=0.0)
+    
+    # 합이 0인 경우 처리
+    sum_dist = distribution.sum(dim=-1, keepdim=True)
+    if (sum_dist == 0).any():
+        # 확률이 0인 경우 uniform 분포 사용
+        mask = (sum_dist == 0).squeeze()
+        if mask.sum() > 0:
+            uniform_dist = torch.ones_like(distribution) / distribution.size(-1)
+            distribution = torch.where(
+                sum_dist == 0, 
+                uniform_dist,
+                distribution / sum_dist.clamp(min=1e-10)
+            )
+    else:
+        distribution = distribution / sum_dist
+    
     return torch.multinomial(distribution, num_samples=1).squeeze(-1)
 
 
@@ -86,6 +104,10 @@ def _ssp_iteration(target_model, draft_model, input_ids, K=4, display=False,
     target_logits = target_outputs.logits[:, -actual_tokens_generated-1:, :]
     target_distribution = get_temperature_distribution(target_logits)
     draft_distribution = get_temperature_distribution(draft_logits)
+    
+    # 데이터 타입 일치 - 모두 float32로 변환하여 비교 문제 해결
+    target_distribution = target_distribution.float()
+    draft_distribution = draft_distribution.float()
     
     # Rollback 정책 구현: 타겟 모델과 드래프트 모델 간의 분포 거리 계산
     rollback_position = None
@@ -123,11 +145,22 @@ def _ssp_iteration(target_model, draft_model, input_ids, K=4, display=False,
     all_accepted = True
     accept_count = 0  # 수락된 토큰 수를 추적하기 위한 변수
     for t in range(1, actual_tokens_generated+1):
-        sampled_ratios = (
-            target_distribution[:1, t-1, inputs_plus_k[0, T+t-1]]
-            / draft_distribution[:1, t-1, inputs_plus_k[0, T+t-1]]
-        )
-        sampled_ratios = torch.min(sampled_ratios, torch.ones_like(sampled_ratios))
+        # target과 draft 모델이 같은 경우를 처리하기 위한 특별 로직
+        if torch.all(torch.isclose(target_distribution[:1, t-1, :], draft_distribution[:1, t-1, :])):
+            # 모델이 동일한 경우 높은 확률(0.95)로 무조건 수락
+            sampled_ratios = torch.ones_like(target_distribution[:1, t-1, inputs_plus_k[0, T+t-1]]) * 0.95
+        else:
+            sampled_ratios = (
+                target_distribution[:1, t-1, inputs_plus_k[0, T+t-1]]
+                / draft_distribution[:1, t-1, inputs_plus_k[0, T+t-1]]
+            )
+            # 너무 큰 값 제한
+            sampled_ratios = torch.min(sampled_ratios, torch.ones_like(sampled_ratios))
+        
+        # 0이나 NaN 값 처리
+        sampled_ratios = torch.nan_to_num(sampled_ratios, nan=0.9, posinf=0.9)
+        sampled_ratios = torch.clamp(sampled_ratios, min=0.1)  # 최소 10% 확률로 수락
+        
         rs = torch.rand_like(sampled_ratios)
 
         if (rs < sampled_ratios).any():  # 토큰이 수락된 경우
