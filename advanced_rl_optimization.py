@@ -53,10 +53,11 @@ def create_model_wrapper(**kwargs):
     create_model을 래핑하는 함수
     """
     model_kwargs = kwargs.copy()
+    
     logger.info(f"모델 로드 중: {model_kwargs.get('model_name', '알 수 없음')}")
     
     # create_model이 지원하지 않는 매개변수 제거
-    for key in ['torch_dtype', 'low_cpu_mem_usage', 'load_in_4bit', 'load_in_8bit', 'quantization_config']:
+    for key in ['load_in_4bit', 'load_in_8bit', 'quantization_config', 'torch_dtype']:
         model_kwargs.pop(key, None)
     
     # create_model 함수 호출
@@ -390,7 +391,7 @@ class PPOAgent:
 def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
     """배치 단위로 텍스트 처리"""
     results = []
-    batch_size = 4  # 배치 크기
+    batch_size = 2  # 배치 크기 줄이기
     
     for i in range(0, len(texts), batch_size):
         batch_texts = texts[i:i + batch_size]
