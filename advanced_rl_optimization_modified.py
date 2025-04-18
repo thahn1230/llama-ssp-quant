@@ -15,6 +15,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import torch.multiprocessing as mp
 import math
 
+# 로깅 설정
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 # 환경 변수 설정
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # 메모리 단편화 방지를 위한 설정
@@ -22,12 +26,17 @@ os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 # llamassp 모듈에서 필요한 함수들 임포트
 from llamassp import create_model, tokenizer, models_params, MAX_NEW_TOKENS
-from lssp.ssp import ssp
+# 시간 통계 수집을 지원하는 ssp 함수 사용 (없으면 기본 ssp 사용)
+try:
+    from lssp.ssp_modified import ssp
+    HAS_MODIFIED_SSP = True
+    logger.info("Using modified SSP with time statistics support")
+except ImportError:
+    from lssp.ssp import ssp
+    HAS_MODIFIED_SSP = False
+    logger.warning("Using standard SSP without time statistics support")
+    
 from lssp.base import sample_model
-
-# 로깅 설정
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 # 불필요한 로깅 줄이기
 logging.getLogger("transformers").setLevel(logging.ERROR)
@@ -122,18 +131,24 @@ def create_model_wrapper(**kwargs):
 
 class ThresholdState:
     """임계값 상태를 표현하는 클래스"""
-    def __init__(self, fallback, rollback):
+    def __init__(self, fallback, rollback, time_stats=None):
         self.fallback = fallback
         self.rollback = rollback
+        # 시간 통계 정보 저장
+        self.time_stats = time_stats if time_stats else {}
     
     def __str__(self):
         return f"FB={self.fallback:.3f}, RB={self.rollback:.3f}"
     
     def as_dict(self):
-        return {
+        result = {
             'fallback_threshold': self.fallback,
             'rollback_threshold': self.rollback
         }
+        # 시간 통계 추가
+        if self.time_stats:
+            result['time_stats'] = self.time_stats
+        return result
 
 class Experience:
     """경험 데이터를 저장하는 클래스"""
@@ -144,6 +159,13 @@ class Experience:
         self.next_state = next_state
         self.metrics = metrics
         self.old_log_prob = old_log_prob  # 이전 정책의 로그 확률 저장
+        
+        # 시간 통계 정보 저장 (있는 경우)
+        self.time_stats = metrics.get('time_stats', {})
+    
+    def get_time_stats(self):
+        """시간 통계 정보 반환 (없으면 빈 딕셔너리)"""
+        return self.time_stats
 
 class ExperienceReplay:
     """경험 재현 버퍼"""
@@ -199,19 +221,17 @@ def load_texts(dataset_name="lambada", max_samples=20):
     
     return texts
 
-def compute_reward(acceptance_rate, ms_per_token, speed_weight=0.7, acceptance_weight=0.3, 
-                  baseline_ms=100.0, min_acceptance=0.3, episode=0, 
+def compute_reward(acceptance_rate, ms_per_token, time_stats=None, 
+                  speed_weight=1.0, acceptance_weight=0.0, efficiency_weight=0.0,
+                  baseline_ms=100.0, min_acceptance=0.0, episode=0, 
                   fallback_value=0.4, rollback_value=8.0, k_value=16):
-    """개선된 보상 함수 - FB/RB 값에 따른 추가 보상/패널티"""
+    """개선된 보상 함수 - FB/RB 값 및 상세 시간 통계를 활용하여 최적화"""
     if np.isnan(acceptance_rate) or np.isnan(ms_per_token):
         return 0.0  # 기본값 반환
     
-    # 수락률이 최소 기준 미달시 큰 패널티
-    if acceptance_rate < min_acceptance:
-        penalty = -((min_acceptance - acceptance_rate) * 3.0) ** 2
-        return penalty
+    # 수락률 패널티 제거 (속도에만 중점)
     
-    # 기본 보상 계산
+    # 기본 보상 계산 - 속도에만 중점
     speed_score = baseline_ms / max(ms_per_token, 1.0)
     speed_score = np.tanh(speed_score - 1.0) + 1.0
     acceptance_score = acceptance_rate ** 0.4
@@ -226,15 +246,51 @@ def compute_reward(acceptance_rate, ms_per_token, speed_weight=0.7, acceptance_w
     else:
         rb_penalty = 0
     
-    # 폴백 보상: 높을수록 속도 향상에 도움이 될 수 있지만,
-    # 너무 높으면 생성 품질 저하 위험
+    # 폴백 보상: 낮은 값이 속도에 더 유리함
     fb_bonus = 0
-    if 0.4 <= fallback_value <= 0.7:  # 이상적인 FB 범위
-        fb_bonus = 0.1
+    if 0.05 <= fallback_value <= 0.2:  # 속도 최적화를 위한 범위 조정
+        fb_bonus = 0.2
     
-    # 최종 보상 계산
+    # 시간 통계를 활용한 효율성 점수 계산
+    efficiency_score = 0.0
+    fallback_penalty = 0.0  # 폴백 처리 시간 패널티 추가
+    
+    if time_stats:
+        # 드래프트 생성이 전체 시간에서 차지하는 비율 (낮을수록 좋음)
+        total_time = sum(time_stats.values())
+        if total_time > 0:
+            # 드래프트 생성과 타겟 검증 시간의 균형
+            draft_ratio = time_stats.get('draft_generation', 0) / total_time
+            target_ratio = time_stats.get('target_verification', 0) / total_time
+            
+            # 이상적인 비율: 드래프트 생성 20-30%, 타겟 검증 30-40%
+            if 0.2 <= draft_ratio <= 0.3 and 0.3 <= target_ratio <= 0.4:
+                efficiency_score += 0.3
+            
+            # 폴백 처리 시간 패널티 (비율이 높을수록 큰 패널티)
+            fallback_ratio = time_stats.get('fallback_handling', 0) / total_time
+            if fallback_ratio > 0.1:
+                # 폴백 처리 시간이 많을수록 큰 패널티 추가
+                fallback_penalty = (fallback_ratio - 0.1) * 3.0
+                # 최대 패널티 제한
+                fallback_penalty = min(fallback_penalty, 1.5)
+            
+            # 롤백 처리 시간이 적을수록 좋음
+            rollback_ratio = time_stats.get('rollback_handling', 0) / total_time
+            if rollback_ratio <= 0.15:
+                efficiency_score += 0.1
+            else:
+                # 롤백 처리가 많을 때도 약간의 패널티
+                efficiency_score -= 0.1
+            
+            # 오버헤드가 적을수록 좋음
+            overhead_ratio = time_stats.get('overhead', 0) / total_time
+            if overhead_ratio <= 0.1:
+                efficiency_score += 0.1
+    
+    # 최종 보상 계산 - 속도에만 중점, fallback 패널티 추가
     base_reward = (speed_weight * speed_score) + (acceptance_weight * acceptance_score)
-    adjusted_reward = base_reward - rb_penalty + fb_bonus
+    adjusted_reward = base_reward - rb_penalty + fb_bonus + (efficiency_weight * efficiency_score) - fallback_penalty
     
     return adjusted_reward
 
@@ -574,27 +630,31 @@ class PPOAgent:
             plt.savefig(save_path)
         plt.close()
 
-    def reward_function(self, state, k_value=16):
-        """임계값 설정의 보상 계산 함수"""
-        # 각 범위 내에서의 적절함 평가
+    def reward_function(self, state, k_value=16, time_stats=None):
+        """임계값 설정의 보상 계산 함수 - 속도에 중점, fallback 패널티 추가"""
+        # 각 범위 내에서의 적절함 평가 - 속도에 초점
         
-        # 1. 폴백 임계값 평가
-        if 0.3 <= state.fallback <= 0.7:
-            fb_score = 0.3  # 적절한 범위
-        elif state.fallback < 0.2 or state.fallback > 0.8:
-            fb_score = -0.2  # 극단적인 범위는 불리
+        # 1. 폴백 임계값 평가 - 낮은 값이 속도에 유리 (0.05-0.2 범위 선호)
+        if 0.05 <= state.fallback <= 0.2:  # 더 낮은 폴백 임계값 선호
+            fb_score = 0.5  # 속도 우선 범위
+        elif 0.2 < state.fallback < 0.4:
+            fb_score = 0.2  # 중간 범위
+        elif state.fallback >= 0.4:
+            fb_score = -0.3  # 너무 높은 값은 불리 (속도 측면)
         else:
-            fb_score = 0.1  # 중간 범위
+            fb_score = 0.1  # 매우 낮은 값도 괜찮음
         
-        # 2. 롤백 임계값 평가
+        # 2. 롤백 임계값 평가 - 높은 값이 더 유리 (속도 향상)
         rb_ratio = state.rollback / k_value
         
-        if 0.3 <= rb_ratio <= 0.7:
-            rb_score = 0.3  # K의 30-70% 범위가 이상적
-        elif rb_ratio < 0.1 or rb_ratio > 0.9:
-            rb_score = -0.3  # 매우 극단적인 범위는 매우 불리
+        if 0.6 <= rb_ratio <= 0.9:  # 더 높은 롤백 임계값 선호 (속도 우선)
+            rb_score = 0.5
+        elif 0.3 <= rb_ratio < 0.6:
+            rb_score = 0.2  # 중간 범위
+        elif rb_ratio < 0.3:
+            rb_score = -0.3  # 너무 낮은 값은 불리 (속도 측면)
         else:
-            rb_score = 0.0  # 중간 범위
+            rb_score = 0.0  # 너무 높은 값은 중립적
         
         # 보상 점수의 합
         reward = fb_score + rb_score
@@ -603,7 +663,106 @@ class PPOAgent:
         if state.rollback <= k_value:
             reward += 0.1
         
+        # 시간 통계 평가 (있는 경우) - 속도에 중점, fallback 패널티 추가
+        if time_stats:
+            total_time = sum(time_stats.values())
+            if total_time > 0:
+                # draft 생성 시간 비율 (낮을수록 좋음 - 속도 측면)
+                draft_ratio = time_stats.get('draft_generation', 0) / total_time
+                if draft_ratio < 0.2:
+                    reward += 0.3
+                elif draft_ratio > 0.4:  # 너무 많은 시간이 드래프트 생성에 소요
+                    reward -= 0.3
+                    
+                # target 검증 시간 비율 (낮을수록 좋음 - 속도 측면)
+                target_ratio = time_stats.get('target_verification', 0) / total_time
+                if target_ratio < 0.3:
+                    reward += 0.3
+                elif target_ratio > 0.5:  # 너무 많은 시간이 타겟 모델 검증에 소요
+                    reward -= 0.3
+                    
+                # 폴백 처리 시간 (빠르게 처리되어야 함)
+                fallback_ratio = time_stats.get('fallback_handling', 0) / total_time
+                if fallback_ratio > 0.1:  # 폴백 처리가 너무 많음 - 강력한 패널티
+                    fallback_penalty = (fallback_ratio - 0.1) * 3.0
+                    reward -= fallback_penalty
+                    
+                # 롤백 처리 시간 (빠르게 처리되어야 함)
+                rollback_ratio = time_stats.get('rollback_handling', 0) / total_time
+                if rollback_ratio > 0.15:  # 롤백 처리가 너무 많음
+                    reward -= 0.3 * rollback_ratio
+        
         return reward
+
+    def analyze_time_stats(self, time_stats):
+        """시간 통계 분석 및 임계값 추천"""
+        if not time_stats:
+            return {
+                'efficiency': 0.0,
+                'bottleneck': 'unknown',
+                'suggestions': ['시간 통계가 없어 분석할 수 없습니다.']
+            }
+        
+        total_time = sum(time_stats.values())
+        if total_time == 0:
+            return {
+                'efficiency': 0.0,
+                'bottleneck': 'unknown',
+                'suggestions': ['시간 측정이 없습니다.']
+            }
+        
+        # 각 단계별 비율 계산
+        time_ratios = {k: v/total_time for k, v in time_stats.items()}
+        
+        # 비효율성 발견 및 추천사항
+        suggestions = []
+        bottleneck = max(time_ratios.items(), key=lambda x: x[1])[0]
+        
+        # 효율성 점수 (0-1)
+        ideal_ratios = {
+            'draft_generation': 0.25,     # 25%
+            'target_verification': 0.4,   # 40%
+            'fallback_handling': 0.05,    # 5%
+            'rollback_handling': 0.1,     # 10%
+            'token_acceptance': 0.15,     # 15%
+            'overhead': 0.05              # 5%
+        }
+        
+        # 이상적인 비율과의 차이 계산
+        ratio_diffs = {}
+        for k in ideal_ratios.keys():
+            actual = time_ratios.get(k, 0)
+            ideal = ideal_ratios.get(k, 0)
+            ratio_diffs[k] = abs(actual - ideal)
+        
+        # 효율성 점수 (1에 가까울수록 이상적)
+        efficiency = 1.0 - sum(ratio_diffs.values()) / len(ratio_diffs)
+        
+        # 문제 영역 식별 및 추천
+        if time_ratios.get('draft_generation', 0) > 0.4:
+            suggestions.append("드래프트 모델 생성에 너무 많은 시간이 소모됩니다. 더 작은 드래프트 모델을 사용하거나, 폴백 임계값을 높이세요.")
+        
+        if time_ratios.get('fallback_handling', 0) > 0.2:
+            suggestions.append("폴백 처리에 너무 많은 시간이 소모됩니다. 폴백 임계값을 높여 폴백 빈도를 줄이세요.")
+        
+        if time_ratios.get('rollback_handling', 0) > 0.25:
+            suggestions.append("롤백 처리에 너무 많은 시간이 소모됩니다. 롤백 임계값을 낮추거나, K 값을 줄이세요.")
+        
+        if time_ratios.get('target_verification', 0) > 0.6:
+            suggestions.append("타겟 모델 검증에 너무 많은 시간이 소모됩니다. 드래프트 모델의 품질을 개선하거나, 폴백 임계값을 조정하세요.")
+        
+        if time_ratios.get('overhead', 0) > 0.15:
+            suggestions.append("오버헤드가 너무 큽니다. SSP 알고리즘 구현을 최적화하세요.")
+        
+        if not suggestions:
+            suggestions.append("시간 분포가 적절하며, 현재 임계값 설정이 효율적입니다.")
+        
+        return {
+            'efficiency': efficiency,
+            'bottleneck': bottleneck,
+            'ratios': time_ratios,
+            'suggestions': suggestions
+        }
 
     def collect_trajectory(self, env, max_steps=24):
         """환경과 상호작용하여 궤적 수집"""
@@ -613,8 +772,8 @@ class PPOAgent:
         rewards = []
         dones = []
         
-        # 초기 상태 설정
-        state = ThresholdState(fallback=0.4, rollback=min(self.k_value/2, 8.0))
+        # 초기 상태 설정 - 속도 최적화를 위한 값 적용
+        state = ThresholdState(fallback=0.1, rollback=2.0)
         
         for _ in range(max_steps):
             # 현재 정책으로 행동 선택
@@ -646,7 +805,7 @@ class PPOAgent:
         return states_tensor, actions_tensor, log_probs_tensor, rewards_tensor, dones_tensor
 
 def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
-    """배치 단위로 텍스트 처리"""
+    """배치 단위로 텍스트 처리 - 상세 시간 통계 수집"""
     results = []
     batch_size = 1  # 배치 크기를 최소화하여 메모리 사용량 감소
     
@@ -699,9 +858,10 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
                 
                 start_time = time.time()
                 
-                # SSP 실행
+                # ssp_modified 함수 호출 (시간 통계 포함)
                 try:
-                    generated_ids, accept_tokens, generated_tokens = ssp(
+                    # 시간 통계를 반환하는 ssp 함수 호출
+                    generated_ids, accept_tokens, generated_tokens, time_stats = ssp(
                         target_model,
                         draft_model,
                         max_new_tokens,
@@ -710,15 +870,11 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
                         fallback_threshold=state.fallback,
                         rollback_threshold=state.rollback
                     )
-                except RuntimeError as e:
-                    if "Expected all tensors to be on the same device" in str(e):
-                        # 오류 발생 시 draft_model을 target_model의 임베딩 장치로 이동 시도
-                        logger.warning(f"장치 불일치 오류, 드래프트 모델 이동: {target_embed_device}")
-                        if hasattr(draft_model, 'to'):
-                            draft_model_device_before = next(draft_model.parameters()).device
-                            draft_model = draft_model.to(target_embed_device)
-                        
-                        # 다시 시도
+                except (TypeError, ValueError) as e:
+                    # 기존 ssp 함수는 시간 통계를 반환하지 않을 수 있음
+                    logger.warning(f"ssp_modified 함수 호출 실패, 기본 ssp 함수 사용: {str(e)}")
+                    try:
+                        # 기본 ssp 함수는 3개의 값만 반환
                         generated_ids, accept_tokens, generated_tokens = ssp(
                             target_model,
                             draft_model,
@@ -728,6 +884,20 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
                             fallback_threshold=state.fallback,
                             rollback_threshold=state.rollback
                         )
+                    except Exception as inner_e:
+                        # 다른 오류 발생 시 로깅
+                        logger.error(f"ssp 함수 호출 중 오류 발생: {str(inner_e)}")
+                        raise
+                        
+                    # 기본 시간 통계 생성
+                    time_stats = {
+                        'draft_generation': 0.0,
+                        'target_verification': 0.0,
+                        'fallback_handling': 0.0,
+                        'rollback_handling': 0.0,
+                        'token_acceptance': 0.0,
+                        'overhead': 0.0
+                    }
                 
                 elapsed = time.time() - start_time
                 
@@ -740,9 +910,11 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
                     
                 acceptance_rate = accept_tokens / max(generated_tokens, 1)
                 
+                # 결과에 시간 통계 포함
                 batch_results.append({
                     'ms_per_token': ms_per_token,
-                    'acceptance_rate': acceptance_rate
+                    'acceptance_rate': acceptance_rate,
+                    'time_stats': time_stats
                 })
                 
                 # 메모리 해제
@@ -757,9 +929,18 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
                 # 스택 트레이스는 디버그 로그에만 출력
                 if logger.isEnabledFor(logging.DEBUG):
                     logger.exception("오류 상세 정보:")
+                # 기본 결과 생성
                 batch_results.append({
                     'ms_per_token': 1000.0,
-                    'acceptance_rate': 0.0
+                    'acceptance_rate': 0.0,
+                    'time_stats': {
+                        'draft_generation': 0.0,
+                        'target_verification': 0.0,
+                        'fallback_handling': 0.0,
+                        'rollback_handling': 0.0,
+                        'token_acceptance': 0.0,
+                        'overhead': 0.0
+                    }
                 })
         
         results.extend(batch_results)
@@ -772,7 +953,7 @@ def process_batch(texts, target_model, draft_model, state, K, max_new_tokens):
     return results
 
 def evaluate_thresholds_parallel(target_model, draft_model, state, texts, K=16, max_new_tokens=64, episode=0):
-    """병렬 처리로 임계값 평가 - 메모리 효율성을 위해 최대 새 토큰 수 감소"""
+    """병렬 처리로 임계값 평가 - 메모리 효율성과 시간 통계 수집"""
     # 메모리 사용량 감소를 위해 병렬 프로세스 수 제한
     num_processes = min(2, len(texts))
     chunk_size = len(texts) // num_processes
@@ -802,12 +983,33 @@ def evaluate_thresholds_parallel(target_model, draft_model, state, texts, K=16, 
     avg_ms_per_token = sum(r['ms_per_token'] for r in all_results) / len(all_results)
     avg_acceptance_rate = sum(r['acceptance_rate'] for r in all_results) / len(all_results)
     
-    # 수정된 계산: FB/RB 값도 보상에 반영
+    # 시간 통계 평균 계산
+    avg_time_stats = {
+        'draft_generation': 0.0,
+        'target_verification': 0.0,
+        'fallback_handling': 0.0,
+        'rollback_handling': 0.0,
+        'token_acceptance': 0.0,
+        'overhead': 0.0
+    }
+    
+    for r in all_results:
+        if 'time_stats' in r:
+            for key in avg_time_stats:
+                avg_time_stats[key] += r['time_stats'].get(key, 0.0)
+    
+    # 평균 계산
+    for key in avg_time_stats:
+        avg_time_stats[key] /= len(all_results)
+    
+    # 시간 통계를 포함한 보상 계산
     reward = compute_reward(
         avg_acceptance_rate, 
         avg_ms_per_token,
-        speed_weight=0.7, 
-        acceptance_weight=0.3, 
+        time_stats=avg_time_stats,
+        speed_weight=0.6, 
+        acceptance_weight=0.2,
+        efficiency_weight=0.2,
         episode=episode,
         fallback_value=state.fallback,
         rollback_value=state.rollback,
@@ -817,16 +1019,20 @@ def evaluate_thresholds_parallel(target_model, draft_model, state, texts, K=16, 
     metrics = {
         'ms_per_token': avg_ms_per_token,
         'acceptance_rate': avg_acceptance_rate,
-        'reward': reward
+        'reward': reward,
+        'time_stats': avg_time_stats
     }
     
+    # 시간 통계 로깅
+    time_stats_str = ", ".join([f"{k[:5]}:{v*1000:.1f}ms" for k, v in avg_time_stats.items()])
+    
     # 간결한 로깅 출력
-    logger.info(f"평가: FB={state.fallback:.2f}, RB={state.rollback:.1f} → 수락={avg_acceptance_rate:.2f}, 속도={avg_ms_per_token:.1f}ms, 보상={reward:.2f}")
+    logger.info(f"평가: FB={state.fallback:.2f}, RB={state.rollback:.1f} → 수락={avg_acceptance_rate:.2f}, 속도={avg_ms_per_token:.1f}ms, 보상={reward:.2f} | {time_stats_str}")
     
     return reward, metrics
 
 def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, max_new_tokens=64):
-    """특정 모델 쌍에 대한 에이전트 훈련 - 메모리 효율성을 위해 max_new_tokens 감소"""
+    """특정 모델 쌍에 대한 에이전트 훈련 - 시간 통계 수집 및 활용"""
     
     if torch.cuda.is_available():
         torch.backends.cudnn.benchmark = True
@@ -893,8 +1099,8 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
     
     results = []
     
-    # 초기 임계값 설정: 폴백은 중간 정도, 롤백은 K의 절반 정도로 설정
-    state = ThresholdState(fallback=0.4, rollback=min(K/2, 8.0))
+    # 초기 임계값 설정: 속도 최적화를 위한 값 적용
+    state = ThresholdState(fallback=0.1, rollback=2.0)
     
     exploration_rate = 1.0
     exploration_decay = 0.95
@@ -903,10 +1109,10 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
         logger.info(f"에피소드 {episode+1}/{episodes} 시작 - 모델: {target_name}/{draft_name}")
         
         if random.random() < exploration_rate:
-            # 랜덤 탐색 시에도 RB는 K 이하로 유지
+            # 랜덤 탐색 시에도 RB는 K 이하로 유지 - 빠른 속도에 최적화된 범위 사용
             next_state = ThresholdState(
-                fallback=random.uniform(0.3, 0.5),
-                rollback=random.uniform(1.0, min(K, 8.0))  # K를 초과하지 않도록 제한
+                fallback=random.uniform(0.05, 0.2),  # 낮은 FB 값으로 범위 조정 (속도 최적화)
+                rollback=random.uniform(1.0, 4.0)    # 낮은 RB 값으로 범위 조정 (속도 최적화)
             )
             # 랜덤 탐색 시에는 직접 old_log_prob 계산
             old_log_prob = 0.0  # 랜덤 탐색이므로 로그 확률은 0으로 설정
@@ -926,17 +1132,20 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
                 reward, metrics = evaluate_thresholds_parallel(
                     target_model, draft_model, next_state, texts, K, max_new_tokens, episode
                 )
-                # 수정된 보상 계산: FB/RB 값 전달
-                reward = compute_reward(
-                    metrics['acceptance_rate'], 
-                    metrics['ms_per_token'],
-                    speed_weight=0.9,
-                    acceptance_weight=0.1,
-                    episode=episode,
-                    fallback_value=next_state.fallback,
-                    rollback_value=next_state.rollback,
-                    k_value=K
-                )
+                # 시간 통계를 포함한 보상 계산
+                if 'time_stats' in metrics:
+                    reward = compute_reward(
+                        metrics['acceptance_rate'], 
+                        metrics['ms_per_token'],
+                        time_stats=metrics['time_stats'],
+                        speed_weight=0.6,
+                        acceptance_weight=0.2,
+                        efficiency_weight=0.2,
+                        episode=episode,
+                        fallback_value=next_state.fallback,
+                        rollback_value=next_state.rollback,
+                        k_value=K
+                    )
                 break
             except Exception as e:
                 if eval_attempt < max_retries - 1:
@@ -964,6 +1173,11 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
             'reward': reward,
             'exploration_rate': exploration_rate
         }
+        
+        # 시간 통계 추가
+        if 'time_stats' in metrics:
+            result['time_stats'] = metrics['time_stats']
+        
         results.append(result)
         
         state = next_state
@@ -986,13 +1200,14 @@ def train_model_pair(target_name, draft_name, agent, texts, episodes=20, K=16, m
     return results
 
 def meta_learning(datasets, model_pairs, args):
-    """다양한 모델/데이터셋에 대한 메타러닝 수행"""
+    """다양한 모델/데이터셋에 대한 메타러닝 수행 - 시간 통계 활용"""
     
     # K 값 전달하여 PPOAgent 초기화
     agent = PPOAgent(k_value=args.k)
     
     all_results = []
     best_thresholds = {}
+    time_stats_by_model = {}
     
     for dataset_name, texts in datasets.items():
         logger.info(f"데이터셋 {dataset_name}에 대한 훈련 시작")
@@ -1008,7 +1223,9 @@ def meta_learning(datasets, model_pairs, args):
             )
             
             best_result = max(pair_results, key=lambda x: x['reward'])
-            best_thresholds[f"{target_name}_{draft_name}_{dataset_name}"] = {
+            model_key = f"{target_name}_{draft_name}_{dataset_name}"
+            
+            best_thresholds[model_key] = {
                 'fallback': best_result['fallback_threshold'],
                 'rollback': best_result['rollback_threshold'],
                 'acceptance_rate': best_result['acceptance_rate'],
@@ -1016,9 +1233,23 @@ def meta_learning(datasets, model_pairs, args):
                 'reward': best_result['reward']
             }
             
+            # 시간 통계가 있는 경우 추가
+            if 'time_stats' in best_result:
+                best_thresholds[model_key]['time_stats'] = best_result['time_stats']
+                
+                # 모델별 시간 통계 수집
+                if model_key not in time_stats_by_model:
+                    time_stats_by_model[model_key] = []
+                time_stats_by_model[model_key].append(best_result['time_stats'])
+            
             # 훈련 완료 후 최적 결과 출력
             logger.info(f"최적 임계값: FB={best_result['fallback_threshold']:.2f}, RB={best_result['rollback_threshold']:.1f}")
             logger.info(f"수락률={best_result['acceptance_rate']:.2f}, 속도={best_result['ms_per_token']:.1f}ms, 보상={best_result['reward']:.2f}")
+            
+            if 'time_stats' in best_result:
+                time_stats = best_result['time_stats']
+                time_stats_str = ", ".join([f"{k[:5]}:{v*1000:.1f}ms" for k, v in time_stats.items()])
+                logger.info(f"시간 통계: {time_stats_str}")
             
             for result in pair_results:
                 result['dataset'] = dataset_name
@@ -1027,12 +1258,29 @@ def meta_learning(datasets, model_pairs, args):
     agent.save_model(args.model_output)
     agent.plot_training_history(args.model_output.replace('.pt', '_history.png'))
     
-    return all_results, best_thresholds, agent
+    # 모델별 시간 통계 평균 계산 및 보고서 작성
+    time_stats_report = {}
+    for model_key, stats_list in time_stats_by_model.items():
+        if not stats_list:
+            continue
+            
+        avg_stats = {}
+        for stat_key in stats_list[0].keys():
+            avg_stats[stat_key] = sum(stats[stat_key] for stats in stats_list) / len(stats_list)
+        
+        time_stats_report[model_key] = avg_stats
+    
+    # 시간 통계 보고서 저장
+    with open(args.output.replace('.json', '_time_stats.json'), 'w') as f:
+        json.dump(time_stats_report, f, indent=2)
+    
+    return all_results, best_thresholds, agent, time_stats_report
 
 def cross_validation(agent, datasets, model_pairs, args):
-    """학습된 에이전트 크로스 검증"""
+    """학습된 에이전트 크로스 검증 - 시간 통계 활용"""
     
     validation_results = []
+    time_stats_by_model = {}
     
     # 여러 GPU를 사용할 수 있도록 설정
     if torch.cuda.is_available():
@@ -1095,7 +1343,7 @@ def cross_validation(agent, datasets, model_pairs, args):
                         raise
             
             # 초기 상태를 K 값에 맞게 조정
-            init_state = ThresholdState(fallback=0.4, rollback=min(args.k/2, 8.0))
+            init_state = ThresholdState(fallback=0.1, rollback=2.0)
             
             # 새로운 get_action 메소드 사용
             action_values, _ = agent.get_action(init_state)
@@ -1138,6 +1386,22 @@ def cross_validation(agent, datasets, model_pairs, args):
                 'acceptance_rate': metrics['acceptance_rate'],
                 'reward': reward
             }
+            
+            # 시간 통계 추가
+            if 'time_stats' in metrics:
+                result['time_stats'] = metrics['time_stats']
+                
+                # 모델별 시간 통계 수집
+                model_key = f"{target_name}_{draft_name}_{dataset_name}"
+                if model_key not in time_stats_by_model:
+                    time_stats_by_model[model_key] = []
+                time_stats_by_model[model_key].append(metrics['time_stats'])
+                
+                # 시간 통계 출력
+                time_stats = metrics['time_stats']
+                time_stats_str = ", ".join([f"{k[:5]}:{v*1000:.1f}ms" for k, v in time_stats.items()])
+                logger.info(f"시간 통계: {time_stats_str}")
+            
             validation_results.append(result)
             
             # 검증 완료 후 메모리 정리
@@ -1155,10 +1419,22 @@ def cross_validation(agent, datasets, model_pairs, args):
                     gpu_info.append(f"GPU {i}: {allocated_mem:.1f}/{reserved_mem:.1f}/{total_mem:.1f}GB")
                 logger.debug(f"GPU Memory: {', '.join(gpu_info)}")
     
-    return validation_results
+    # 시간 통계 보고서 작성
+    time_stats_report = {}
+    for model_key, stats_list in time_stats_by_model.items():
+        if not stats_list:
+            continue
+            
+        avg_stats = {}
+        for stat_key in stats_list[0].keys():
+            avg_stats[stat_key] = sum(stats[stat_key] for stats in stats_list) / len(stats_list)
+        
+        time_stats_report[model_key] = avg_stats
+    
+    return validation_results, time_stats_report
 
 def main():
-    parser = argparse.ArgumentParser(description="Advanced RL for threshold optimization")
+    parser = argparse.ArgumentParser(description="Advanced RL for threshold optimization with time statistics")
     parser.add_argument('--targets', type=str, nargs='+', required=True, 
                         help='Target model names')
     parser.add_argument('--drafts', type=str, nargs='+', required=True, 
@@ -1183,6 +1459,8 @@ def main():
                         help='Reduce logging output')
     parser.add_argument('--optimize', action='store_true',
                         help='Optimize thresholds')
+    parser.add_argument('--analyze-time-stats', action='store_true',
+                        help='Perform detailed time statistics analysis')
     args = parser.parse_args()
     
     if args.verbose:
@@ -1208,17 +1486,19 @@ def main():
     
     # 메타러닝 수행
     print(f"\n{'='*30} 메타러닝 시작 {'='*30}")
-    all_results, best_thresholds, agent = meta_learning(datasets, model_pairs, args)
+    all_results, best_thresholds, agent, time_stats_training = meta_learning(datasets, model_pairs, args)
     
     # 크로스 검증
     print(f"\n{'='*30} 크로스 검증 시작 {'='*30}")
-    validation_results = cross_validation(agent, datasets, model_pairs, args)
+    validation_results, time_stats_validation = cross_validation(agent, datasets, model_pairs, args)
     
     # 결과 저장
     final_results = {
         'training': all_results,
         'best_thresholds': best_thresholds,
-        'validation': validation_results
+        'validation': validation_results,
+        'time_stats_training': time_stats_training,
+        'time_stats_validation': time_stats_validation
     }
     
     with open(args.output, 'w') as f:
@@ -1236,6 +1516,14 @@ def main():
         print(f"  - Fallback: {thresholds['fallback']:.3f}, Rollback: {thresholds['rollback']:.3f}")
         print(f"  - 수락률: {thresholds['acceptance_rate']:.3f}, 속도: {thresholds['ms_per_token']:.2f}ms/token")
         print(f"  - 보상: {thresholds['reward']:.3f}")
+        
+        # 시간 통계 요약 (있는 경우)
+        if 'time_stats' in thresholds:
+            time_stats = thresholds['time_stats']
+            total_time = sum(time_stats.values())
+            proportions = {k: (v/total_time) * 100 for k, v in time_stats.items()}
+            print(f"  - 시간 분석: draft:{proportions['draft_generation']:.1f}%, target:{proportions['target_verification']:.1f}%, "
+                  f"FB:{proportions['fallback_handling']:.1f}%, RB:{proportions['rollback_handling']:.1f}%")
     
     # 검증 결과 요약
     print("\n크로스 검증 결과:")
@@ -1243,35 +1531,89 @@ def main():
         print(f"* {result['target']}/{result['draft']} on {result['dataset']}:")
         print(f"  추천: FB={result['fallback_threshold']:.3f}, RB={result['rollback_threshold']:.3f}, "
               f"수락률={result['acceptance_rate']:.3f}, 속도={result['ms_per_token']:.2f}ms/token")
+        
+        # 시간 통계 요약 (있는 경우)
+        if 'time_stats' in result:
+            time_stats = result['time_stats']
+            total_time = sum(time_stats.values())
+            proportions = {k: (v/total_time) * 100 for k, v in time_stats.items()}
+            print(f"  시간 분석: draft:{proportions['draft_generation']:.1f}%, target:{proportions['target_verification']:.1f}%, "
+                  f"FB:{proportions['fallback_handling']:.1f}%, RB:{proportions['rollback_handling']:.1f}%")
     
     # 일반화된 추천값
     print("\n일반화된 추천 임계값 (모든 모델에 적용 가능):")
     avg_fallback = sum(r['fallback_threshold'] for r in validation_results) / len(validation_results)
     avg_rollback = sum(r['rollback_threshold'] for r in validation_results) / len(validation_results)
     print(f"Fallback: {avg_fallback:.3f}, Rollback: {avg_rollback:.3f}")
+    
+    # 시간 통계 분석 (옵션)
+    if args.analyze_time_stats:
+        print("\n" + "=" * 50)
+        print("시간 통계 상세 분석:")
+        print("-" * 50)
+        
+        # 각 모델 쌍별 시간 통계 분석
+        all_time_stats = {**time_stats_training, **time_stats_validation}
+        
+        for model_key, stats in all_time_stats.items():
+            print(f"\n* {model_key} 시간 분석:")
+            total_time = sum(stats.values())
+            
+            # 각 단계별 시간 비율
+            for step, time_value in sorted(stats.items(), key=lambda x: x[1], reverse=True):
+                percentage = (time_value / total_time) * 100
+                ms_per_step = time_value * 1000
+                print(f"  - {step}: {ms_per_step:.2f}ms ({percentage:.1f}%)")
+            
+            # 시간 효율성 지표 계산
+            if 'draft_generation' in stats and 'target_verification' in stats:
+                draft_time = stats['draft_generation']
+                target_time = stats['target_verification']
+                draft_target_ratio = draft_time / target_time if target_time > 0 else float('inf')
+                
+                print(f"  - Draft/Target 비율: {draft_target_ratio:.2f}")
+                if draft_target_ratio < 0.5:
+                    print("    => 드래프트 모델이 효율적으로 동작하고 있습니다.")
+                elif draft_target_ratio > 1.0:
+                    print("    => 드래프트 모델이 너무 느립니다. 더 작은 모델이나 최적화된 모델을 고려하세요.")
+            
+            # 폴백/롤백 오버헤드 분석
+            if 'fallback_handling' in stats and 'rollback_handling' in stats:
+                fb_time = stats['fallback_handling']
+                rb_time = stats['rollback_handling']
+                fb_rb_overhead = (fb_time + rb_time) / total_time * 100
+                
+                print(f"  - 폴백/롤백 오버헤드: {fb_rb_overhead:.1f}%")
+                if fb_rb_overhead > 25:
+                    print("    => 폴백/롤백 처리가 너무 많은 시간을 소모합니다. 임계값 조정이 필요합니다.")
+                elif fb_rb_overhead < 10:
+                    print("    => 폴백/롤백 처리가 효율적입니다.")
+    
     print("=" * 50)
-
+    
     # 최적의 임계값 추천
     if args.optimize:
         print("\n최적 임계값 계산 중...")
-        for k in sorted(k_values):
-            args.k = k
-            agent = PPOAgent(args)
-            agent.load_model(f"models/ppo_agent_k{k}.pt")
-            
-            # 초기 상태를 K 값에 맞게 조정
-            init_state = ThresholdState(fallback=0.4, rollback=min(args.k/2, 8.0))
-            action_values, _ = agent.get_action(init_state)
-            
-            # 새로운 상태 생성
-            new_fallback = max(0.0, min(1.0, action_values[0]))
-            new_rollback = max(0.0, min(min(args.k, 16.0), action_values[1]))
-            recommended_state = ThresholdState(new_fallback, new_rollback)
-            
-            # K를 초과하지 않도록 제한
-            recommended_state.rollback = min(recommended_state.rollback, k)
-            
-            print(f"K={k}: 폴백 임계값={recommended_state.fallback:.4f}, 롤백 임계값={recommended_state.rollback:.4f}")
+        for k in [8, 12, 16, 24, 32]:
+            try:
+                k_agent = PPOAgent(k_value=k)
+                k_agent.load_model(f"models/ppo_agent_k{k}.pt")
+                
+                # 초기 상태를 K 값에 맞게 조정
+                init_state = ThresholdState(fallback=0.1, rollback=2.0)
+                action_values, _ = k_agent.get_action(init_state)
+                
+                # 새로운 상태 생성
+                new_fallback = max(0.0, min(1.0, action_values[0]))
+                new_rollback = max(0.0, min(min(k, 16.0), action_values[1]))
+                recommended_state = ThresholdState(new_fallback, new_rollback)
+                
+                # K를 초과하지 않도록 제한
+                recommended_state.rollback = min(recommended_state.rollback, k)
+                
+                print(f"K={k}: 폴백 임계값={recommended_state.fallback:.4f}, 롤백 임계값={recommended_state.rollback:.4f}")
+            except Exception as e:
+                print(f"K={k}에 대한 모델을 로드할 수 없습니다: {str(e)}")
 
 if __name__ == "__main__":
     main() 

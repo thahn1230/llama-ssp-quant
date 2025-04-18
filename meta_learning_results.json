@@ -1,0 +1,2110 @@
+{
+  "training": [
+    {
+      "episode": 1,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.14970327101705727,
+      "rollback_threshold": 4.4305029813704975,
+      "ms_per_token": 246.40351139425815,
+      "acceptance_rate": 0.008133701509277547,
+      "reward": -1.519689492819925,
+      "exploration_rate": 0.76,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 2,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.09771439555953043,
+      "rollback_threshold": 9.043656237626514,
+      "ms_per_token": 190.32826361039412,
+      "acceptance_rate": 0.017286302590082424,
+      "reward": -4.049976401182739,
+      "exploration_rate": 0.722,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 3,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.1441386517766849,
+      "rollback_threshold": 6.157132286150677,
+      "ms_per_token": 222.68750332295895,
+      "acceptance_rate": 0.0020047169811320755,
+      "reward": -2.688712835283315,
+      "exploration_rate": 0.6859,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 4,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2428537756204605,
+      "rollback_threshold": 4.085509395599365,
+      "ms_per_token": 235.08493288701098,
+      "acceptance_rate": 0.02300780614734103,
+      "reward": -1.2900196094256469,
+      "exploration_rate": 0.6516049999999999,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 5,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27764399389447286,
+      "rollback_threshold": 2.636373152984578,
+      "ms_per_token": 221.31112354239372,
+      "acceptance_rate": 0.02002344352866799,
+      "reward": -2.2453921865913284,
+      "exploration_rate": 0.6190247499999999,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 6,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.06950234365078659,
+      "rollback_threshold": 2.966693712630022,
+      "ms_per_token": 216.40579104423523,
+      "acceptance_rate": 0.007352234221314325,
+      "reward": -2.9080050196201883,
+      "exploration_rate": 0.5880735124999998,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 7,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.08745865102168351,
+      "rollback_threshold": 6.6487828814898675,
+      "ms_per_token": 218.12770492425472,
+      "acceptance_rate": 0.005653561827956989,
+      "reward": -3.8685415206062475,
+      "exploration_rate": 0.5586698368749998,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 8,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.09783837730496994,
+      "rollback_threshold": 3.4346688515942985,
+      "ms_per_token": 213.6022808861274,
+      "acceptance_rate": 0.0037871120107962216,
+      "reward": -2.2997175493123088,
+      "exploration_rate": 0.5307363450312498,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 9,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23709728121757506,
+      "rollback_threshold": 4.1149250030517575,
+      "ms_per_token": 168.57930122231932,
+      "acceptance_rate": 0.026116721733416087,
+      "reward": -0.8918223416678934,
+      "exploration_rate": 0.5041995277796872,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 10,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23631140291690828,
+      "rollback_threshold": 4.137348270416259,
+      "ms_per_token": 191.00199640609202,
+      "acceptance_rate": 0.01392466931603808,
+      "reward": -1.0422851877570385,
+      "exploration_rate": 0.4789895513907029,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 11,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23637884855270386,
+      "rollback_threshold": 4.136807823181153,
+      "ms_per_token": 234.4730012337951,
+      "acceptance_rate": 0.010910399813575685,
+      "reward": -1.193431117566341,
+      "exploration_rate": 0.45504007382116773,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 12,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.06702352308518254,
+      "rollback_threshold": 4.399283737870646,
+      "ms_per_token": 251.65117835769288,
+      "acceptance_rate": 0.0021498097189695553,
+      "reward": -2.9390178871553148,
+      "exploration_rate": 0.43228807013010934,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 13,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.29595290414835923,
+      "rollback_threshold": 4.298088664989409,
+      "ms_per_token": 215.0073606032717,
+      "acceptance_rate": 0.017512768664084456,
+      "reward": -2.02744898833768,
+      "exploration_rate": 0.41067366662360383,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 14,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23572216629981996,
+      "rollback_threshold": 4.148505115509034,
+      "ms_per_token": 268.86167973279953,
+      "acceptance_rate": 0.0,
+      "reward": -1.2918096353476791,
+      "exploration_rate": 0.3901399832924236,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 15,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.32494085228323943,
+      "rollback_threshold": 5.804817530828222,
+      "ms_per_token": 203.38480636908668,
+      "acceptance_rate": 0.019902665930747215,
+      "reward": -3.091987238488487,
+      "exploration_rate": 0.37063298412780243,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 16,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.38234993222770797,
+      "rollback_threshold": 4.506772940510566,
+      "ms_per_token": 156.95573643564248,
+      "acceptance_rate": 0.048561959847950566,
+      "reward": -2.145486071730588,
+      "exploration_rate": 0.3521013349214123,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 17,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.15841607249813516,
+      "rollback_threshold": 3.8192156769632684,
+      "ms_per_token": 231.1200956616438,
+      "acceptance_rate": 0.003042084316037736,
+      "reward": -1.0631601852224897,
+      "exploration_rate": 0.33449626817534167,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 18,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23697743117809295,
+      "rollback_threshold": 4.123133277893066,
+      "ms_per_token": 209.50182530925727,
+      "acceptance_rate": 0.03158208020050125,
+      "reward": -0.7918860593297996,
+      "exploration_rate": 0.3177714547665746,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 19,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23633316159248352,
+      "rollback_threshold": 4.137190628051758,
+      "ms_per_token": 169.75100026398465,
+      "acceptance_rate": 0.022327231034661377,
+      "reward": -0.6297386122764865,
+      "exploration_rate": 0.30188288202824587,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 20,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.47891717548064894,
+      "rollback_threshold": 4.136815547943115,
+      "ms_per_token": 261.9550698569843,
+      "acceptance_rate": 0.014960376218176327,
+      "reward": -4.6067777253876265,
+      "exploration_rate": 0.28678873792683357,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 21,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.18080367347969875,
+      "rollback_threshold": 4.5830973297660735,
+      "ms_per_token": 228.60925421118736,
+      "acceptance_rate": 0.0019099791199067371,
+      "reward": -0.9445470988106637,
+      "exploration_rate": 0.27244930103049186,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 22,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23841385841369628,
+      "rollback_threshold": 4.116534042358398,
+      "ms_per_token": 242.53299422562122,
+      "acceptance_rate": 0.04483786231884058,
+      "reward": -0.7628455300470054,
+      "exploration_rate": 0.2588268359789673,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 23,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2362922728061676,
+      "rollback_threshold": 4.1376372337341305,
+      "ms_per_token": 234.65865526461238,
+      "acceptance_rate": 0.006021825396825397,
+      "reward": -0.8920411557080454,
+      "exploration_rate": 0.2458854941800189,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 24,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23637984991073607,
+      "rollback_threshold": 4.136798667907715,
+      "ms_per_token": 204.38728183391444,
+      "acceptance_rate": 0.034936075868695585,
+      "reward": -0.6026816294527286,
+      "exploration_rate": 0.23359121947101794,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 25,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363763242959976,
+      "rollback_threshold": 4.1368327140808105,
+      "ms_per_token": 218.22364674598884,
+      "acceptance_rate": 0.01952083333333333,
+      "reward": -0.7077717382360444,
+      "exploration_rate": 0.22191165849746702,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 26,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23637644946575165,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 214.8297496457238,
+      "acceptance_rate": 0.010647439402223438,
+      "reward": -0.7028481194142855,
+      "exploration_rate": 0.21081607557259366,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 27,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.15922847533304407,
+      "rollback_threshold": 2.7041683226589153,
+      "ms_per_token": 216.33663362625876,
+      "acceptance_rate": 0.0031607550155937254,
+      "reward": -0.71145353372204,
+      "exploration_rate": 0.20027527179396395,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 28,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.4798200881644163,
+      "rollback_threshold": 3.3130289600374985,
+      "ms_per_token": 204.36164513230324,
+      "acceptance_rate": 0.014556801369225122,
+      "reward": -4.177623282595514,
+      "exploration_rate": 0.19026150820426574,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 29,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.22917751967906952,
+      "rollback_threshold": 4.207325172424317,
+      "ms_per_token": 208.8870872767308,
+      "acceptance_rate": 0.030056348035556957,
+      "reward": -0.5183865208042882,
+      "exploration_rate": 0.18074843279405245,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 30,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23667093217372892,
+      "rollback_threshold": 4.134003448486328,
+      "ms_per_token": 198.0714882623691,
+      "acceptance_rate": 0.025248292802457033,
+      "reward": -0.4550990317173573,
+      "exploration_rate": 0.1717110111543498,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 31,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23636453747749325,
+      "rollback_threshold": 4.136946010589599,
+      "ms_per_token": 201.46513592564696,
+      "acceptance_rate": 0.036696360074524634,
+      "reward": -0.40775856256238274,
+      "exploration_rate": 0.1631254605966323,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 32,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23637695014476773,
+      "rollback_threshold": 4.136826992034912,
+      "ms_per_token": 237.72367183451138,
+      "acceptance_rate": 0.0383761802134647,
+      "reward": -0.5746532304910357,
+      "exploration_rate": 0.15496918756680067,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 33,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23637644946575165,
+      "rollback_threshold": 4.136831569671631,
+      "ms_per_token": 214.0918992798217,
+      "acceptance_rate": 0.02674424414116728,
+      "reward": -0.5042930834129624,
+      "exploration_rate": 0.14722072818846063,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 34,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 209.54277603975515,
+      "acceptance_rate": 0.010062806046412603,
+      "reward": -0.5375117768143487,
+      "exploration_rate": 0.1398596917790376,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 35,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 248.20606559515,
+      "acceptance_rate": 0.006827200577200576,
+      "reward": -0.7247924018653085,
+      "exploration_rate": 0.1328667071900857,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 36,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 227.96542589185816,
+      "acceptance_rate": 0.010105311355311355,
+      "reward": -0.6252011933749557,
+      "exploration_rate": 0.1262233718305814,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 37,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 219.72540020942688,
+      "acceptance_rate": 0.011231564713375943,
+      "reward": -0.5830740849683873,
+      "exploration_rate": 0.11991220323905233,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 38,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 200.92638920004214,
+      "acceptance_rate": 0.016295343287166038,
+      "reward": -0.47297094035038567,
+      "exploration_rate": 0.11391659307709971,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 39,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 204.12249570855727,
+      "acceptance_rate": 0.00234375,
+      "reward": -0.5359255870507651,
+      "exploration_rate": 0.10822076342324471,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 40,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.35841259425704025,
+      "rollback_threshold": 5.175950276387292,
+      "ms_per_token": 221.41009834511001,
+      "acceptance_rate": 0.015828817175319927,
+      "reward": -2.811096958749348,
+      "exploration_rate": 0.10280972525208247,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 41,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23677482306957243,
+      "rollback_threshold": 4.14829797744751,
+      "ms_per_token": 222.4368361154428,
+      "acceptance_rate": 0.007363005840634126,
+      "reward": -0.6087527491707787,
+      "exploration_rate": 0.09766923898947834,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 42,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363969564437866,
+      "rollback_threshold": 4.136746025085449,
+      "ms_per_token": 196.3143102846445,
+      "acceptance_rate": 0.015118092691622103,
+      "reward": -0.45269105820542643,
+      "exploration_rate": 0.09278577704000442,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 43,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363758862018585,
+      "rollback_threshold": 4.1368378639221195,
+      "ms_per_token": 234.30204238431588,
+      "acceptance_rate": 0.017486566569959557,
+      "reward": -0.6291740231088325,
+      "exploration_rate": 0.08814648818800419,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 44,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 236.45111996291288,
+      "acceptance_rate": 0.009283945221445222,
+      "reward": -0.6660328169233334,
+      "exploration_rate": 0.08373916377860398,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 45,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 222.64823417824044,
+      "acceptance_rate": 0.02792654860352629,
+      "reward": -0.5411977168806743,
+      "exploration_rate": 0.07955220558967377,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 46,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 210.89063677705332,
+      "acceptance_rate": 0.01264797848521502,
+      "reward": -0.5355775872861295,
+      "exploration_rate": 0.07557459531019008,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 47,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2363764703273773,
+      "rollback_threshold": 4.136831283569336,
+      "ms_per_token": 216.6049674668488,
+      "acceptance_rate": 0.03508684995737425,
+      "reward": -0.48864802277809494,
+      "exploration_rate": 0.07179586554468056,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 48,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.08559198614288911,
+      "rollback_threshold": 6.133925212720989,
+      "ms_per_token": 208.16071182489395,
+      "acceptance_rate": 0.005088387725779967,
+      "reward": -3.0735569499589,
+      "exploration_rate": 0.06820607226744653,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 49,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.24382525980472564,
+      "rollback_threshold": 4.073144340515137,
+      "ms_per_token": 240.1638168148129,
+      "acceptance_rate": 0.01399085353683202,
+      "reward": -0.6665820063429981,
+      "exploration_rate": 0.0647957686540742,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 50,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.236093857884407,
+      "rollback_threshold": 4.139611625671387,
+      "ms_per_token": 242.6844939937194,
+      "acceptance_rate": 0.003963011889035667,
+      "reward": -0.7108908288758444,
+      "exploration_rate": 0.06155598022137049,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "wikitext"
+    },
+    {
+      "episode": 1,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.36319663239386607,
+      "rollback_threshold": 1.1077614822600323,
+      "ms_per_token": 149.47445982283477,
+      "acceptance_rate": 0.02073713083556744,
+      "reward": -3.8914064289072883,
+      "exploration_rate": 0.76,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 2,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.38925011619356087,
+      "rollback_threshold": 5.788501307072117,
+      "ms_per_token": 154.00980824063657,
+      "acceptance_rate": 0.016400516111033,
+      "reward": -4.074531887758122,
+      "exploration_rate": 0.722,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 3,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.38888541496968604,
+      "rollback_threshold": 3.8171821125688643,
+      "ms_per_token": 158.0273463043259,
+      "acceptance_rate": 0.01289672052753448,
+      "reward": -2.9045568408313125,
+      "exploration_rate": 0.6859,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 4,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.15297461754843644,
+      "rollback_threshold": 2.6653612670125093,
+      "ms_per_token": 169.5120371878147,
+      "acceptance_rate": 0.0022917539449797512,
+      "reward": -1.2264767911809762,
+      "exploration_rate": 0.6516049999999999,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 5,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.34103550435942476,
+      "rollback_threshold": 4.733939723136248,
+      "ms_per_token": 142.32753310976256,
+      "acceptance_rate": 0.02775542627887594,
+      "reward": -1.8755364521956892,
+      "exploration_rate": 0.6190247499999999,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 6,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.23599831163883206,
+      "rollback_threshold": 4.151783561706543,
+      "ms_per_token": 156.82860125277645,
+      "acceptance_rate": 0.01310380294359123,
+      "reward": -1.0241731718084308,
+      "exploration_rate": 0.5880735124999998,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 7,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.18827217817944614,
+      "rollback_threshold": 3.1366106242422553,
+      "ms_per_token": 171.71319350600243,
+      "acceptance_rate": 9.765625e-05,
+      "reward": -1.1537540118104097,
+      "exploration_rate": 0.5586698368749998,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 8,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.1348818010449649,
+      "rollback_threshold": 3.9826052452659466,
+      "ms_per_token": 156.89360570501196,
+      "acceptance_rate": 0.00921444757356826,
+      "reward": -0.9884480929799024,
+      "exploration_rate": 0.5307363450312498,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 9,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.3702358944914205,
+      "rollback_threshold": 6.557607241492129,
+      "ms_per_token": 152.29951310879375,
+      "acceptance_rate": 0.01954194068420379,
+      "reward": -3.5796781569949303,
+      "exploration_rate": 0.5041995277796872,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 10,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.22033827560602537,
+      "rollback_threshold": 3.583342641516169,
+      "ms_per_token": 162.6654373961171,
+      "acceptance_rate": 0.00968671953046953,
+      "reward": -0.9478000715424733,
+      "exploration_rate": 0.4789895513907029,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 11,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.1423026760811223,
+      "rollback_threshold": 3.087165149327939,
+      "ms_per_token": 165.6408824082186,
+      "acceptance_rate": 0.009121621621621622,
+      "reward": -0.9336907529561445,
+      "exploration_rate": 0.45504007382116773,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 12,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2354443520307541,
+      "rollback_threshold": 4.129956245422363,
+      "ms_per_token": 156.6967707643142,
+      "acceptance_rate": 0.007838831571262323,
+      "reward": -0.8660074799563984,
+      "exploration_rate": 0.43228807013010934,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 13,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.34757848818365417,
+      "rollback_threshold": 1.5227245579750375,
+      "ms_per_token": 134.1998581055954,
+      "acceptance_rate": 0.025685936990058035,
+      "reward": -2.9604726585863785,
+      "exploration_rate": 0.41067366662360383,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 14,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.20441633784592522,
+      "rollback_threshold": 3.8585224937810145,
+      "ms_per_token": 162.20954336677536,
+      "acceptance_rate": 0.010988813388194194,
+      "reward": -0.8092800500278949,
+      "exploration_rate": 0.3901399832924236,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 15,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.1162680595702346,
+      "rollback_threshold": 3.091581412574795,
+      "ms_per_token": 169.81767312143788,
+      "acceptance_rate": 0.00194672131147541,
+      "reward": -0.8698868128449977,
+      "exploration_rate": 0.37063298412780243,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 16,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.3278766790013231,
+      "rollback_threshold": 2.184720418685047,
+      "ms_per_token": 133.22470267473642,
+      "acceptance_rate": 0.05126464117679556,
+      "reward": -2.4335963667141294,
+      "exploration_rate": 0.3521013349214123,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 17,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.30822230279445645,
+      "rollback_threshold": 4.439069175720215,
+      "ms_per_token": 139.08420168553434,
+      "acceptance_rate": 0.02137509536172625,
+      "reward": -1.522564507765372,
+      "exploration_rate": 0.33449626817534167,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 18,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.3684115976095199,
+      "rollback_threshold": 4.73731164932251,
+      "ms_per_token": 139.34473589711143,
+      "acceptance_rate": 0.0291105441572923,
+      "reward": -1.8177459985474815,
+      "exploration_rate": 0.3177714547665746,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 19,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.37228996157646177,
+      "rollback_threshold": 4.777080440521241,
+      "ms_per_token": 139.15019740145172,
+      "acceptance_rate": 0.020404542076280004,
+      "reward": -1.909682013733121,
+      "exploration_rate": 0.30188288202824587,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 20,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.1913648237181065,
+      "rollback_threshold": 3.70979430251657,
+      "ms_per_token": 172.82139695186737,
+      "acceptance_rate": 0.008244494860785843,
+      "reward": -0.6892302916257895,
+      "exploration_rate": 0.28678873792683357,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 21,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.18540799359598115,
+      "rollback_threshold": 3.028177536359697,
+      "ms_per_token": 155.69966878084574,
+      "acceptance_rate": 0.013660350762826231,
+      "reward": -0.5355023924486169,
+      "exploration_rate": 0.27244930103049186,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 22,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.32705682516098017,
+      "rollback_threshold": 4.706493854522705,
+      "ms_per_token": 154.72971209034122,
+      "acceptance_rate": 0.013255560610152307,
+      "reward": -1.49972347518705,
+      "exploration_rate": 0.2588268359789673,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 23,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.35783237516880034,
+      "rollback_threshold": 4.966727924346924,
+      "ms_per_token": 142.63819261321,
+      "acceptance_rate": 0.021484702797202795,
+      "reward": -2.5393077873770578,
+      "exploration_rate": 0.2458854941800189,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 24,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.33304369449615473,
+      "rollback_threshold": 5.31702070236206,
+      "ms_per_token": 161.1151646027268,
+      "acceptance_rate": 0.006363588955891834,
+      "reward": -2.597317733463942,
+      "exploration_rate": 0.23359121947101794,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 25,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.33803454637527464,
+      "rollback_threshold": 5.370893478393555,
+      "ms_per_token": 133.69148336135126,
+      "acceptance_rate": 0.02900501966396944,
+      "reward": -2.2962071526708883,
+      "exploration_rate": 0.22191165849746702,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 26,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.37649104801896494,
+      "rollback_threshold": 1.4822558927071894,
+      "ms_per_token": 158.10558893640567,
+      "acceptance_rate": 0.009134836937256292,
+      "reward": -3.3217837679070974,
+      "exploration_rate": 0.21081607557259366,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 27,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.17911957678586327,
+      "rollback_threshold": 2.197170643444932,
+      "ms_per_token": 164.19681983463693,
+      "acceptance_rate": 0.003913916146297948,
+      "reward": -1.519888177809094,
+      "exploration_rate": 0.20027527179396395,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 28,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2541662842035293,
+      "rollback_threshold": 5.196520137786865,
+      "ms_per_token": 156.3340545220171,
+      "acceptance_rate": 0.012657337923004738,
+      "reward": -2.3905511683519025,
+      "exploration_rate": 0.19026150820426574,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 29,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.29159529507160187,
+      "rollback_threshold": 5.906366539001464,
+      "ms_per_token": 149.3072689082977,
+      "acceptance_rate": 0.033097677595628414,
+      "reward": -2.3635567287867594,
+      "exploration_rate": 0.18074843279405245,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 30,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27796790961505863,
+      "rollback_threshold": 3.8208880028877483,
+      "ms_per_token": 159.86777660466717,
+      "acceptance_rate": 0.011848258288530466,
+      "reward": -1.2814445118431639,
+      "exploration_rate": 0.1717110111543498,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 31,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.3919413534075399,
+      "rollback_threshold": 2.7784275612602185,
+      "ms_per_token": 140.20720419858858,
+      "acceptance_rate": 0.024481107660455487,
+      "reward": -1.9094721663799765,
+      "exploration_rate": 0.1631254605966323,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 32,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2486116677522659,
+      "rollback_threshold": 5.334371089935303,
+      "ms_per_token": 158.87974267838052,
+      "acceptance_rate": 0.020541926447998553,
+      "reward": -1.3095147874015787,
+      "exploration_rate": 0.15496918756680067,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 33,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2766560763120651,
+      "rollback_threshold": 5.852783870697021,
+      "ms_per_token": 168.70077749322945,
+      "acceptance_rate": 0.012070505845707458,
+      "reward": -2.4928431021978383,
+      "exploration_rate": 0.14722072818846063,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 34,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2755639910697937,
+      "rollback_threshold": 5.974599361419678,
+      "ms_per_token": 153.80999741770114,
+      "acceptance_rate": 0.015391671938282109,
+      "reward": -2.4072072685251684,
+      "exploration_rate": 0.1398596917790376,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 35,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27652633786201475,
+      "rollback_threshold": 5.990274333953858,
+      "ms_per_token": 176.15582874188055,
+      "acceptance_rate": 0.0020869408369408367,
+      "reward": -2.5957453617863555,
+      "exploration_rate": 0.1328667071900857,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 36,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27770082652568817,
+      "rollback_threshold": 6.072266674041748,
+      "ms_per_token": 165.06224619714837,
+      "acceptance_rate": 0.0061846920949147205,
+      "reward": -2.5289294390439947,
+      "exploration_rate": 0.1262233718305814,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 37,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2783391296863556,
+      "rollback_threshold": 6.0816390991210945,
+      "ms_per_token": 132.66677879043033,
+      "acceptance_rate": 0.02653393257381964,
+      "reward": -2.235046925489331,
+      "exploration_rate": 0.11991220323905233,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 38,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27840841114521026,
+      "rollback_threshold": 6.082727718353272,
+      "ms_per_token": 163.82270684609045,
+      "acceptance_rate": 0.008336196365857383,
+      "reward": -2.5157690339459617,
+      "exploration_rate": 0.11391659307709971,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 39,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2784164637327194,
+      "rollback_threshold": 6.082853603363038,
+      "ms_per_token": 154.93858496917125,
+      "acceptance_rate": 0.013054194966910482,
+      "reward": -2.4419500221035886,
+      "exploration_rate": 0.10822076342324471,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 40,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2784174025058746,
+      "rollback_threshold": 6.082868194580078,
+      "ms_per_token": 164.97772052560165,
+      "acceptance_rate": 0.006615964330808082,
+      "reward": -2.5288511086727117,
+      "exploration_rate": 0.10280972525208247,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 41,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27841750681400296,
+      "rollback_threshold": 6.082870197296142,
+      "ms_per_token": 161.39075811663275,
+      "acceptance_rate": 0.012516408856212571,
+      "reward": -2.486271388910802,
+      "exploration_rate": 0.09766923898947834,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 42,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.20149718481116358,
+      "rollback_threshold": 2.176060085359908,
+      "ms_per_token": 153.73844189058465,
+      "acceptance_rate": 0.014250728960174713,
+      "reward": -1.2940838085351167,
+      "exploration_rate": 0.09278577704000442,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 43,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2428462028503418,
+      "rollback_threshold": 5.258898735046387,
+      "ms_per_token": 141.72065342402854,
+      "acceptance_rate": 0.025392780856639825,
+      "reward": -1.1607431503386274,
+      "exploration_rate": 0.08814648818800419,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 44,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2721105992794037,
+      "rollback_threshold": 5.974699783325196,
+      "ms_per_token": 163.6268766533829,
+      "acceptance_rate": 0.00858477011494253,
+      "reward": -2.4944030554002787,
+      "exploration_rate": 0.08373916377860398,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 45,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27760953605175015,
+      "rollback_threshold": 6.070171260833741,
+      "ms_per_token": 153.59958424533772,
+      "acceptance_rate": 0.017635075819993722,
+      "reward": -2.4153688069268666,
+      "exploration_rate": 0.07955220558967377,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 46,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.278323295712471,
+      "rollback_threshold": 6.08139877319336,
+      "ms_per_token": 149.16572958577694,
+      "acceptance_rate": 0.013614280804234467,
+      "reward": -2.400246009419502,
+      "exploration_rate": 0.07557459531019008,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 47,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2784066379070282,
+      "rollback_threshold": 6.082699966430663,
+      "ms_per_token": 158.45125110842022,
+      "acceptance_rate": 0.006328940667175961,
+      "reward": -2.487706710944218,
+      "exploration_rate": 0.07179586554468056,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 48,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2784162551164627,
+      "rollback_threshold": 6.082850170135497,
+      "ms_per_token": 154.7845292474983,
+      "acceptance_rate": 0.010534365667997706,
+      "reward": -2.449311956914419,
+      "exploration_rate": 0.06820607226744653,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 49,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.2784173607826233,
+      "rollback_threshold": 6.082867622375488,
+      "ms_per_token": 140.12151708062748,
+      "acceptance_rate": 0.02456036556036556,
+      "reward": -2.298827212548459,
+      "exploration_rate": 0.0647957686540742,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    },
+    {
+      "episode": 50,
+      "target": "13B",
+      "draft": "3B",
+      "fallback_threshold": 0.27841750681400296,
+      "rollback_threshold": 6.082869625091552,
+      "ms_per_token": 130.1843142202453,
+      "acceptance_rate": 0.05756933373692531,
+      "reward": -2.112126865708759,
+      "exploration_rate": 0.06155598022137049,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      },
+      "dataset": "lambada"
+    }
+  ],
+  "best_thresholds": {
+    "13B_3B_wikitext": {
+      "fallback": 0.38234993222770797,
+      "rollback": 4.506772940510566,
+      "acceptance_rate": 0.048561959847950566,
+      "ms_per_token": 156.95573643564248,
+      "reward": -2.145486071730588,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      }
+    },
+    "13B_3B_lambada": {
+      "fallback": 0.27841750681400296,
+      "rollback": 6.082869625091552,
+      "acceptance_rate": 0.05756933373692531,
+      "ms_per_token": 130.1843142202453,
+      "reward": -2.112126865708759,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      }
+    }
+  },
+  "validation": [
+    {
+      "target": "13B",
+      "draft": "3B",
+      "dataset": "wikitext",
+      "fallback_threshold": 0.2363866912499824,
+      "rollback_threshold": 7.000304824307754,
+      "ms_per_token": 233.90544005884576,
+      "acceptance_rate": 0.008292223220629459,
+      "reward": -2.8773701994016774,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      }
+    },
+    {
+      "target": "13B",
+      "draft": "3B",
+      "dataset": "lambada",
+      "fallback_threshold": 0.21606116527667354,
+      "rollback_threshold": 4.84415124834409,
+      "ms_per_token": 139.8536578079755,
+      "acceptance_rate": 0.05288585257335258,
+      "reward": -1.7856794578209576,
+      "time_stats": {
+        "draft_generation": 0.0,
+        "target_verification": 0.0,
+        "fallback_handling": 0.0,
+        "rollback_handling": 0.0,
+        "token_acceptance": 0.0,
+        "overhead": 0.0
+      }
+    }
+  ],
+  "time_stats_training": {
+    "13B_3B_wikitext": {
+      "draft_generation": 0.0,
+      "target_verification": 0.0,
+      "fallback_handling": 0.0,
+      "rollback_handling": 0.0,
+      "token_acceptance": 0.0,
+      "overhead": 0.0
+    },
+    "13B_3B_lambada": {
+      "draft_generation": 0.0,
+      "target_verification": 0.0,
+      "fallback_handling": 0.0,
+      "rollback_handling": 0.0,
+      "token_acceptance": 0.0,
+      "overhead": 0.0
+    }
+  },
+  "time_stats_validation": {
+    "13B_3B_wikitext": {
+      "draft_generation": 0.0,
+      "target_verification": 0.0,
+      "fallback_handling": 0.0,
+      "rollback_handling": 0.0,
+      "token_acceptance": 0.0,
+      "overhead": 0.0
+    },
+    "13B_3B_lambada": {
+      "draft_generation": 0.0,
+      "target_verification": 0.0,
+      "fallback_handling": 0.0,
+      "rollback_handling": 0.0,
+      "token_acceptance": 0.0,
+      "overhead": 0.0
+    }
+  }
+}
